@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1179b84d4ef5a41abfea1e42cec1bc, type: 3}
+  m_Name: m_RiceHat01
+  m_EditorClassIdentifier: 
+  skinType: 0
+  idNumber: 63
+  skinName: m_RiceHat01
+  price: 200
+  isAdsReward: 0
+  sprite: {fileID: 21300000, guid: cf8049cc7ded42e4f9e9dfa1189e9449, type: 3}
+  skinStats:
+    passiveStats: 25
+    activeStats: 25

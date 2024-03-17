@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3607461982660563739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5697611761255060019}
+  - component: {fileID: 1850439265940333008}
+  m_Layer: 0
+  m_Name: SoundController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5697611761255060019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3607461982660563739}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 358.65903, y: 287.97873, z: -5.1967635}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1850439265940333008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3607461982660563739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42afb1f3663527543913ef5b31e29af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: d355c49a9059b1c4fbe633fd08a282fa, type: 2}
+  musicMixerGroup: {fileID: 4846107896132675520, guid: d355c49a9059b1c4fbe633fd08a282fa, type: 2}
+  effectsMixerGroup: {fileID: 4385146663326245098, guid: d355c49a9059b1c4fbe633fd08a282fa, type: 2}
+  masterMixerGroup: {fileID: 24300002, guid: d355c49a9059b1c4fbe633fd08a282fa, type: 2}
+  sounds:
+  - name: ButtonClick
+    typeOfSound: 2
+    clip: {fileID: 8300000, guid: 5644887a20d906a44a0b639658ce9fea, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: DeclineBuy
+    typeOfSound: 2
+    clip: {fileID: 8300000, guid: 3532279f6f1519b44b3888c0e631b74d, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: ConfirmBuy
+    typeOfSound: 2
+    clip: {fileID: 8300000, guid: ec0b993c728ad7245a2503bc5b5ba2b2, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: Background
+    typeOfSound: 1
+    clip: {fileID: 8300000, guid: 661cb7c2860545c46bc52fc5f6cf79e4, type: 3}
+    volume: 0.03
+    pitch: 1
+    loop: 1
+    isPlayOnAwake: 1
+    audioSource: {fileID: 0}
+  - name: FillUp_1
+    typeOfSound: 2
+    clip: {fileID: 8300000, guid: f4520c3d73e7ecf4c8b2d1bbb315927b, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: FillUp_2
+    typeOfSound: 2
+    clip: {fileID: 8300000, guid: 653c6caebae145345b898eb474c3499c, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: FillUp_3
+    typeOfSound: 2
+    clip: {fileID: 8300000, guid: 3ddc1e609654fb04598eec18d5ec289b, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: CardClick
+    typeOfSound: 2
+    clip: {fileID: 8300000, guid: f8d8ae904b266084caf4321687b59e92, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: Finish
+    typeOfSound: 2
+    clip: {fileID: 8300000, guid: 43a6c3981d6e952458a262a4d8b44dd9, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: Death
+    typeOfSound: 2
+    clip: {fileID: 8300000, guid: c72ae711e886fa24680bdeb08523f2a7, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: SceneSwap
+    typeOfSound: 2
+    clip: {fileID: 8300000, guid: 16dc0578736bc1e4b827a603207da823, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: SelectSkin
+    typeOfSound: 2
+    clip: {fileID: 8300000, guid: 0d96390a04bcfa84288baa6f45297003, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  sfxSlider: {fileID: 0}
+  musicSlider: {fileID: 0}
+  settingsCanvas: {fileID: 0}

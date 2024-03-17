@@ -1,0 +1,142 @@
+fileFormatVersion: 2
+guid: 30ec226c40806f9488c59df41b25bedb
+timeCreated: 1425853954
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: canon
+    100002: Generator
+    100004: Lamp
+    100006: Laser
+    100008: LaserBase
+    100010: LaserTower
+    100012: Mine
+    100014: MirrorBase
+    100016: MirrorBase.001
+    100018: Pilon
+    100020: RocketTurrel
+    100022: StockCarburant
+    100024: StockMetaux
+    100026: //RootNode
+    100028: tourelle
+    100030: Wall
+    400000: canon
+    400002: Generator
+    400004: Lamp
+    400006: Laser
+    400008: LaserBase
+    400010: LaserTower
+    400012: Mine
+    400014: MirrorBase
+    400016: MirrorBase.001
+    400018: Pilon
+    400020: RocketTurrel
+    400022: StockCarburant
+    400024: StockMetaux
+    400026: //RootNode
+    400028: tourelle
+    400030: Wall
+    2300000: canon
+    2300002: Generator
+    2300004: Lamp
+    2300006: Laser
+    2300008: LaserBase
+    2300010: LaserTower
+    2300012: Mine
+    2300014: MirrorBase
+    2300016: MirrorBase.001
+    2300018: Pilon
+    2300020: RocketTurrel
+    2300022: StockCarburant
+    2300024: StockMetaux
+    2300026: tourelle
+    2300028: Wall
+    3300000: canon
+    3300002: Generator
+    3300004: Lamp
+    3300006: Laser
+    3300008: LaserBase
+    3300010: LaserTower
+    3300012: Mine
+    3300014: MirrorBase
+    3300016: MirrorBase.001
+    3300018: Pilon
+    3300020: RocketTurrel
+    3300022: StockCarburant
+    3300024: StockMetaux
+    3300026: tourelle
+    3300028: Wall
+    4300000: RocketTurrel
+    4300002: tourelle
+    4300004: canon
+    4300006: Wall
+    4300008: LaserTower
+    4300010: LaserBase
+    4300012: Laser
+    4300014: MirrorBase.001
+    4300016: Mine
+    4300018: Pilon
+    4300020: Generator
+    4300022: Lamp
+    4300024: StockMetaux
+    4300026: StockCarburant
+    4300028: MirrorBase
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

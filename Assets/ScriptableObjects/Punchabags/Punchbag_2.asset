@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a88c9f972ca1843ab5eb182b500af8, type: 3}
+  m_Name: Punchbag_2
+  m_EditorClassIdentifier: 
+  punchbagIdNumber: 1
+  punchbagPrice: 10
+  rusName: "\u041A\u0440\u0443\u0442\u0430\u044F \u0433\u0440\u0443\u0448\u0430"
+  engName: Cool punchbag
+  punchbagSprite: {fileID: 21300000, guid: 57f17d22915a92b45a8598f6f209ed47, type: 3}
+  punchbagStats:
+    maxStreak: 5
+  punchbagObject: {fileID: 66736439293768451, guid: a03f9994b4696c447bfb48454edb572e, type: 3}

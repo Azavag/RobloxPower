@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1179b84d4ef5a41abfea1e42cec1bc, type: 3}
+  m_Name: BisonPet
+  m_EditorClassIdentifier: 
+  skinType: 1
+  idNumber: 3
+  skinName: Bison
+  price: 4
+  sprite: {fileID: 21300000, guid: dd756b53b4ee52841816b31accb73be0, type: 3}
+  skinStats:
+    passiveStats: 1
+    activeStats: 1
