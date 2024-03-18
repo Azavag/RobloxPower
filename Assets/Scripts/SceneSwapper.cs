@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,7 @@ public class SceneSwapper : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI nextSceneNumberText;
 
+    [SerializeField]
     private bool isLevelUnlock;
     [Header("Refs")]
     [SerializeField]
@@ -20,7 +22,6 @@ public class SceneSwapper : MonoBehaviour
     private SoundController soundController;
 
     string levelInterText;
-
 
     [SerializeField]
     private Transform leftDoor;
@@ -38,7 +39,7 @@ public class SceneSwapper : MonoBehaviour
     {
         isLevelUnlock = Bank.Instance.playerInfo.areLevelsUnlock[nextSceneNumber-1];
         nextSceneNumberText.text = $"{levelInterText} {nextSceneNumber}";
-        RotateDoors(0);
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -52,6 +53,14 @@ public class SceneSwapper : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        //if(Input.GetKeyDown(KeyCode.G))
+        //{
+        //    RotateDoors(75f);
+        //}
+    }
+
     public void SwapScene()
     {
         soundController.Play("SceneSwap");
@@ -61,14 +70,18 @@ public class SceneSwapper : MonoBehaviour
     public void UnlockLevel()
     {
         isLevelUnlock = true;
-        RotateDoors(25);
+        RotateDoors(75f);
         Bank.Instance.playerInfo.areLevelsUnlock[nextSceneNumber-1] = isLevelUnlock;
     }
 
     void RotateDoors(float angle)
     {
-        leftDoor.localRotation = Quaternion.Euler(0, -angle, 0);
-        rightDoor.localRotation = Quaternion.Euler(0, angle, 0);
+        leftDoor.DOLocalRotate(new Vector3(0, -angle, 0), 1f)
+            .SetAutoKill()
+            .Play();
+        rightDoor.DOLocalRotate(new Vector3(0, angle, 0), 1f)
+            .SetAutoKill()
+            .Play();
     }
 
 }

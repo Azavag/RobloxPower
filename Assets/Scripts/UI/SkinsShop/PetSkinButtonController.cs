@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PetSkinButtonsController : MonoBehaviour
 {
-    [SerializeField]
     private SoundController soundController;
     [SerializeField]
     private SkinCard[] skinCards;

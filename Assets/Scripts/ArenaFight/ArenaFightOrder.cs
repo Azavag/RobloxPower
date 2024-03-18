@@ -4,36 +4,48 @@ using UnityEngine;
 public class ArenaFightOrder : MonoBehaviour
 {
     [SerializeField]
+    private bool isArenaFight;
+    [SerializeField]
+    private int enemyNumber;
+
+    [SerializeField]
     private ArenaEnemyScriptable[] arenaEnemiesScriptables;
     [SerializeField]
     private EnemiesOrderPanel enemiesOrderPanel;
     private ArenaEnemyBehavior enemyBehavior;
     private SceneSwapper sceneSwapper;
 
-   private static int maxEnemies = 0;
+    private static int maxEnemies;
 
     private static int currentEnemyNumber = 0;
 
-    bool areAllEnemiesDefeated;
+    public bool areAllEnemiesDefeated;
 
     private void Awake()
     {
         enemyBehavior = GetComponentInChildren<ArenaEnemyBehavior>();
         sceneSwapper = FindObjectOfType<SceneSwapper>();
+
+        
     }
     private void OnValidate()
     {
-        enemiesOrderPanel.InitializeEnemyData(arenaEnemiesScriptables);
+        //InitializeEnemies();
 
     }
     void Start()
     {
         currentEnemyNumber = Bank.Instance.playerInfo.currentEnemyNumber;
-        InitializeEnemies();    
+        InitializeEnemies();
     }
 
     void InitializeEnemies()
     {
+        if (!isArenaFight)
+        {
+            enemyBehavior.SetArenaEnemy(arenaEnemiesScriptables[enemyNumber]);
+            return;
+        }
         enemyBehavior.SetArenaEnemy(arenaEnemiesScriptables[currentEnemyNumber]);
         enemiesOrderPanel.InitializeEnemyData(arenaEnemiesScriptables);
         enemiesOrderPanel.InitializeCrossEnemyIcons();
@@ -56,10 +68,14 @@ public class ArenaFightOrder : MonoBehaviour
         enemiesOrderPanel.UpdateKilledCountText();
         if (currentEnemyNumber >= maxEnemies)
         {
-            areAllEnemiesDefeated = true;
-            sceneSwapper.UnlockLevel();
+            areAllEnemiesDefeated = true;         
             currentEnemyNumber = maxEnemies - 1;
         }
+    }
+
+    public void OpenDoorAnimation()
+    {
+        sceneSwapper.UnlockLevel();
     }
 
     public static int GetMaxEnemiesCount()

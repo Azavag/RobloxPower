@@ -15,7 +15,7 @@ MonoBehaviour:
   skinType: 2
   idNumber: 18
   skinName: Spark
-  price: 0
+  price: 20
   isAdsReward: 1
   sprite: {fileID: 21300000, guid: 7c002b7d6914ad74f990602c5f32f99e, type: 3}
   skinStats:

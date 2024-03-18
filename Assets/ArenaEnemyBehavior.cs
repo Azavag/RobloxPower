@@ -21,13 +21,14 @@ public class ArenaEnemyBehavior : MonoBehaviour
 
     private Animator animator;
     GameObject enemyModel;
-    public static event Action EnemyLost;
     public static event Action<float> EnemyAttacked;
-    public static event Action<int> EnemyAttacking;
+
+    private ArenaFight arenaFight;
 
     private void Awake()
     {
         botCanvas = GetComponentInChildren<BotCanvas>();
+        arenaFight = GetComponentInParent<ArenaFight>();
     }
     
     void Start()
@@ -69,15 +70,14 @@ public class ArenaEnemyBehavior : MonoBehaviour
         {
             CanAttack(false);
             Death();
-            EnemyLost?.Invoke();
+            arenaFight.OnEnemyLost();
         }
     }
 
     void Attack()
     {
-        EnemyAttacking?.Invoke(enemyDamage);
+        arenaFight.OnEnemyAttacking(enemyDamage);
         animator.SetTrigger("attack");
-        Debug.Log("Attack");
     }
 
     void Death()

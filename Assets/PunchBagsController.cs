@@ -7,7 +7,6 @@ public class PunchBagsController : MonoBehaviour
     private Transform[] punchbagsTransforms;
     [SerializeField]
     private int currentPunchbagNumber;
-    private PunchTrainZone punchTrainZone;
     [SerializeField]
     private ParticleSystem upgradeParticles;
 
@@ -22,13 +21,7 @@ public class PunchBagsController : MonoBehaviour
    
     private void Awake()
     {
-
         Initialization();
-    }
-    void Start()
-    {
-        
-        
     }
 
     void TogglePunchBag(int index, bool state)

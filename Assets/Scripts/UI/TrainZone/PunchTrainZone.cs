@@ -11,16 +11,14 @@ public class PunchTrainZone : MonoBehaviour
     private Image fillImage;
     [SerializeField]
     private Button quitButton;
-    [SerializeField]
-    private GameObject[] streaksLines;
 
     [Header("ClickTimer")]
     private float clickInterval = 0.6f;
     private int currentStreakMultiply = 1;
     private float timeAfterClick;
     private int clickStreak = 0;
-    private int maxClickStreak = 100;
-    private int currentNumberOfMultipliers = 3;
+    private int maxClickStreak = 60;
+    private int currentNumberOfMultipliers = 2;
     private Dictionary<int, int> clickStreaksMultipliersDict;
     private int currentStreakLineNumber = 0;
     private bool isClickCount;
@@ -64,7 +62,6 @@ public class PunchTrainZone : MonoBehaviour
     private void Start()
     {
         UpdateStreakDictionary();
-        ShowStreakLine(currentStreakLineNumber);
     }
     void FixedUpdate()
     {
@@ -73,8 +70,8 @@ public class PunchTrainZone : MonoBehaviour
     private void OnPunchbagSelected(int number)
     {
         currentStreakLineNumber = number;
-        ShowStreakLine(currentStreakLineNumber);
         currentNumberOfMultipliers++;
+        maxClickStreak += 10;
         UpdateStreakDictionary();
     }
   
@@ -88,14 +85,6 @@ public class PunchTrainZone : MonoBehaviour
         }
     }
 
-    void ShowStreakLine(int number)
-    {     
-        foreach (var line in streaksLines)
-        {
-            line.SetActive(false);
-        }
-        streaksLines[number].SetActive(true);
-    }
       
     void OnClickTrainButton()
     {

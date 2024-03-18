@@ -1,4 +1,5 @@
 using Cinemachine;
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -6,22 +7,32 @@ using UnityEngine;
 public class ArenaFight : MonoBehaviour
 {
     [SerializeField]
-    private UINavigation uINavigation;
-    [SerializeField]
-    private CinemachineVirtualCamera arenaCamera;
-    [SerializeField]
-    private CinemachineVirtualCamera fightDeskCamera;
-    private bool isFightState;
+    private bool isArenaFight;
 
-    private ArenaEnemyBehavior currentArenaEnemy;
+    [Header("Refs")]
+    [SerializeField]
+    private UINavigation uINavigation;
     [SerializeField]
     private PlayerController playerController;
     private PlayerAnimatorController playerAnimatorController;
     [SerializeField]
     private PowerControl powerControl;
-
     [SerializeField]
     FadeScreen fadeScreen;
+    private ArenaEnemyBehavior currentArenaEnemy;
+    ArenaFightTrigger trigger;
+    HealthBars healthBars;
+    ArenaFightOrder arenaFightOrder;
+
+    [Header("Cameras")]
+    [SerializeField]
+    private CinemachineVirtualCamera arenaCamera;
+    [SerializeField]
+    private CinemachineVirtualCamera fightDeskCamera;
+    [SerializeField]
+    private CinemachineVirtualCamera doorCamera;
+
+    private bool isFightState;   
     private float endDelay = 3f;
 
     private int playerMaxHealth;
@@ -29,25 +40,17 @@ public class ArenaFight : MonoBehaviour
     private int playerDamage;
     private bool canPlayerAttack;
 
-    ArenaFightTrigger trigger;
-    HealthBars healthBars;
-    ArenaFightOrder arenaFightOrder;
-
     [SerializeField]
     private Transform exitPoint;
     private float enemiesOrderPanelAnimDuration = 2f;
 
+    Tween shakeCameraTween;
+
     public static event Action<int> EnemyLost;
 
-    private void OnEnable()
+    private void OnDestroy()
     {
-        ArenaEnemyBehavior.EnemyLost += OnEnemyLost;
-        ArenaEnemyBehavior.EnemyAttacking += OnEnemyAttacking;
-    } 
-    private void OnDisable()
-    {
-        ArenaEnemyBehavior.EnemyLost -= OnEnemyLost;
-        ArenaEnemyBehavior.EnemyAttacking -= OnEnemyAttacking;
+        shakeCameraTween.Kill();
     }
     private void Awake()
     {
@@ -59,8 +62,10 @@ public class ArenaFight : MonoBehaviour
     }
     void Start()
     {
+        SetupShakeCameraTween();
         arenaCamera.enabled = false;
         fightDeskCamera.enabled = false;
+        doorCamera.enabled = false;
     }
 
     void Update()
@@ -71,8 +76,16 @@ public class ArenaFight : MonoBehaviour
 
     public void StartFight()
     {
+        StartCoroutine(StartFightRoutine());
+        PlayerController.IsBusy = true;
+    }
+
+    IEnumerator StartFightRoutine()
+    {
         fadeScreen.StartInFadeScreenTween();
         isFightState = true;
+        playerController.BlockPlayersInput(isFightState);
+        yield return new WaitForSeconds(fadeScreen.GetInFadeDuration());
         canPlayerAttack = true;
         arenaCamera.enabled = true;
         uINavigation.ToggleArenaFightCanvas(true);
@@ -81,7 +94,6 @@ public class ArenaFight : MonoBehaviour
         ResetPlayerStats();
         healthBars.ResetFightHealthBar();
         playerController.SwapToFightMode(true);
-        playerController.BlockPlayersInput(true);
     }
 
     public void EndFight()
@@ -92,10 +104,10 @@ public class ArenaFight : MonoBehaviour
         uINavigation.ToggleArenaFightCanvas(false);      
         trigger.ToggleTriggerFX(true);
     }
-    private void OnEnemyAttacking(int enemyDamage)
+    public void OnEnemyAttacking(int enemyDamage)
     {
         playerHealth -= enemyDamage;
-        
+        shakeCameraTween.Restart();
         healthBars.UpdatePlayerHealthBar((float)playerHealth / playerMaxHealth);
         if (playerHealth <= 0)
         {
@@ -107,7 +119,7 @@ public class ArenaFight : MonoBehaviour
         }
     }
 
-    void OnEnemyLost()
+    public void OnEnemyLost()
     {
         canPlayerAttack = false;
         playerAnimatorController.WinAnimation();
@@ -116,21 +128,17 @@ public class ArenaFight : MonoBehaviour
 
     IEnumerator PlayerWinFight()
     {
-        yield return new WaitForSeconds(endDelay);
         //Ожидание анимации победы
-        //fadeScreen.StartInFadeScreenTween();
-        //yield return new WaitForSeconds(fadeScreen.GetInFadeDuration() + fadeScreen.GetOutFadeDuration());
-        //Переход к стенду
+        yield return new WaitForSeconds(endDelay);
         uINavigation.ToggleArenaFightCanvas(false);
-        arenaCamera.enabled = false;
-        fightDeskCamera.enabled = true;
-        yield return new WaitForSeconds(1f);
-        //Анимация обновления 
-        UpdateEnemiesDesk();
-        yield return new WaitForSeconds(enemiesOrderPanelAnimDuration * 1.5f);
+        if (isArenaFight && !arenaFightOrder.areAllEnemiesDefeated)
+        {
+            yield return StartCoroutine(ProgressCinematic());
+        }
         //Возвращение управления к игроку
         fadeScreen.StartInFadeScreenTween();
-        yield return new WaitForSeconds(fadeScreen.GetInFadeDuration());       
+        yield return new WaitForSeconds(fadeScreen.GetInFadeDuration());
+        arenaCamera.enabled = false;
         fightDeskCamera.enabled = false;
         isFightState = false;        
         trigger.ToggleTriggerFX(true);
@@ -140,10 +148,29 @@ public class ArenaFight : MonoBehaviour
         playerController.SwapToFightMode(false);
         yield return new WaitForSeconds(fadeScreen.GetOutFadeDuration());
         playerController.BlockPlayersInput(false);
+        PlayerController.IsBusy = false;
     }
-    void UpdateEnemiesDesk()
-    {        
+
+    IEnumerator  ProgressCinematic()
+    {
+        //Переход к стенду     
+        fightDeskCamera.enabled = true;
+        yield return new WaitForSeconds(0.75f);
+        //Анимация обновления 
         arenaFightOrder.SwapNextEnemy();
+        yield return new WaitForSeconds(enemiesOrderPanelAnimDuration * 1.25f);
+        if (arenaFightOrder.areAllEnemiesDefeated)
+        {
+            yield return StartCoroutine(DoorOpenCinematic());
+        }
+    }
+    IEnumerator DoorOpenCinematic()
+    {
+        doorCamera.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        arenaFightOrder.OpenDoorAnimation();
+        yield return new WaitForSeconds(1.25f);
+        doorCamera.enabled = false;
     }
     void MovePlayerToExit()
     {
@@ -165,6 +192,7 @@ public class ArenaFight : MonoBehaviour
         arenaCamera.enabled = false;
         yield return new WaitForSeconds(fadeScreen.GetOutFadeDuration());
         playerController.BlockPlayersInput(false);
+        PlayerController.IsBusy = false;
     }
 
     void CheckClick()
@@ -180,9 +208,14 @@ public class ArenaFight : MonoBehaviour
     }
 
     void ResetPlayerStats()
-    {        
-        playerHealth = powerControl.GetPlayerHealth();
+    {
+        playerMaxHealth = powerControl.GetPlayerHealth();
+        playerHealth = playerMaxHealth;
         playerDamage = powerControl.GetPlayerDamage();
-        Debug.Log("current Hp " + playerHealth);
+    }
+
+    void SetupShakeCameraTween()
+    {
+        shakeCameraTween = arenaCamera.transform.DOShakePosition(0.4f, randomnessMode:ShakeRandomnessMode.Harmonic);
     }
 }

@@ -14,13 +14,13 @@ public class PlayerController : MonoBehaviour
     public static bool IsFight = false;
     private void OnEnable()
     {
-        NotJumpZone.EnterNotJumpZone += delegate { BlockJump(true); };
-        NotJumpZone.ExitNotJumpZone += delegate { BlockJump(false); };
+        //NotJumpZone.EnterNotJumpZone += delegate { BlockJump(true); };
+        //NotJumpZone.ExitNotJumpZone += delegate { BlockJump(false); };
     }
     private void OnDisable()
     {
-        NotJumpZone.EnterNotJumpZone -= delegate { BlockJump(true); };
-        NotJumpZone.ExitNotJumpZone -= delegate { BlockJump(false); };
+        //NotJumpZone.EnterNotJumpZone -= delegate { BlockJump(true); };
+        //NotJumpZone.ExitNotJumpZone -= delegate { BlockJump(false); };
     }
     private void Awake()
     {
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         IsBusy = false;
         IsFight = false;
+        BlockJump(true);
     }
 
     private void FixedUpdate()
@@ -40,12 +41,6 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y < -20)
             transform.position = Vector3.zero;
     }
-
-    private void Update()
-    {
-
-    }
-
 
     private void LateUpdate()
     {
@@ -69,7 +64,7 @@ public class PlayerController : MonoBehaviour
             cameraSensivityControl.DisableCamera();
         else
             cameraSensivityControl.EnableCamera();
-        BlockJump(state);
+        //BlockJump(state);
     }
 
     public void TrainPowerAnimation(bool state)

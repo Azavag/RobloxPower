@@ -28,10 +28,6 @@ public class AdvAlert : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Y)) 
-        {
-            ShowAdvAlertPanel();
-        }
         if(isTimerGoing)
         {
             timer -= Time.deltaTime;
@@ -39,7 +35,7 @@ public class AdvAlert : MonoBehaviour
             if(timer < 0)
             {
                 //Реклама
-                HideAdvAlertPanel();
+                HideAdvAlertPanel();              
                 advManager.ShowAdv();
 #if UNITY_EDITOR
                 advManager.ResetTimer();
@@ -60,6 +56,9 @@ public class AdvAlert : MonoBehaviour
         advAlertPanel.GetComponent<Animator>().SetTrigger("isHide");
         uiNavigation.ToggleAdvAlertCanvas(false);        
         isTimerGoing = false;
+#if UNITY_EDITOR
+        advManager.AdvPauseGame(false);
+#endif
     }
 
     void ResetCounterOnPanel()

@@ -43,7 +43,6 @@ public class CourseProgressTracking : MonoBehaviour
     {
         playerStartPosition = transform.position;
         playerStartPosition.y = 0;
-        uiNavigation.ToggleCourseProgressCanvas(true);
         distanceLenght = distance;
         UpdateProgressText(0);
     }
@@ -55,7 +54,6 @@ public class CourseProgressTracking : MonoBehaviour
     }
     private void OnExitingCourse()
     {
-        uiNavigation.ToggleCourseProgressCanvas(false);
     }
 
     void UpdateSliderValue(int currentValue)

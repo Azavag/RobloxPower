@@ -24,6 +24,7 @@ public class ArenaFightTrigger : MonoBehaviour
     void MovePlayer(Transform playerTransform)
     {
         playerTransform.transform.position = playerPoint.position;
+        playerTransform.transform.localRotation = playerPoint.rotation;
     }
 
     public void ToggleTriggerFX(bool state)

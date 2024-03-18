@@ -15,8 +15,8 @@ MonoBehaviour:
   skinType: 2
   idNumber: 11
   skinName: Elecricity
-  price: 0
-  isAdsReward: 1
+  price: 20
+  isAdsReward: 0
   sprite: {fileID: 21300000, guid: 47d3697b588dc814982bbd0a5b8cb069, type: 3}
   skinStats:
     passiveStats: 5

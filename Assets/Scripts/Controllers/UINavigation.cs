@@ -24,8 +24,6 @@ public class UINavigation : MonoBehaviour
     [SerializeField]
     private Canvas joystickCanvas;
     [SerializeField]
-    private Canvas courseProgressCanvas;
-    [SerializeField]
     private Canvas upgradePunchbagsCanvas;
     [SerializeField]
     private Canvas arenaFightCanvas;
@@ -37,7 +35,7 @@ public class UINavigation : MonoBehaviour
 
     PlayerController playerController;
     SoundController soundController;
-    bool isSettingOpen;
+    public static bool isSettingsOpen;
     private void OnEnable()
     {
         settingsButton.onClick.AddListener(OpenSettings);
@@ -53,7 +51,7 @@ public class UINavigation : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if (!isSettingOpen)
+            if (!isSettingsOpen)
             {
                 OpenSettings();
                 return;
@@ -63,6 +61,7 @@ public class UINavigation : MonoBehaviour
     }
     private void Awake()
     {
+        isSettingsOpen = false;
         Initialize();
         playerController = FindObjectOfType<PlayerController>();
         soundController = FindObjectOfType<SoundController>();
@@ -77,7 +76,6 @@ public class UINavigation : MonoBehaviour
         ToggleCanvas(skinShopCanvas, false);
         ToggleCanvas(openLevelCanvas, false);
         ToggleCanvas(joystickCanvas, false);
-        ToggleCanvas(courseProgressCanvas, true);
         ToggleAdvAlertCanvas(false);
         ToggleSettingsCanvas(false);
         ToggleJoystickCanvas(true);
@@ -119,12 +117,7 @@ public class UINavigation : MonoBehaviour
         if(IsMobileController.IsMobile)
             ToggleCanvas(joystickCanvas, state);        
     }
-    public void ToggleCourseProgressCanvas(bool state)
-    {
-        if (state)
-            courseProgressCanvas.GetComponent<CourseProgressAnimation>().ShowProgressCourse();
-        else courseProgressCanvas.GetComponent<CourseProgressAnimation>().HideProgressCourse();
-    }
+
     public void ToggleUpgradesPunchbagsCanvas(bool state)
     {
         ToggleCanvas(upgradePunchbagsCanvas, state);
@@ -138,7 +131,7 @@ public class UINavigation : MonoBehaviour
     {
         if (AdvZoneCheck.notAdvZone || AdvManager.isAdvOpen)
             return;
-        isSettingOpen = true;
+        isSettingsOpen = true;
         soundController.MakeClickSound();
         ToggleSettingsCanvas(true);
         if (PlayerController.IsBusy)
@@ -151,7 +144,7 @@ public class UINavigation : MonoBehaviour
     {
         soundController.MakeClickSound();
         ToggleSettingsCanvas(false);
-        isSettingOpen = false;
+        isSettingsOpen = false;
         SoundController.SaveVolumeSetting();
         if (PlayerController.IsBusy)
             return;
