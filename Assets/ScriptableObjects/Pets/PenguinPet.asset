@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1179b84d4ef5a41abfea1e42cec1bc, type: 3}
+  m_Script: {fileID: 11500000, guid: a7ee5377aa9a1d1489130d20fbc230e7, type: 3}
   m_Name: PenguinPet
   m_EditorClassIdentifier: 
   skinType: 1
   idNumber: 31
   skinName: Penguin
   price: 55
+  isAdsReward: 0
   sprite: {fileID: 21300000, guid: 7d7e1c1799e43dc4496ec45ef59c97c2, type: 3}
   skinStats:
     passiveStats: 12

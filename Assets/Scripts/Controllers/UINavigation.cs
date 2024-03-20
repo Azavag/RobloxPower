@@ -129,7 +129,7 @@ public class UINavigation : MonoBehaviour
     
     void OpenSettings()
     {
-        if (AdvZoneCheck.notAdvZone || AdvManager.isAdvOpen)
+        if (AdvZoneCheck.notAdvZone || AdvManager.isAdvOpen || ArenaFight.isFightState)
             return;
         isSettingsOpen = true;
         soundController.MakeClickSound();

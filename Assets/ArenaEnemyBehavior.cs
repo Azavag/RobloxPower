@@ -1,10 +1,9 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class ArenaEnemyBehavior : MonoBehaviour
 {
-    private ArenaEnemyScriptable currentEnemy;
-
     private int enemyPower;
     private int maxEnemyHealth;
     private int currentEnemyHealth;
@@ -12,18 +11,31 @@ public class ArenaEnemyBehavior : MonoBehaviour
     private string enemyName;
     private int enemyReward;
 
-    BotCanvas botCanvas;
+    [Header("Timers")]
     private float attackInterval = 3;
     private float attackTimer;
+
+    private bool isDead = false;
+    private float deathTimer;
+    TimeSpan ts;
 
     private bool isFightState;
     private bool canAttack;
 
+    [Header("Refs")]
+    private ParticleSystem stunEffect;
+    private ArenaEnemyScriptable currentEnemy;
     private Animator animator;
-    GameObject enemyModel;
-    public static event Action<float> EnemyAttacked;
-
+    private GameObject enemyModel;
     private ArenaFight arenaFight;
+    private BotCanvas botCanvas;
+
+    [SerializeField]
+    private Canvas deadTimerCanvas;
+    [SerializeField]
+    private TextMeshProUGUI timerText;
+
+    public static event Action<float> EnemyAttacked;
 
     private void Awake()
     {
@@ -33,7 +45,10 @@ public class ArenaEnemyBehavior : MonoBehaviour
     
     void Start()
     {
-        ResetTimer();
+        ResetAttackTimer();
+        
+
+        ToggleDeathTimerCanvas(false);
     }
 
     public void SetArenaEnemy(ArenaEnemyScriptable arenaEnemy)
@@ -47,7 +62,7 @@ public class ArenaEnemyBehavior : MonoBehaviour
         enemyPower = currentEnemy.enemyPower;
         enemyReward = currentEnemy.enemyReward;
         animator = enemyModel.GetComponentInChildren<Animator>();
-       
+        stunEffect = enemyModel.GetComponentInChildren<ParticleSystem>();
         maxEnemyHealth = enemyPower / 10;
         enemyDamage = enemyPower / 10;
         ResetHealth();
@@ -59,9 +74,30 @@ public class ArenaEnemyBehavior : MonoBehaviour
     void Update()
     {
         if (isFightState)
-            Timer();
-    }
+            AttackTimer();
 
+        if (isDead)
+            DeathTimer();
+    }
+    public void SetFightState(bool fight)
+    {
+        isFightState = fight;
+        animator.ResetTrigger("attack");
+        animator.ResetTrigger("win");
+        animator.SetBool("isFight", isFightState);
+
+        if (isFightState)
+        {
+            botCanvas.ToggleCanvas(false);
+            ResetHealth();
+            ResetAttackTimer();
+        }
+        else
+        {
+            botCanvas.ToggleCanvas(true);
+            stunEffect.Stop();
+        }
+    }
     public void GetHit(int damage)
     {
         currentEnemyHealth -= damage;
@@ -85,38 +121,54 @@ public class ArenaEnemyBehavior : MonoBehaviour
         isFightState = false;
         animator.ResetTrigger("attack");
         animator.SetTrigger("death");
+        stunEffect.Play();
     }
 
-    void Timer()
+    void AttackTimer()
     {
         attackTimer -= Time.deltaTime;
         if (attackTimer <= 0 && canAttack)
         {
             Attack();
-            ResetTimer();
+            ResetAttackTimer();          
         }
     }
 
-    void ResetTimer()
+    void ResetAttackTimer()
     {
         attackTimer = attackInterval;
     }
 
-    public void SetFightState(bool fight)
+    public void StartDeathTimer(float duration)
     {
-        animator.ResetTrigger("attack");
-        animator.ResetTrigger("win");
-
-        if (fight)
-        {
-            botCanvas.ToggleCanvas(false);
-            ResetHealth();
-            ResetTimer();
-        }
-        else botCanvas.ToggleCanvas(true);
-        isFightState = fight;
-        animator.SetBool("isFight", isFightState);       
+        isDead = true;
+        ToggleDeathTimerCanvas(isDead);
+        ResetDeathTimer(duration);
     }
+    void DeathTimer()
+    {
+        deathTimer -= Time.deltaTime;
+        ts = TimeSpan.FromSeconds(deathTimer);
+        timerText.text = ts.ToString(@"m\:ss");
+        if (deathTimer <= 0)
+        {
+            isDead = false;
+            stunEffect.Stop();
+            ToggleDeathTimerCanvas(isDead);
+            SetFightState(false);
+        }
+    }
+  
+    void ResetDeathTimer(float duration)
+    {
+        deathTimer = duration;
+    }
+
+    void ToggleDeathTimerCanvas(bool toggle)
+    {
+        deadTimerCanvas.enabled = toggle;
+    }
+
 
     void ResetHealth()
     {

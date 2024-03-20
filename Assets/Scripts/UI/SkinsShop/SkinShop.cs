@@ -1,4 +1,3 @@
-using EasyUI.Tabs;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +6,12 @@ public enum SkinType
     Hat,
     Pet,
     Trail,
+    Shirt,
+    Pants,
+    Gloves,
+    Hair,
+    Accessories,
+    Bags,
 }
 public class SkinShop : MonoBehaviour
 {
@@ -23,14 +28,25 @@ public class SkinShop : MonoBehaviour
     private PetSkinButtonsController petSkinButtonsController;
     [SerializeField]
     private TrailSkinButtonsController trailSkinButtonsControllers;
-    private SoundController soundController;
+    [SerializeField]
+    private ShirtSkinButtonController shirtSkinButtonsController;
+    [SerializeField]
+    private PantsSkinButtonController pantsSkinButtonsController;
+    [SerializeField]
+    private GlovesSkinButtonController glovesSkinButtonController;
+
+   private SoundController soundController;
 
 
     [Header("Shop UI")]
     [SerializeField]
     private Button closeButton;
+    [SerializeField]
+    private GameObject buyWindow;
+    [SerializeField]
+    private GameObject statWindow;
 
-    int lastOpenedPage;
+    int lastOpenedPage = 0;
 
     private void Awake()
     {
@@ -40,13 +56,13 @@ public class SkinShop : MonoBehaviour
     private void OnEnable()
     {
         closeButton.onClick.AddListener(CloseSkinShop);
-        TabsUI.TabSwapped += OnTabsChange;
+        ShopMenuNavigation.TabSelected += OnTabSelected;
 
     }
     private void OnDisable()
     {
         closeButton.onClick.RemoveListener(CloseSkinShop);
-        TabsUI.TabSwapped -= OnTabsChange;
+        ShopMenuNavigation.TabSelected -= OnTabSelected;
     }
 
     public void OpenSkinShop()
@@ -57,7 +73,6 @@ public class SkinShop : MonoBehaviour
         playerController.BlockPlayersInput(true);
         uiNavigation.ToggleSkinShopCanvas(true);
         uiNavigation.ToggleJoystickCanvas(false);
-        ResetPages();
     }
 
     public void CloseSkinShop()
@@ -80,32 +95,52 @@ public class SkinShop : MonoBehaviour
                 ResetHatSkinAndStats();
                 break;
             case 1:
-                ResetPetSkinAndStats();
                 break;
             case 2:
+                break;
+            case 3:
+                ResetPetSkinAndStats();
+                break;
+            case 4:
+                ResetShirtSkin();
+                break;
+            case 5:
+                ResetGlovesSkin();
+                break;
+            case 6:
+                break;
+            case 7:
+                ResetPantsSkin();
+                break;
+            case 8:
                 ResetTrailSkinAndStats();
                 break;
         }
 
     }
     //На какую вкладку переключились
-    void OnTabsChange(int index)
+    void OnTabSelected(int index)
     {
         soundController.MakeClickSound();
-        ResetPages();
+
         switch (index)
-        {
+        { 
+            case -1:
+                ToggleBuyWindow(false);
+                ResetPages();
+                return;
             case 0:
-                lastOpenedPage = 0;
+            case 3:
+            case 8:
+                ToggleStatWindow(true);
                 break;
-            case 1:
-                lastOpenedPage = 1;
-                break;
-            case 2:
-                lastOpenedPage = 2;
+            default:
+                ToggleStatWindow(false);
                 break;
         }
-        
+        ToggleBuyWindow(true);
+        lastOpenedPage = index;
+        ResetPages();
     }
 
     void ResetPetSkinAndStats()
@@ -123,5 +158,28 @@ public class SkinShop : MonoBehaviour
     {
         trailSkinButtonsControllers.ResetSkin();
         trailSkinButtonsControllers.ShowCurrentSkinStats();
+    }
+
+    void ResetShirtSkin()
+    {
+        shirtSkinButtonsController.ResetSkin();
+    }
+    
+    void ResetPantsSkin()
+    {
+        pantsSkinButtonsController.ResetSkin();
+    }
+
+    void ResetGlovesSkin()
+    {
+        glovesSkinButtonController.ResetSkin();
+    }
+    void ToggleBuyWindow(bool toggle)
+    {
+        buyWindow.gameObject.SetActive(toggle);
+    }
+    void ToggleStatWindow(bool toggle)
+    {
+        statWindow.gameObject.SetActive(toggle);
     }
 }

@@ -11,6 +11,12 @@ public class PunchTrainZone : MonoBehaviour
     private Image fillImage;
     [SerializeField]
     private Button quitButton;
+    [SerializeField]
+    private Image background;
+    [SerializeField]
+    private Gradient fillGradient;
+    [SerializeField]
+    private Color[] fillColors;
 
     [Header("ClickTimer")]
     private float clickInterval = 0.6f;
@@ -20,9 +26,10 @@ public class PunchTrainZone : MonoBehaviour
     private int maxClickStreak = 60;
     private int currentNumberOfMultipliers = 2;
     private Dictionary<int, int> clickStreaksMultipliersDict;
-    private int currentStreakLineNumber = 0;
     private bool isClickCount;
     private bool isPlayerTrain;
+
+    float targetValue;
 
     [Header("Refs")]
     [SerializeField]
@@ -33,13 +40,14 @@ public class PunchTrainZone : MonoBehaviour
     private PunchBagFocus punchBagFocus;
     private PunchBagTrigger trigger;
     private SoundController soundController;
+
+
     private void OnEnable()
     {
         quitButton.onClick.AddListener(RemovePlayerFromTrainZone);
         trainClickButton.onClick.AddListener(OnClickTrainButton);
         PunchbagsShop.PunchbagSelected += OnPunchbagSelected;
-
-        
+      
     }
     private void OnDisable()
     {
@@ -69,7 +77,6 @@ public class PunchTrainZone : MonoBehaviour
     }
     private void OnPunchbagSelected(int number)
     {
-        currentStreakLineNumber = number;
         currentNumberOfMultipliers++;
         maxClickStreak += 10;
         UpdateStreakDictionary();
@@ -115,15 +122,21 @@ public class PunchTrainZone : MonoBehaviour
                 isClickCount = false;
                 FillImage();
                 clickStreakAnimation.ActivateStreakText(currentStreakMultiply);
+                ChangeBackgroundColor();
             }          
         }                
     }
 
     void FillImage()
     {
-        float targetValue = 1 - ((float)clickStreak / maxClickStreak);
+        targetValue = ((float)clickStreak / maxClickStreak);
         fillImage.fillAmount = targetValue;
+       
+    }
 
+    void ChangeBackgroundColor()
+    {
+        fillImage.color = fillColors[currentStreakMultiply-1];
     }
 
     void ClickStreakCheck()
@@ -136,6 +149,7 @@ public class PunchTrainZone : MonoBehaviour
                 currentStreakMultiply = element.Value;                
                 soundController.Play("FillUp_1");
                 clickStreakAnimation.ActivateStreakText(currentStreakMultiply);
+                ChangeBackgroundColor();
             }
             counter++;
         }               
@@ -153,6 +167,7 @@ public class PunchTrainZone : MonoBehaviour
         CursorLocking.LockCursor(false);
 
         clickStreakAnimation.ActivateStreakText(currentStreakMultiply);
+        ChangeBackgroundColor();
     }
 
     public void RemovePlayerFromTrainZone()

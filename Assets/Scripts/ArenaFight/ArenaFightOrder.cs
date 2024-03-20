@@ -14,6 +14,7 @@ public class ArenaFightOrder : MonoBehaviour
     private EnemiesOrderPanel enemiesOrderPanel;
     private ArenaEnemyBehavior enemyBehavior;
     private SceneSwapper sceneSwapper;
+    private ArenaFightTrigger trigger;
 
     private static int maxEnemies;
 
@@ -25,8 +26,7 @@ public class ArenaFightOrder : MonoBehaviour
     {
         enemyBehavior = GetComponentInChildren<ArenaEnemyBehavior>();
         sceneSwapper = FindObjectOfType<SceneSwapper>();
-
-        
+        trigger = GetComponentInChildren<ArenaFightTrigger>();
     }
     private void OnValidate()
     {
@@ -53,11 +53,19 @@ public class ArenaFightOrder : MonoBehaviour
     }
 
     //После победы свапать врагов
-    public void SwapNextEnemy()
+    public void DeskAnimation()
     {
         enemiesOrderPanel.CrossNewIcon(currentEnemyNumber);
-        IncreaseDefeatedEnemiesCount();           
+        IncreaseDefeatedEnemiesCount();                   
+    }
+    public void ChangeEnemies()
+    {
         enemyBehavior.SetArenaEnemy(arenaEnemiesScriptables[currentEnemyNumber]);
+        if (areAllEnemiesDefeated)
+        {
+            enemyBehavior.gameObject.SetActive(false);
+            trigger.gameObject.SetActive(false);
+        }
     }
     //После победы
     public void IncreaseDefeatedEnemiesCount()

@@ -19,7 +19,7 @@ public class CameraSensivityControl : MonoBehaviour
     {
         sensivitySlider.onValueChanged.AddListener(OnSliderValueChanged);
         startCameraXAxisSpeed = freeLookCamera.m_XAxis.m_MaxSpeed;
-        startCameraYAxisSpeed = freeLookCamera.m_YAxis.m_MaxSpeed;
+        startCameraYAxisSpeed = freeLookCamera.m_YAxis.m_MaxSpeed;      
     }
     private void OnDisable()
     {
@@ -36,6 +36,7 @@ public class CameraSensivityControl : MonoBehaviour
         sensMultiplier = Bank.Instance.playerInfo.sensivityValue;
         sensivitySlider.value = sensMultiplier;
         EnableCamera();
+        ResetCameraPosition();
     }
     public void OnSliderValueChanged(float newValue)
     {
@@ -59,5 +60,11 @@ public class CameraSensivityControl : MonoBehaviour
     {
         freeLookCamera.m_XAxis.m_MaxSpeed = newCameraXAxisSpeed;
         freeLookCamera.m_YAxis.m_MaxSpeed = newCameraYAxisSpeed;
+    }
+
+    public void ResetCameraPosition()
+    {
+        freeLookCamera.m_YAxis.Value = 0.5f;
+        freeLookCamera.m_XAxis.Value = 0f;
     }
 }

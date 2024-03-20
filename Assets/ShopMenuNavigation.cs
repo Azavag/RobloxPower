@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,8 @@ public class ShopMenuNavigation : MonoBehaviour
     private GameObject currentPage;
 
     private SoundController soundController;
+
+    public static event Action<int> TabSelected;
     private void OnEnable()
     {
         for (int i = 0; i < navButtons.Length; i++)
@@ -27,8 +30,8 @@ public class ShopMenuNavigation : MonoBehaviour
             navButtons[copy].onClick.AddListener(() => { OpenPage(copy); });
             navPages[copy].SetActive(false);
         }
-
         backButton.onClick.AddListener(() => { OpenPrevPage(); });
+        buttonContent.SetActive(true);
     }
     private void OnDisable()
     {
@@ -40,7 +43,7 @@ public class ShopMenuNavigation : MonoBehaviour
         }
         backButton.onClick.RemoveListener(() => { OpenPrevPage(); });
 
-        buttonContent.SetActive(true);
+        
     }
     private void Awake()
     {
@@ -51,6 +54,8 @@ public class ShopMenuNavigation : MonoBehaviour
     {
         prevPage = buttonContent;
         currentPage = buttonContent;
+
+        TabSelected?.Invoke(-1);
     }
 
     void OpenPage(int index)
@@ -59,6 +64,7 @@ public class ShopMenuNavigation : MonoBehaviour
         currentPage = navPages[index];
         buttonContent.SetActive(false);
         soundController.MakeClickSound();
+        TabSelected?.Invoke(index);
     }
 
     void OpenPrevPage()
@@ -67,6 +73,7 @@ public class ShopMenuNavigation : MonoBehaviour
         prevPage.SetActive(true);
         currentPage = prevPage;
         soundController.MakeClickSound();
+        TabSelected?.Invoke(-1);
     }
    
 

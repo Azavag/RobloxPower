@@ -52,7 +52,7 @@ public class ClickStreakAnimation : MonoBehaviour
             return;
         lastMultiplierStreak = multiplierValue;
 
-        streakText.GetComponent<TextMeshProUGUI>().text = $"X{multiplierValue}";
+        streakText.GetComponent<TextMeshProUGUI>().text = $"x{multiplierValue}";
         PlaySwatTweens();
     }
     void PlaySwatTweens()

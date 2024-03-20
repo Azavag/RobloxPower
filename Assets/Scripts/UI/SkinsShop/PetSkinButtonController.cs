@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PetSkinButtonsController : MonoBehaviour
+public class PetSkinButtonsController : SkinButtonController
 {
     private SoundController soundController;
     [SerializeField]

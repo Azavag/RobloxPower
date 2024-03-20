@@ -9,6 +9,10 @@ public class ArenaFight : MonoBehaviour
     [SerializeField]
     private bool isArenaFight;
 
+    private bool isDead = false;
+    private float deathInterval = 60f;
+    private float deathTimer = 0f;
+
     [Header("Refs")]
     [SerializeField]
     private UINavigation uINavigation;
@@ -31,8 +35,10 @@ public class ArenaFight : MonoBehaviour
     private CinemachineVirtualCamera fightDeskCamera;
     [SerializeField]
     private CinemachineVirtualCamera doorCamera;
+    private CinemachineBrain cinemachineBrain;
+    private CameraSensivityControl sensivityControl;
 
-    private bool isFightState;   
+    public static bool isFightState;   
     private float endDelay = 3f;
 
     private int playerMaxHealth;
@@ -48,6 +54,9 @@ public class ArenaFight : MonoBehaviour
 
     public static event Action<int> EnemyLost;
 
+    private float cameraTransitionDuration = 1f;
+    private float cameraStartTransitionDuration;
+
     private void OnDestroy()
     {
         shakeCameraTween.Kill();
@@ -59,6 +68,9 @@ public class ArenaFight : MonoBehaviour
         playerAnimatorController = playerController.GetComponent<PlayerAnimatorController>();
         currentArenaEnemy = GetComponentInChildren<ArenaEnemyBehavior>();
         arenaFightOrder = GetComponent<ArenaFightOrder>();
+        cinemachineBrain = FindObjectOfType<CinemachineBrain>();
+        sensivityControl = FindObjectOfType<CameraSensivityControl>();
+        cameraStartTransitionDuration = cinemachineBrain.m_DefaultBlend.m_Time;
     }
     void Start()
     {
@@ -66,12 +78,17 @@ public class ArenaFight : MonoBehaviour
         arenaCamera.enabled = false;
         fightDeskCamera.enabled = false;
         doorCamera.enabled = false;
+
+        isFightState = false;       
     }
 
     void Update()
     {
         if (isFightState)
             CheckClick();
+
+        if(isDead)
+            DeathTimer();
     }
 
     public void StartFight()
@@ -86,6 +103,7 @@ public class ArenaFight : MonoBehaviour
         isFightState = true;
         playerController.BlockPlayersInput(isFightState);
         yield return new WaitForSeconds(fadeScreen.GetInFadeDuration());
+        sensivityControl.ResetCameraPosition();
         canPlayerAttack = true;
         arenaCamera.enabled = true;
         uINavigation.ToggleArenaFightCanvas(true);
@@ -93,17 +111,10 @@ public class ArenaFight : MonoBehaviour
         currentArenaEnemy.CanAttack(true);
         ResetPlayerStats();
         healthBars.ResetFightHealthBar();
-        playerController.SwapToFightMode(true);
+        playerController.SwapToFightMode(true);       
     }
 
-    public void EndFight()
-    {
-        isFightState = false;
-        fadeScreen.StartInFadeScreenTween();
-        arenaCamera.enabled = false;        
-        uINavigation.ToggleArenaFightCanvas(false);      
-        trigger.ToggleTriggerFX(true);
-    }
+  
     public void OnEnemyAttacking(int enemyDamage)
     {
         playerHealth -= enemyDamage;
@@ -125,49 +136,65 @@ public class ArenaFight : MonoBehaviour
         playerAnimatorController.WinAnimation();
         StartCoroutine(PlayerWinFight());
     }
-
+    public void EndFight()
+    {
+        isFightState = false;
+        arenaCamera.enabled = false;
+        trigger.ToggleTriggerFX(true);
+        if (isArenaFight)
+            currentArenaEnemy.SetFightState(isFightState);
+        else
+            StartDeathDelay();
+        MovePlayerToExit();
+        playerController.SwapToFightMode(isFightState);
+        uINavigation.ToggleArenaFightCanvas(false);
+        cinemachineBrain.m_DefaultBlend.m_Time = cameraStartTransitionDuration;
+    }
     IEnumerator PlayerWinFight()
     {
         //Ожидание анимации победы
         yield return new WaitForSeconds(endDelay);
-        uINavigation.ToggleArenaFightCanvas(false);
         if (isArenaFight && !arenaFightOrder.areAllEnemiesDefeated)
         {
             yield return StartCoroutine(ProgressCinematic());
+            cinemachineBrain.m_DefaultBlend.m_Time = cameraTransitionDuration * 2f;
         }
-        //Возвращение управления к игроку
-        fadeScreen.StartInFadeScreenTween();
-        yield return new WaitForSeconds(fadeScreen.GetInFadeDuration());
-        arenaCamera.enabled = false;
-        fightDeskCamera.enabled = false;
-        isFightState = false;        
-        trigger.ToggleTriggerFX(true);
-        currentArenaEnemy.SetFightState(isFightState);
+        else
+        {
+            fadeScreen.StartInFadeScreenTween();
+            yield return new WaitForSeconds(fadeScreen.GetInFadeDuration());
+            cinemachineBrain.m_DefaultBlend.m_Time = cameraStartTransitionDuration;
+        }
+        //Возвращение управления к игроку      
         EnemyLost?.Invoke(currentArenaEnemy.GetEnemyReward());
-        MovePlayerToExit();
-        playerController.SwapToFightMode(false);
-        yield return new WaitForSeconds(fadeScreen.GetOutFadeDuration());
+        if(isArenaFight)
+            arenaFightOrder.ChangeEnemies();
+        EndFight();
+        yield return new WaitForSeconds(cinemachineBrain.m_DefaultBlend.m_Time*1.1f);
         playerController.BlockPlayersInput(false);
-        PlayerController.IsBusy = false;
+        PlayerController.IsBusy = false;       
     }
 
     IEnumerator  ProgressCinematic()
     {
         //Переход к стенду     
+        cinemachineBrain.m_DefaultBlend.m_Time = cameraTransitionDuration;
         fightDeskCamera.enabled = true;
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(cameraTransitionDuration);
         //Анимация обновления 
-        arenaFightOrder.SwapNextEnemy();
+        arenaFightOrder.DeskAnimation();
         yield return new WaitForSeconds(enemiesOrderPanelAnimDuration * 1.25f);
+        fightDeskCamera.enabled = false;
         if (arenaFightOrder.areAllEnemiesDefeated)
         {
             yield return StartCoroutine(DoorOpenCinematic());
         }
+        
     }
     IEnumerator DoorOpenCinematic()
     {
         doorCamera.enabled = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(cameraStartTransitionDuration);
         arenaFightOrder.OpenDoorAnimation();
         yield return new WaitForSeconds(1.25f);
         doorCamera.enabled = false;
@@ -182,14 +209,8 @@ public class ArenaFight : MonoBehaviour
         yield return new WaitForSeconds(endDelay);
         fadeScreen.StartInFadeScreenTween();
         yield return new WaitForSeconds(fadeScreen.GetInFadeDuration());
-        isFightState = false;
-        currentArenaEnemy.SetFightState(isFightState);
         playerAnimatorController.DeathAnimation(false);
-        uINavigation.ToggleArenaFightCanvas(false);
-        trigger.ToggleTriggerFX(true);
-        MovePlayerToExit();
-        playerController.SwapToFightMode(isFightState);
-        arenaCamera.enabled = false;
+        EndFight();
         yield return new WaitForSeconds(fadeScreen.GetOutFadeDuration());
         playerController.BlockPlayersInput(false);
         PlayerController.IsBusy = false;
@@ -217,5 +238,27 @@ public class ArenaFight : MonoBehaviour
     void SetupShakeCameraTween()
     {
         shakeCameraTween = arenaCamera.transform.DOShakePosition(0.4f, randomnessMode:ShakeRandomnessMode.Harmonic);
+    }
+
+    void StartDeathDelay()
+    {
+        isDead = true;
+        ResetDeathTimer();
+        currentArenaEnemy.StartDeathTimer(deathInterval);
+        trigger.gameObject.SetActive(false);
+    }
+    void DeathTimer()
+    {
+        deathTimer -= Time.deltaTime;
+        if(deathTimer <= 0)
+        {
+            isDead = false;
+            trigger.gameObject.SetActive(true);
+        }
+    }
+
+    void ResetDeathTimer()
+    {
+        deathTimer = deathInterval;
     }
 }

@@ -15,6 +15,14 @@ public class BuySkinButton : MonoBehaviour
     [SerializeField]
     private TrailSkinButtonsController trailCardsController;
     [SerializeField]
+    private ShirtSkinButtonController shirtCardsController;
+    [SerializeField]
+    private PantsSkinButtonController pantsCardsController;
+    [SerializeField]
+    private GlovesSkinButtonController glovesCardsController;
+
+
+    [SerializeField]
     private Button buyButton;
     [SerializeField]
     private Button adsButton;
@@ -28,6 +36,9 @@ public class BuySkinButton : MonoBehaviour
         HatSkinCard.HatCardClicked += SetSelectedSkinCardType;
         PetSkinCard.PetCardClicked += SetSelectedSkinCardType;
         TrailSkinCard.TrailCardClicked += SetSelectedSkinCardType;
+        ShirtSkinCard.ShirtCardClicked += SetSelectedSkinCardType;
+        PantsSkinCard.PantsCardClicked += SetSelectedSkinCardType;
+        GlovesSkinCard.GlovesCardClicked += SetSelectedSkinCardType;
         adsButton.onClick.AddListener(OnClickAdsButton);
         buyButton.onClick.AddListener(OnClickBuyButton);
     }
@@ -36,6 +47,10 @@ public class BuySkinButton : MonoBehaviour
         HatSkinCard.HatCardClicked -= SetSelectedSkinCardType;
         PetSkinCard.PetCardClicked -= SetSelectedSkinCardType;
         TrailSkinCard.TrailCardClicked -= SetSelectedSkinCardType;
+        ShirtSkinCard.ShirtCardClicked -= SetSelectedSkinCardType;
+        PantsSkinCard.PantsCardClicked -= SetSelectedSkinCardType;
+        GlovesSkinCard.GlovesCardClicked -= SetSelectedSkinCardType;
+        
         adsButton.onClick.RemoveListener(OnClickAdsButton);
         buyButton.onClick.RemoveListener(OnClickBuyButton);
     }
@@ -86,22 +101,35 @@ public class BuySkinButton : MonoBehaviour
     {
         soundController.Play("ConfirmBuy");
         selectedSkinCard.Unclock();
-        if (selectedSkinCard.GetSkinType() == SkinType.Hat)
+        switch (selectedSkinCard.GetSkinType())
         {
-            hatCardsController.ShowCurrentModelView(selectedSkinCard);
-            hatCardsController.SaveStates(selectedSkinCard.GetSkinIdNumber());
+            case SkinType.Hat:
+                hatCardsController.ShowCurrentModelView(selectedSkinCard);
+                hatCardsController.SaveStates(selectedSkinCard.GetSkinIdNumber());
+                break;
+            case SkinType.Pet:
+                petCardsController.ShowCurrentModelView(selectedSkinCard);
+                petCardsController.SaveStates(selectedSkinCard.GetSkinIdNumber());
+                break;
+            case SkinType.Trail:
+                trailCardsController.ShowCurrentModelView(selectedSkinCard);
+                trailCardsController.SaveStates(selectedSkinCard.GetSkinIdNumber());
+                break;
+            case SkinType.Shirt:
+                shirtCardsController.ShowCurrentModelView(selectedSkinCard);
+                break;
+            case SkinType.Pants:
+                pantsCardsController.ShowCurrentModelView(selectedSkinCard);
+                break;
+            case SkinType.Gloves:
+                glovesCardsController.ShowCurrentModelView(selectedSkinCard);
+                break;
+            case SkinType.Hair: break;
+            case SkinType.Accessories: break;
+            case SkinType.Bags: break;
+
         }
-        else if(selectedSkinCard.GetSkinType() == SkinType.Pet)
-        {
-            petCardsController.ShowCurrentModelView(selectedSkinCard);
-            petCardsController.SaveStates(selectedSkinCard.GetSkinIdNumber());
-        }
-        else if(selectedSkinCard.GetSkinType() == SkinType.Trail)
-        {
-            trailCardsController.ShowCurrentModelView(selectedSkinCard);
-            trailCardsController.SaveStates(selectedSkinCard.GetSkinIdNumber());
-        }
-        
+             
     }
     //Â jslib
     public void SetRewardingState()

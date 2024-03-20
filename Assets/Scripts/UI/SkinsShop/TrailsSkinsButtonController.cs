@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TrailSkinButtonsController : MonoBehaviour
+public class TrailSkinButtonsController : SkinButtonController
 {
     private SoundController soundController;
     [SerializeField]

@@ -8,9 +8,10 @@ public class HealthBars : MonoBehaviour
     private Image playerHealthBar;
     [SerializeField]
     private Image botHealthBar;
+    [SerializeField]
+    private Gradient barGradient;
 
-
-    private void OnEnable()
+   private void OnEnable()
     {
         ArenaEnemyBehavior.EnemyAttacked += OnEnemyHitted;
     }
@@ -34,10 +35,12 @@ public class HealthBars : MonoBehaviour
     private void UpdateBotHealthBar(float persent)
     {
         botHealthBar.fillAmount = persent;
+        botHealthBar.color = barGradient.Evaluate(1 - persent);
     }
     public void UpdatePlayerHealthBar(float persent)
     {
         playerHealthBar.fillAmount = persent;
+        playerHealthBar.color = barGradient.Evaluate(1 - persent);
     }
 
 }

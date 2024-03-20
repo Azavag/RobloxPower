@@ -9,7 +9,7 @@ public class SkinCard : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField]
-    public SkinScriptableObejct skinScriptable;
+    public SkinScriptableObject skinScriptable;
     private SkinType skinType;
     [SerializeField]
     private int idNumber;
@@ -28,7 +28,7 @@ public class SkinCard : MonoBehaviour
     [SerializeField]
     private GameObject adsObject;
     [SerializeField]
-    private Image skinImage;
+    protected Image skinImage;
 
     [Header("SkinsButtonBackgrounds")]
     [SerializeField]

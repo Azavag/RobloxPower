@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HatSkinButtonsController : MonoBehaviour
+public class HatSkinButtonsController : SkinButtonController
 {
     private SoundController soundController;
     [SerializeField]
@@ -66,7 +66,6 @@ public class HatSkinButtonsController : MonoBehaviour
         clickedSkinCard = skinCards[selectedSkinId];
         clickedSkinCard.Select();
         clickedSkinCard.Highlight();
-       // ShowCurrentModelView(clickedSkinCard);
     }
 
     public void OnSkinCardClicked(SkinCard skinCard)
