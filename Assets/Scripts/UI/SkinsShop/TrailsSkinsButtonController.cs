@@ -18,6 +18,8 @@ public class TrailSkinButtonsController : SkinButtonController
     private int prevHighlightedSkinId = 0;
     private bool[] skinsBuyState;
 
+    [SerializeField]
+    private SkinType skinType;
     [Header("Model Buttons")]
     [SerializeField]
     private Button buyButton;
@@ -111,7 +113,8 @@ public class TrailSkinButtonsController : SkinButtonController
 
     void OnClickSelectButton()
     {
-      
+        if (BuySkinButton.GetSelectedSkinCardType() != skinType)
+            return;
         foreach (var entity in skinCards)
         {
             entity.Unselect();

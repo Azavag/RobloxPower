@@ -27,8 +27,10 @@ public class SkinShopTrigger : MonoBehaviour
         Vector3 cameraProjectionPos = shopCamera.transform.position;
         cameraProjectionPos.y = 0;
         playerTransform.LookAt(cameraProjectionPos);
-
+        playerTransform.rotation = Quaternion.Euler(0, playerTransform.rotation.eulerAngles.y, 0);
     }
+
+   
 
     public void ToggleSkinShopView(bool state)
     {

@@ -140,20 +140,16 @@ public class ArenaFight : MonoBehaviour
     {
         isFightState = false;
         arenaCamera.enabled = false;
-        trigger.ToggleTriggerFX(true);
-        if (isArenaFight)
-            currentArenaEnemy.SetFightState(isFightState);
-        else
-            StartDeathDelay();
+        trigger.ToggleTriggerFX(true);        
         MovePlayerToExit();
         playerController.SwapToFightMode(isFightState);
-        uINavigation.ToggleArenaFightCanvas(false);
-        cinemachineBrain.m_DefaultBlend.m_Time = cameraStartTransitionDuration;
+        
     }
     IEnumerator PlayerWinFight()
     {
         //Ожидание анимации победы
         yield return new WaitForSeconds(endDelay);
+        uINavigation.ToggleArenaFightCanvas(false);
         if (isArenaFight && !arenaFightOrder.areAllEnemiesDefeated)
         {
             yield return StartCoroutine(ProgressCinematic());
@@ -165,12 +161,19 @@ public class ArenaFight : MonoBehaviour
             yield return new WaitForSeconds(fadeScreen.GetInFadeDuration());
             cinemachineBrain.m_DefaultBlend.m_Time = cameraStartTransitionDuration;
         }
-        //Возвращение управления к игроку      
+           
         EnemyLost?.Invoke(currentArenaEnemy.GetEnemyReward());
-        if(isArenaFight)
+        if (isArenaFight)
+        {
+            currentArenaEnemy.SetFightState(isFightState);
             arenaFightOrder.ChangeEnemies();
+        }
+        else
+            StartDeathDelay();
         EndFight();
         yield return new WaitForSeconds(cinemachineBrain.m_DefaultBlend.m_Time*1.1f);
+        //Возвращение управления к игроку   
+        cinemachineBrain.m_DefaultBlend.m_Time = cameraStartTransitionDuration;
         playerController.BlockPlayersInput(false);
         PlayerController.IsBusy = false;       
     }
@@ -199,11 +202,7 @@ public class ArenaFight : MonoBehaviour
         yield return new WaitForSeconds(1.25f);
         doorCamera.enabled = false;
     }
-    void MovePlayerToExit()
-    {
-        playerController.transform.position = exitPoint.position;
-        playerController.transform.rotation = exitPoint.rotation;
-    }
+  
     IEnumerator PlayerLoseFight()
     {
         yield return new WaitForSeconds(endDelay);
@@ -212,6 +211,7 @@ public class ArenaFight : MonoBehaviour
         playerAnimatorController.DeathAnimation(false);
         EndFight();
         yield return new WaitForSeconds(fadeScreen.GetOutFadeDuration());
+        currentArenaEnemy.SetFightState(isFightState);
         playerController.BlockPlayersInput(false);
         PlayerController.IsBusy = false;
     }
@@ -227,7 +227,11 @@ public class ArenaFight : MonoBehaviour
 
         }
     }
-
+    void MovePlayerToExit()
+    {
+        playerController.transform.position = exitPoint.position;
+        playerController.transform.rotation = exitPoint.rotation;
+    }
     void ResetPlayerStats()
     {
         playerMaxHealth = powerControl.GetPlayerHealth();

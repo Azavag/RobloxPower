@@ -19,11 +19,25 @@ public class PlayerInfo
     public int selectedHatId = 0;                   //++
     public int selectedPetId = 0;                   //++
     public int selectedTrailId = 0;                 //++
+    public int selectedAccessoiresId = 0;
+    public int selectedShirtId = 0;
+    public int selectedPantsId = 0;
+    public int selectedGlovesId = 0;
+    public int selectedBagsId = 0;
+    public int selectedHairId = 0;
+
+
     public int currentEnemyNumber = 0;
 
     public bool[] hatSkinsBuyStates = new bool[90];                //++
     public bool[] petSkinsBuyStates = new bool[43];                //++
     public bool[] trailSkinsBuyStates = new bool[20];              //++
+    public bool[] accessoriesSkinsBuyStates = new bool[19];
+    public bool[] shirtsSkinsBuyStates = new bool[42];
+    public bool[] glovesSkinsBuyStates = new bool[42];
+    public bool[] pantsSkinsBuyStates = new bool[42];
+    public bool[] bagsSkinsBuyStates = new bool[25];
+    public bool[] hairSkinsBuyStates = new bool[62];
     public bool[] areLevelsUnlock = new bool[5];                  //++
 }
 
@@ -58,6 +72,14 @@ public class Bank : MonoBehaviour
             Instance.playerInfo.hatSkinsBuyStates[0] = true;
             Instance.playerInfo.petSkinsBuyStates[0] = true;
             Instance.playerInfo.trailSkinsBuyStates[0] = true;
+            Instance.playerInfo.accessoriesSkinsBuyStates[0] = true;
+            Instance.playerInfo.shirtsSkinsBuyStates[0] = true;
+            Instance.playerInfo.glovesSkinsBuyStates[0] = true;
+            Instance.playerInfo.pantsSkinsBuyStates[0] = true;
+            Instance.playerInfo.bagsSkinsBuyStates[0] = true;
+            Instance.playerInfo.hairSkinsBuyStates[0] = true;
+
+
             Instance.playerInfo.areLevelsUnlock[0] = true;
             firstLaunch = false;
         }

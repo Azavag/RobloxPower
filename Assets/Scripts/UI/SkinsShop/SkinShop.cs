@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,21 +23,18 @@ public class SkinShop : MonoBehaviour
     private PlayerController playerController;
     [SerializeField]
     private SkinShopTrigger trigger;
-    [SerializeField]
+
     private HatSkinButtonsController hatSkinButtonsController;
-    [SerializeField]
     private PetSkinButtonsController petSkinButtonsController;
-    [SerializeField]
     private TrailSkinButtonsController trailSkinButtonsControllers;
-    [SerializeField]
-    private ShirtSkinButtonController shirtSkinButtonsController;
-    [SerializeField]
-    private PantsSkinButtonController pantsSkinButtonsController;
-    [SerializeField]
-    private GlovesSkinButtonController glovesSkinButtonController;
+    private ShirtSkinButtonsController shirtSkinButtonsController;
+    private PantsSkinButtonsController pantsSkinButtonsController;
+    private GlovesSkinButtonsController glovesSkinButtonController;
+    private AccessoriesSkinButtonsController ‡ccessoriesSkinButtonController;
+    private HairSkinsButtonController hairSkinButtonsController;
+    private BagSkinButtonsController bagSkinButtonController;
 
    private SoundController soundController;
-
 
     [Header("Shop UI")]
     [SerializeField]
@@ -52,6 +50,16 @@ public class SkinShop : MonoBehaviour
     {
         trigger = GetComponentInChildren<SkinShopTrigger>();
         soundController = FindObjectOfType<SoundController>();
+
+        hatSkinButtonsController = GetComponentInChildren<HatSkinButtonsController>();
+        petSkinButtonsController = GetComponentInChildren<PetSkinButtonsController>();
+        trailSkinButtonsControllers = GetComponentInChildren<TrailSkinButtonsController>();
+        shirtSkinButtonsController = GetComponentInChildren<ShirtSkinButtonsController>();
+        pantsSkinButtonsController = GetComponentInChildren<PantsSkinButtonsController>();
+        glovesSkinButtonController = GetComponentInChildren<GlovesSkinButtonsController>();
+        ‡ccessoriesSkinButtonController = GetComponentInChildren<AccessoriesSkinButtonsController>();
+        hairSkinButtonsController = GetComponentInChildren<HairSkinsButtonController>();
+        bagSkinButtonController = GetComponentInChildren<BagSkinButtonsController>();
     }
     private void OnEnable()
     {
@@ -92,11 +100,15 @@ public class SkinShop : MonoBehaviour
         switch (lastOpenedPage)
         { 
             case 0:
-                ResetHatSkinAndStats();
+                ResetHatSkin();
+                ResetHairSkin();
                 break;
             case 1:
+                ResetHairSkin();
+                ResetHatSkin();
                 break;
             case 2:
+                Reset¿ccessoriesSkin();
                 break;
             case 3:
                 ResetPetSkinAndStats();
@@ -108,6 +120,8 @@ public class SkinShop : MonoBehaviour
                 ResetGlovesSkin();
                 break;
             case 6:
+                RotateAroundPlayer();
+                ResetBagSkin();
                 break;
             case 7:
                 ResetPantsSkin();
@@ -129,7 +143,12 @@ public class SkinShop : MonoBehaviour
                 ToggleBuyWindow(false);
                 ResetPages();
                 return;
+            case 6:
+                RotateAroundPlayer();
+                break;
             case 0:
+                ToggleStatWindow(false);
+                break;
             case 3:
             case 8:
                 ToggleStatWindow(true);
@@ -148,10 +167,9 @@ public class SkinShop : MonoBehaviour
         petSkinButtonsController.ResetSkin();
         petSkinButtonsController.ShowCurrentSkinStats();
     }
-    void ResetHatSkinAndStats()
+    void ResetHatSkin()
     {
-        hatSkinButtonsController.ResetSkin();
-        hatSkinButtonsController.ShowCurrentSkinStats();
+        hatSkinButtonsController.ResetSkin();       
     }
 
     void ResetTrailSkinAndStats()
@@ -174,6 +192,20 @@ public class SkinShop : MonoBehaviour
     {
         glovesSkinButtonController.ResetSkin();
     }
+
+    void Reset¿ccessoriesSkin()
+    {
+        ‡ccessoriesSkinButtonController.ResetSkin();
+    }
+
+    void ResetHairSkin()
+    {
+        hairSkinButtonsController.ResetSkin();
+    }
+    void ResetBagSkin()
+    {
+        bagSkinButtonController.ResetSkin();
+    }
     void ToggleBuyWindow(bool toggle)
     {
         buyWindow.gameObject.SetActive(toggle);
@@ -181,5 +213,14 @@ public class SkinShop : MonoBehaviour
     void ToggleStatWindow(bool toggle)
     {
         statWindow.gameObject.SetActive(toggle);
+    }
+
+    public void RotateAroundPlayer()
+    {
+        Vector3 targetRotation = playerController.gameObject.transform.rotation.eulerAngles;
+        targetRotation = new Vector3(targetRotation.x, targetRotation.y -180, targetRotation.z);
+        playerController.gameObject.transform.DOLocalRotate(targetRotation, 0.05f)
+            .SetAutoKill()
+            .Play();
     }
 }

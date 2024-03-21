@@ -14,6 +14,10 @@ public class PetSkinButtonsController : SkinButtonController
     private int selectedSkinId;
     private int prevHighlightedSkinId = 0;
     private bool[] skinsBuyState;
+
+    [SerializeField]
+    private SkinType skinType;
+
     [Header("Model Buttons")]
     [SerializeField]
     private Button buyButton;
@@ -103,7 +107,8 @@ public class PetSkinButtonsController : SkinButtonController
 
     void OnClickSelectButton()
     {
-        
+        if (BuySkinButton.GetSelectedSkinCardType() != skinType)
+            return;
         foreach (var entity in skinCards)
         {
             entity.Unselect();

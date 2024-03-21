@@ -1,5 +1,3 @@
-using EasyUI.Tabs;
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +15,9 @@ public class HatSkinButtonsController : SkinButtonController
     private int prevHighlightedSkinId = 0;
     private bool[] skinsBuyState;
 
+    [SerializeField]
+    private SkinType skinType;
+
     [Header("Model Buttons")]
     [SerializeField]
     private Button buyButton;
@@ -32,15 +33,22 @@ public class HatSkinButtonsController : SkinButtonController
     private StatsPanel statsPanel;
     [SerializeField]
     private SkinCharacteristics hatSkinStats;
+    [SerializeField]
+    private HairSkinsButtonController hairSkinButtonController;
 
     private void OnEnable()
     {
-        HatSkinCard.HatCardClicked += OnSkinCardClicked;       
+        HatSkinCard.HatCardClicked += OnSkinCardClicked;
+        HairSkinCard.HairCardClicked += HideSkin;
+
+
         selectButton.onClick.AddListener(OnClickSelectButton);        
     }
     private void OnDisable()
     {
         HatSkinCard.HatCardClicked -= OnSkinCardClicked;
+        HairSkinCard.HairCardClicked -= HideSkin;
+
         selectButton.onClick.RemoveListener(OnClickSelectButton);
     }
     private void Awake()
@@ -106,7 +114,10 @@ public class HatSkinButtonsController : SkinButtonController
     }
 
     void OnClickSelectButton()
-    {     
+    {
+        if (BuySkinButton.GetSelectedSkinCardType() != skinType)
+            return;
+
         foreach (var entity in skinCards)
         {
             entity.Unselect();
@@ -115,16 +126,16 @@ public class HatSkinButtonsController : SkinButtonController
         clickedSkinCard.Select();
         ShowCurrentModelView(clickedSkinCard);
         selectedSkinId = clickedSkinCard.GetSkinIdNumber();
+        hairSkinButtonController.DropSkin();
         ShowSkinObject(selectedSkinId);
-        hatSkinStats.SetStatsFromSkin(skinCards[selectedSkinId]);
         Bank.Instance.playerInfo.selectedHatId = selectedSkinId;       //Сохранение
         YandexSDK.Save();
     }
     public void SaveStates(int id)
     {
         skinsBuyState[id] = true;
-        Bank.Instance.playerInfo.hatSkinsBuyStates = skinsBuyState;
-        YandexSDK.Save();  
+        Bank.Instance.playerInfo.hatSkinsBuyStates[id] = true;
+        YandexSDK.Save();
     }
     void ShowSkinObject(int id)
     {
@@ -143,8 +154,22 @@ public class HatSkinButtonsController : SkinButtonController
         ShowSkinObject(selectedSkinId);
         ShowCurrentModelView(skinCards[selectedSkinId]);
     }
-    public void ShowCurrentSkinStats()
+    //public void ShowCurrentSkinStats()
+    //{
+    //    statsPanel.UpdateStatsText(skinCards[selectedSkinId].skinScriptable.skinStats);
+    //}
+
+    void HideSkin(SkinCard card)
+    {       
+        ShowSkinObject(0);
+    }
+    public void DropSkin()
     {
-        statsPanel.UpdateStatsText(skinCards[selectedSkinId].skinScriptable.skinStats);
+        clickedSkinCard.Unselect();
+        selectedSkinId = 0;
+        clickedSkinCard = skinCards[selectedSkinId];
+        clickedSkinCard.Select();
+        ResetSkin();      
+        Bank.Instance.playerInfo.selectedHatId = selectedSkinId;
     }
 }

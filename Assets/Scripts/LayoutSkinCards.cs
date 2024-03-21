@@ -21,7 +21,7 @@ public class LayoutSkinCards : MonoBehaviour
             else t.gameObject.SetActive(true);
             t.GetComponent<SkinCard>().skinScriptable = skinsCard[i];
             skinsCard[i].idNumber = i;
-            t.name = skinsCard[i].skinName + "Card_" + skinsCard[i].idNumber;
+            t.name = "Card_" + skinsCard[i].idNumber +"_"+ skinsCard[i].skinName;
             i++;
 
         }
