@@ -55,12 +55,13 @@ public class PantsSkinButtonsController : MonoBehaviour
         {
             skinCards[i].ChangeImageColor(pantColors[i]);
         }
-        skinsBuyState = Bank.Instance.playerInfo.pantsSkinsBuyStates;
-        selectedSkinId = Bank.Instance.playerInfo.selectedPantsId;        
+             
     }
     void Start()
     {
         Initialization();
+        skinsBuyState = Bank.Instance.playerInfo.pantsSkinsBuyStates;
+        selectedSkinId = Bank.Instance.playerInfo.selectedPantsId;
         for (int i = 0; i < skinCards.Length; i++)
         {
             if (skinsBuyState[i])

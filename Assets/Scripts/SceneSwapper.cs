@@ -53,18 +53,15 @@ public class SceneSwapper : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //if(Input.GetKeyDown(KeyCode.G))
-        //{
-        //    RotateDoors(75f);
-        //}
-    }
 
     public void SwapScene()
     {
         soundController.Play("SceneSwap");
-        fadeScreen.ExitLevelFadeIn(() => SceneManager.LoadScene(nextSceneNumber));      
+        Bank.Instance.playerInfo.currentPunchBagNumber = 0;
+        Bank.Instance.playerInfo.currentPunchBagNumber = 0;
+        YandexSDK.Save();
+        fadeScreen.ExitLevelFadeIn(() => SceneManager.LoadScene(nextSceneNumber)); 
+        
     }
 
     public void UnlockLevel()

@@ -56,11 +56,12 @@ public class GlovesSkinButtonsController : MonoBehaviour
         {
             skinCards[i].ChangeImageColor(glovesColors[i]);
         }
-        skinsBuyState = Bank.Instance.playerInfo.glovesSkinsBuyStates;
-        selectedSkinId = Bank.Instance.playerInfo.selectedGlovesId;
+
     }
     void Start()
     {
+        skinsBuyState = Bank.Instance.playerInfo.glovesSkinsBuyStates;
+        selectedSkinId = Bank.Instance.playerInfo.selectedGlovesId;
         Initialization();
         for (int i = 0; i < skinCards.Length; i++)
         {

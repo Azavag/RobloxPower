@@ -161,7 +161,7 @@ public class HairSkinsButtonController : MonoBehaviour
     public void SaveStates(int id)
     {
         skinsBuyState[id] = true;
-        Bank.Instance.playerInfo.hatSkinsBuyStates[id] = true;
+        Bank.Instance.playerInfo.hairSkinsBuyStates[id] = true;
         YandexSDK.Save();
     }
 }

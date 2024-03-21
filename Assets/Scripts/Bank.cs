@@ -13,7 +13,7 @@ public class PlayerInfo
     public int skinsPassivePowerIncrease = 0;      //++
     public int skinsActivePowerIncrease = 0;       //++
     public int coins = 0;                           //++
-    public int currentPunchBagNumber = 0;
+    
     public int overallPower = 0;                  //++
     //Скины
     public int selectedHatId = 0;                   //++
@@ -26,8 +26,8 @@ public class PlayerInfo
     public int selectedBagsId = 0;
     public int selectedHairId = 0;
 
-
     public int currentEnemyNumber = 0;
+    public int currentPunchBagNumber = 0;
 
     public bool[] hatSkinsBuyStates = new bool[90];                //++
     public bool[] petSkinsBuyStates = new bool[43];                //++
