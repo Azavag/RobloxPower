@@ -15,7 +15,7 @@ MonoBehaviour:
   skinType: 1
   idNumber: 22
   skinName: Hedgehog
-  price: 30
+  price: 55
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: 24d6888aecdbbc6418730ad865919cd6, type: 3}
   skinStats:

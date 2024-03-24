@@ -14,8 +14,6 @@ public class PunchTrainZone : MonoBehaviour
     [SerializeField]
     private Image background;
     [SerializeField]
-    private Gradient fillGradient;
-    [SerializeField]
     private Color[] fillColors;
 
     [Header("ClickTimer")]
@@ -24,7 +22,7 @@ public class PunchTrainZone : MonoBehaviour
     private float timeAfterClick;
     private int clickStreak = 0;
     private int maxClickStreak = 60;
-    private int currentNumberOfMultipliers = 2;
+    private int currentNumberOfMultipliers = 0;
     private Dictionary<int, int> clickStreaksMultipliersDict;
     private bool isClickCount;
     private bool isPlayerTrain;
@@ -45,18 +43,13 @@ public class PunchTrainZone : MonoBehaviour
     private void OnEnable()
     {
         quitButton.onClick.AddListener(RemovePlayerFromTrainZone);
-        trainClickButton.onClick.AddListener(OnClickTrainButton);
-        PunchbagsShop.PunchbagSelected += OnPunchbagSelected;
-      
+        trainClickButton.onClick.AddListener(OnClickTrainButton);      
     }
     private void OnDisable()
     {
         quitButton.onClick.RemoveListener(RemovePlayerFromTrainZone);
         trainClickButton.onClick.AddListener(OnClickTrainButton);
-        PunchbagsShop.PunchbagSelected -= OnPunchbagSelected;
     }
-
-   
 
     private void Awake()
     {
@@ -69,30 +62,29 @@ public class PunchTrainZone : MonoBehaviour
     }
     private void Start()
     {
-        UpdateStreakDictionary();
+        //UpdateStreakDictionary();
     }
     void FixedUpdate()
     {
         ClickTimer();
     }
-    private void OnPunchbagSelected(int number)
+    public void OnPunchbagSelected(int maxMultiplier, int maxClickStreak)
     {
-        currentNumberOfMultipliers++;
-        maxClickStreak += 10;
+        currentNumberOfMultipliers = maxMultiplier-1;
+        this.maxClickStreak = maxClickStreak;
         UpdateStreakDictionary();
     }
-  
     public void UpdateStreakDictionary()
     {
         clickStreaksMultipliersDict = new Dictionary<int, int>();
+
         for (int counter = 0; counter < currentNumberOfMultipliers;)
         {
-            int stepClickStreakValue = (counter + 1) * (maxClickStreak / (currentNumberOfMultipliers+1));
-            clickStreaksMultipliersDict.Add(stepClickStreakValue, ++counter + 1);          
+            int stepClickStreakValue = (counter + 1) * (maxClickStreak / (currentNumberOfMultipliers + 1));
+            clickStreaksMultipliersDict.Add(stepClickStreakValue, ++counter + 1);
         }
     }
-
-      
+       
     void OnClickTrainButton()
     {
         if (isPlayerTrain)

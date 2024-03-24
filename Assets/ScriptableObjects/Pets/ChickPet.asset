@@ -15,7 +15,7 @@ MonoBehaviour:
   skinType: 1
   idNumber: 10
   skinName: Chick
-  price: 13
+  price: 25
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: db2fbe4ea9c945d428096088edf1a142, type: 3}
   skinStats:

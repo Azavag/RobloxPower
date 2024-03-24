@@ -75,7 +75,7 @@ MonoBehaviour:
     audioSource: {fileID: 0}
   - name: Background
     typeOfSound: 1
-    clip: {fileID: 8300000, guid: 661cb7c2860545c46bc52fc5f6cf79e4, type: 3}
+    clip: {fileID: 8300000, guid: 1555836638cd34283a3780a19b58d4c6, type: 3}
     volume: 0.03
     pitch: 1
     loop: 1
@@ -117,7 +117,7 @@ MonoBehaviour:
     typeOfSound: 2
     clip: {fileID: 8300000, guid: 43a6c3981d6e952458a262a4d8b44dd9, type: 3}
     volume: 0.1
-    pitch: 1
+    pitch: 1.857
     loop: 0
     isPlayOnAwake: 0
     audioSource: {fileID: 0}
@@ -140,6 +140,71 @@ MonoBehaviour:
   - name: SelectSkin
     typeOfSound: 2
     clip: {fileID: 8300000, guid: 0d96390a04bcfa84288baa6f45297003, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: ReadyFight
+    typeOfSound: 2
+    clip: {fileID: 8300000, guid: b24964d6f830b2a429e1c301e3ccaab7, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: Knockout
+    typeOfSound: 2
+    clip: {fileID: 8300000, guid: 34182620c5d78874b88dbad840139b13, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  punchSounds:
+  - name: Punch_1
+    typeOfSound: 0
+    clip: {fileID: 8300000, guid: d7b0065f2734a1e4c91c25b807f5dd7e, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: Punch_2
+    typeOfSound: 0
+    clip: {fileID: 8300000, guid: 9862f660f32ffc64191c6809e00f0956, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: Punch_3
+    typeOfSound: 0
+    clip: {fileID: 8300000, guid: 6ef29d5ae0b1e5848943a76522eb3aee, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: Punch_4
+    typeOfSound: 0
+    clip: {fileID: 8300000, guid: ed664b1abb03de14ea08d41ddd31a9bd, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: Punch_5
+    typeOfSound: 0
+    clip: {fileID: 8300000, guid: e7941625746384a40b8ada37f7841b71, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
+  - name: Punch_6
+    typeOfSound: 0
+    clip: {fileID: 8300000, guid: a1b53ad108eab9f49964dcb0f2af5fb4, type: 3}
     volume: 0.1
     pitch: 1
     loop: 0

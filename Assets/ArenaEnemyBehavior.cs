@@ -45,9 +45,7 @@ public class ArenaEnemyBehavior : MonoBehaviour
     
     void Start()
     {
-        ResetAttackTimer();
-        
-
+        ResetAttackTimer();       
         ToggleDeathTimerCanvas(false);
     }
 
@@ -58,7 +56,10 @@ public class ArenaEnemyBehavior : MonoBehaviour
         Destroy(enemyModel);
         enemyModel = Instantiate(currentEnemy.enemyModel, transform);
         
-        enemyName = currentEnemy.enemyName;
+        if(Language.Instance.languageName == LanguageName.Rus)
+            enemyName = currentEnemy.enemyRusName;
+        else enemyName = currentEnemy.enemyEngName;
+
         enemyPower = currentEnemy.enemyPower;
         enemyReward = currentEnemy.enemyReward;
         animator = enemyModel.GetComponentInChildren<Animator>();

@@ -14,16 +14,10 @@ public class EnemyIcon : MonoBehaviour
     private Image faceImage;
 
     [SerializeField]
-    private Image selectedImage;
-    [SerializeField]
     private Image blackWhiteImage;
 
     float faceImageFadeDuration = 0.3f;
 
-    private void Awake()
-    {
-        selectedImage.gameObject.SetActive(false);
-    }
     private void Start()
     {
         scaleCrossSequence = DOTween.Sequence();
@@ -58,8 +52,5 @@ public class EnemyIcon : MonoBehaviour
     {
         crossImage.gameObject.SetActive(state);
     }
-    public void ToggleSelectedFrame(bool state)
-    {
-        //Tween scaleSelectedFrame = selectedImage.transform.DOScale()
-    }
+
 }

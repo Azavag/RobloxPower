@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6710b0d4495fbe24da9e32c5f745e5d0, type: 3}
   m_Name: ArenaEnemy_8
   m_EditorClassIdentifier: 
-  idNumber: 5
-  enemyName: Mona
-  enemyPower: 25000
-  enemyReward: 40
+  idNumber: 7
+  enemyRusName: "\u0413\u0435\u043D\u0440\u0438"
+  enemyEngName: Henry
+  enemyPower: 13000
+  enemyReward: 0
   faceSprite: {fileID: 21300000, guid: b595a11ab9f27044ebe2050f341a7460, type: 3}
-  blackWhiteFaceSprite: {fileID: 21300000, guid: b595a11ab9f27044ebe2050f341a7460, type: 3}
+  blackWhiteFaceSprite: {fileID: 21300000, guid: d5d1635422ae3954fadb82f4418e62a0, type: 3}
   enemyModel: {fileID: 5211838679815087358, guid: faf6df2c0b5074e4ebbced87bce3d242, type: 3}

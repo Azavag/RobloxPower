@@ -11,6 +11,8 @@ public class SoundController : MonoBehaviour
     float sfxVolume, musicVolume;
     [Header("All sounds")]  
     [SerializeField] Sound[] sounds;
+    [Header("Punch sounds")]
+    [SerializeField] Sound[] punchSounds;
     [Header("UI")]
     [SerializeField] Slider sfxSlider;
     [SerializeField] Slider musicSlider;
@@ -43,6 +45,31 @@ public class SoundController : MonoBehaviour
                     break;
             }
         }
+
+        foreach (Sound s in punchSounds)
+        {
+            s.audioSource = gameObject.AddComponent<AudioSource>();
+            s.audioSource.clip = s.clip;
+            s.audioSource.volume = s.volume;
+            s.audioSource.pitch = s.pitch;
+            s.audioSource.loop = s.loop;
+            s.audioSource.playOnAwake = s.isPlayOnAwake;
+            switch (s.typeOfSound)
+            {
+                case TypeOfSound.Music:
+                    s.audioSource.outputAudioMixerGroup = musicMixerGroup;
+                    break;
+                case TypeOfSound.SFX:
+                    s.audioSource.outputAudioMixerGroup = effectsMixerGroup;
+                    break;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+            MakeRandomPunchSound();
     }
 
     private void OnEnable()
@@ -88,6 +115,13 @@ public class SoundController : MonoBehaviour
     public void MakeClickSound()
     {
         Play("ButtonClick");
+    }
+    public void MakeRandomPunchSound()
+    {
+        int randomPunchNumber = UnityEngine.Random.Range(0, punchSounds.Length);
+        string punchName = punchSounds[randomPunchNumber].name;
+        Sound s = Array.Find(punchSounds, sound => sound.name == punchName);
+        s.audioSource.Play();
     }
    
     //По кнопке Закрыть настройки

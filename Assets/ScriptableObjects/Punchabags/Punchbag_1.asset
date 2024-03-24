@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   punchbagIdNumber: 0
   punchbagPrice: 0
-  rusName: "\u041E\u0431\u044B\u0447\u043D\u0430\u044F \u0433\u0440\u0443\u0448\u0430"
-  engName: Regular Punchbag
+  rusName: "\u041D\u0430\u0447\u0430\u043B\u044C\u043D\u0430\u044F \u0433\u0440\u0443\u0448\u0430"
+  engName: Initial Punchbag
   punchbagSprite: {fileID: 21300000, guid: 87adde66cf3c2a6489205db85a3cfef8, type: 3}
   punchbagStats:
+    maxClicks: 30
     maxStreak: 3
   punchbagObject: {fileID: 8303731543474557982, guid: 362a18e05ce1def44b08d8f996fd55ac, type: 3}

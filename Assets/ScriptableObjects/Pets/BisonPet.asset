@@ -15,7 +15,7 @@ MonoBehaviour:
   skinType: 1
   idNumber: 3
   skinName: Bison
-  price: 4
+  price: 13
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: dd756b53b4ee52841816b31accb73be0, type: 3}
   skinStats:

@@ -15,9 +15,9 @@ MonoBehaviour:
   skinType: 1
   idNumber: 41
   skinName: Wolf
-  price: 120
+  price: 150
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: e2e82961cfeb3b14e9c22dd070f344e3, type: 3}
   skinStats:
-    passiveStats: 40
-    activeStats: 40
+    passiveStats: 25
+    activeStats: 25

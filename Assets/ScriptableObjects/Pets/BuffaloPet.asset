@@ -15,7 +15,7 @@ MonoBehaviour:
   skinType: 1
   idNumber: 5
   skinName: Buffalo
-  price: 5
+  price: 15
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: 12fad74b78834e946b18d48d22b8fc58, type: 3}
   skinStats:

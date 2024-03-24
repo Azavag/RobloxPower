@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6710b0d4495fbe24da9e32c5f745e5d0, type: 3}
+  m_Name: ArenaEnemy_16
+  m_EditorClassIdentifier: 
+  idNumber: 15
+  enemyRusName: "\u0411\u0435\u043B\u0438\u043D\u0434\u0430"
+  enemyEngName: Belinda
+  enemyPower: 0
+  enemyReward: 0
+  faceSprite: {fileID: 21300000, guid: 74aeee9429a573d4dbf34831c544377e, type: 3}
+  blackWhiteFaceSprite: {fileID: 21300000, guid: 81d29f506fb0c024cb3a94e2eadec8e3, type: 3}
+  enemyModel: {fileID: 3020786933806027277, guid: 6d6bd63f4f02ae64ead0c56e4c64f110, type: 3}

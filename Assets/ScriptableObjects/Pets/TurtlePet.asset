@@ -15,9 +15,9 @@ MonoBehaviour:
   skinType: 1
   idNumber: 37
   skinName: Turtle
-  price: 85
+  price: 125
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: 9183a070b10317b42b75046491993951, type: 3}
   skinStats:
-    passiveStats: 15
-    activeStats: 25
+    passiveStats: 19
+    activeStats: 19

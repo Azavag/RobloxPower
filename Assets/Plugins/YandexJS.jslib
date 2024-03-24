@@ -91,6 +91,7 @@ mergeInto(LibraryManager.library, {
         onClose: function(wasShown) {
           console.log("Adv closed");
           myGameInstance.SendMessage('AdvManager', 'ResetTimer');
+          myGameInstance.SendMessage('AdvManager', 'AdvContinueGame');   
           myGameInstance.SendMessage("SoundController", "UnmuteGame");
         },
         onError: function(error) {
@@ -114,6 +115,7 @@ mergeInto(LibraryManager.library, {
         },
         onClose: () => {
           myGameInstance.SendMessage("SkinsShop","UnlockRewardSkin");  
+          myGameInstance.SendMessage('AdvManager', 'AdvContinueGame');  
           myGameInstance.SendMessage("SoundController", "UnmuteGame");
           console.log('VideoReward ad closed');
         }, 

@@ -42,7 +42,7 @@ public class PantsSkinButtonsController : MonoBehaviour
     }
     private void OnValidate()
     {
-        Initialization();
+        //Initialization();
     }
     private void Awake()
     {

@@ -28,6 +28,8 @@ public class ArenaFight : MonoBehaviour
     HealthBars healthBars;
     ArenaFightOrder arenaFightOrder;
 
+    SoundController soundController;
+
     [Header("Cameras")]
     [SerializeField]
     private CinemachineVirtualCamera arenaCamera;
@@ -70,6 +72,7 @@ public class ArenaFight : MonoBehaviour
         arenaFightOrder = GetComponent<ArenaFightOrder>();
         cinemachineBrain = FindObjectOfType<CinemachineBrain>();
         sensivityControl = FindObjectOfType<CameraSensivityControl>();
+        soundController =FindObjectOfType<SoundController>();
         cameraStartTransitionDuration = cinemachineBrain.m_DefaultBlend.m_Time;
     }
     void Start()
@@ -92,7 +95,7 @@ public class ArenaFight : MonoBehaviour
     }
 
     public void StartFight()
-    {
+    {        
         StartCoroutine(StartFightRoutine());
         PlayerController.IsBusy = true;
     }
@@ -103,6 +106,7 @@ public class ArenaFight : MonoBehaviour
         isFightState = true;
         playerController.BlockPlayersInput(isFightState);
         yield return new WaitForSeconds(fadeScreen.GetInFadeDuration());
+        soundController.Play("ReadyFight");
         sensivityControl.ResetCameraPosition();
         canPlayerAttack = true;
         arenaCamera.enabled = true;
@@ -122,12 +126,14 @@ public class ArenaFight : MonoBehaviour
         healthBars.UpdatePlayerHealthBar((float)playerHealth / playerMaxHealth);
         if (playerHealth <= 0)
         {
+            soundController.Play("Knockout");
             currentArenaEnemy.WinAnimation();
             currentArenaEnemy.CanAttack(false);
             canPlayerAttack = false;
             playerAnimatorController.DeathAnimation(true);
             StartCoroutine(PlayerLoseFight());
         }
+        soundController.MakeRandomPunchSound();
     }
 
     public void OnEnemyLost()
@@ -135,6 +141,7 @@ public class ArenaFight : MonoBehaviour
         canPlayerAttack = false;
         playerAnimatorController.WinAnimation();
         StartCoroutine(PlayerWinFight());
+        soundController.Play("Knockout");
     }
     public void EndFight()
     {
@@ -208,6 +215,7 @@ public class ArenaFight : MonoBehaviour
         yield return new WaitForSeconds(endDelay);
         fadeScreen.StartInFadeScreenTween();
         yield return new WaitForSeconds(fadeScreen.GetInFadeDuration());
+        uINavigation.ToggleArenaFightCanvas(false);
         playerAnimatorController.DeathAnimation(false);
         EndFight();
         yield return new WaitForSeconds(fadeScreen.GetOutFadeDuration());
@@ -220,11 +228,9 @@ public class ArenaFight : MonoBehaviour
     {   //Поменять на нажатие кнопки
         if(Input.GetMouseButtonDown(0) && canPlayerAttack)
         {
-            //звук
+            soundController.MakeRandomPunchSound();
             currentArenaEnemy.GetHit(playerDamage);
-            playerAnimatorController.FistAttackAnimation();
-            
-
+            playerAnimatorController.FistAttackAnimation();            
         }
     }
     void MovePlayerToExit()

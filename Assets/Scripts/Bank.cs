@@ -25,19 +25,23 @@ public class PlayerInfo
     public int selectedGlovesId = 0;
     public int selectedBagsId = 0;
     public int selectedHairId = 0;
+    public int selectedHairColorId = 0;
 
     public int currentEnemyNumber = 0;
     public int currentPunchBagNumber = 0;
 
+    public int currentLevelNumber = 1;
+
     public bool[] hatSkinsBuyStates = new bool[90];                //++
-    public bool[] petSkinsBuyStates = new bool[43];                //++
-    public bool[] trailSkinsBuyStates = new bool[20];              //++
+    public bool[] hairSkinsBuyStates = new bool[62];
+    public bool[] hairColorsBuyStates = new bool[42];
     public bool[] accessoriesSkinsBuyStates = new bool[19];
+    public bool[] petSkinsBuyStates = new bool[43];                //++
     public bool[] shirtsSkinsBuyStates = new bool[42];
     public bool[] glovesSkinsBuyStates = new bool[42];
-    public bool[] pantsSkinsBuyStates = new bool[42];
     public bool[] bagsSkinsBuyStates = new bool[25];
-    public bool[] hairSkinsBuyStates = new bool[62];
+    public bool[] pantsSkinsBuyStates = new bool[42];
+    public bool[] trailSkinsBuyStates = new bool[20];              //++
     public bool[] areLevelsUnlock = new bool[5];                  //++
 }
 
@@ -78,7 +82,7 @@ public class Bank : MonoBehaviour
             Instance.playerInfo.pantsSkinsBuyStates[0] = true;
             Instance.playerInfo.bagsSkinsBuyStates[0] = true;
             Instance.playerInfo.hairSkinsBuyStates[0] = true;
-
+            Instance.playerInfo.hairColorsBuyStates[0] = true;
 
             Instance.playerInfo.areLevelsUnlock[0] = true;
             firstLaunch = false;

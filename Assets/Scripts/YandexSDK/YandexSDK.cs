@@ -18,7 +18,7 @@ public class YandexSDK : MonoBehaviour
     private static extern void ShowLeaderBoard();
     //Добавить запись в таблицу
     [DllImport("__Internal")]
-    private static extern void SetToLeaderboard(uint value);
+    private static extern void SetToLeaderboard(int value);
     //Межстраничная реклама
     [DllImport("__Internal")]
     private static extern void ShowIntersitialAdvExtern();

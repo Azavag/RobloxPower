@@ -16,8 +16,8 @@ namespace EasyUI.Tabs {
       [System.Serializable] public class TabsUIEvent : UnityEvent <int> { }
 
       [Header ("Tabs customization :")]
-      [SerializeField] private Color themeColor = Color.gray ;
-      [SerializeField] private float tabSpacing = 2f ;
+      [SerializeField] private Color themeColor = Color.gray;
+      [SerializeField] private float tabSpacing = 2f;
       [Space]
       [Header ("OnTabChange event :")]
       public TabsUIEvent OnTabChange ;

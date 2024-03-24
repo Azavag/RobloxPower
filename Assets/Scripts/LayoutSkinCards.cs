@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 public class LayoutSkinCards : MonoBehaviour
@@ -31,7 +30,7 @@ public class LayoutSkinCards : MonoBehaviour
 
         foreach (var card in skinsCard)
         {
-            GameObject clone = PrefabUtility.InstantiatePrefab(prefab, transform) as GameObject;
+            Instantiate(prefab, transform);
         }
         if(transform.childCount != skinsCard.Length)
         {

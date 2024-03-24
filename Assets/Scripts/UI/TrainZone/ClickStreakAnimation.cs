@@ -1,8 +1,5 @@
 using DG.Tweening;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using Unity.UI;
 using TMPro;
 
 
@@ -69,9 +66,6 @@ public class ClickStreakAnimation : MonoBehaviour
         else shakeSequence.Pause();
     }
   
-
-   
-
     void CreateRotationTweenSeq(Transform objectTransform)
     {
         shakeSequence = DOTween.Sequence();

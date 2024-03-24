@@ -25,7 +25,6 @@ public class BuyLevel : MonoBehaviour
     private Button cancelButton;
 
     Tween shakeTween;
-    public static event Action<int> LevelUnlocked;
 
     private void OnEnable()
     {

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: LevelEnemy_3
   m_EditorClassIdentifier: 
   idNumber: 2
-  enemyName: Sony
-  enemyPower: 10000
-  enemyReward: 7
+  enemyRusName: "\u041F\u0438\u0440\u0441"
+  enemyEngName: Pierce
+  enemyPower: 5000
+  enemyReward: 5
   faceSprite: {fileID: 21300000, guid: 49cd26af846c8c8439cd0a4b63eca62a, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: 6fc87466339ee39498da57f7d49f3e94, type: 3}
   enemyModel: {fileID: 1236242181212998950, guid: 2ed2296dd7a336d45846086302c2c542, type: 3}

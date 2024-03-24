@@ -19,5 +19,5 @@ MonoBehaviour:
   isAdsReward: 1
   sprite: {fileID: 21300000, guid: 6630c97e3580e28409ffc1c86915ec2d, type: 3}
   skinStats:
-    passiveStats: 10
-    activeStats: 10
+    passiveStats: 6
+    activeStats: 6

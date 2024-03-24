@@ -15,7 +15,7 @@ MonoBehaviour:
   skinType: 1
   idNumber: 1
   skinName: Bear
-  price: 3
+  price: 10
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: c8f3998894c4d7041b4731e2553b4c37, type: 3}
   skinStats:

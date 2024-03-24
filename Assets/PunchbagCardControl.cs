@@ -18,10 +18,9 @@ public class PunchbagCardControl : MonoBehaviour
     [SerializeField]
     private GameObject selectedFrame;
     [Header("Localization")]
-    private string clickInterText;
-    private string clickEngText = "click";
-    private string clickRusText = "клик";
-    
+    private string multiplierInterText;
+    private string multiplierRusText = "Макс множитель";
+    private string multiplierEngText = "Max multiplier";
 
 
     private void OnValidate()
@@ -31,8 +30,15 @@ public class PunchbagCardControl : MonoBehaviour
     void Start()
     {
         if (Language.Instance.languageName == LanguageName.Rus)
-            clickInterText = clickRusText;
-        else clickInterText = clickEngText;
+        {
+            multiplierInterText = multiplierRusText;
+            nameText.text = punchbagScriptable.rusName;
+        }
+        else
+        {
+            multiplierInterText = multiplierEngText;
+            nameText.text = punchbagScriptable.engName;
+        }
 
         CardInitializtion();       
     }
@@ -41,10 +47,8 @@ public class PunchbagCardControl : MonoBehaviour
     {
         modelImage.sprite = punchbagScriptable.punchbagSprite;
         idNumber = punchbagScriptable.punchbagIdNumber;
-        if(Language.Instance.languageName == LanguageName.Rus)
-            nameText.text = $"{punchbagScriptable.rusName}";
-        else nameText.text = $"{punchbagScriptable.engName}";
-        statsText.text = $"Макс. множитель\nх{punchbagScriptable.punchbagStats.maxStreak}";
+           
+        statsText.text = $"{multiplierInterText}\nх{punchbagScriptable.punchbagStats.maxStreak}";
         
         selectedFrame.transform.localScale = 
             new Vector3(selectedFrame.transform.localScale.x, 0, selectedFrame.transform.localScale.z);

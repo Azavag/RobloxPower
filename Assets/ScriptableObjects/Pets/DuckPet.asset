@@ -15,7 +15,7 @@ MonoBehaviour:
   skinType: 1
   idNumber: 16
   skinName: Duck
-  price: 18
+  price: 39
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: 39106848910283e488f57d684c2bdd7f, type: 3}
   skinStats:

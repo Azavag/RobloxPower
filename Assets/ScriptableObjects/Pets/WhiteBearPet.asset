@@ -15,9 +15,9 @@ MonoBehaviour:
   skinType: 1
   idNumber: 39
   skinName: WhiteBear
-  price: 90
+  price: 130
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: d0fe06faf1fc4dc41af692d0fedae7c9, type: 3}
   skinStats:
-    passiveStats: 25
-    activeStats: 25
+    passiveStats: 20
+    activeStats: 20

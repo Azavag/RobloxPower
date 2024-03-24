@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6710b0d4495fbe24da9e32c5f745e5d0, type: 3}
+  m_Name: ArenaEnemy_12
+  m_EditorClassIdentifier: 
+  idNumber: 11
+  enemyRusName: "\u041B\u0438"
+  enemyEngName: Li
+  enemyPower: 0
+  enemyReward: 0
+  faceSprite: {fileID: 21300000, guid: 6a67eda7e9a132b4bb0c4b6a18b6ab10, type: 3}
+  blackWhiteFaceSprite: {fileID: 21300000, guid: 8c4d7fba958b3ec47afafb7038ced63c, type: 3}
+  enemyModel: {fileID: 4590429766277822596, guid: 937f9ed695e20514f82958a146da6d96, type: 3}

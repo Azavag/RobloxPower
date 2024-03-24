@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: ArenaEnemy_5
   m_EditorClassIdentifier: 
   idNumber: 4
-  enemyName: King
-  enemyPower: 17800
-  enemyReward: 50
+  enemyRusName: "\u041A\u0438\u043D\u0433"
+  enemyEngName: King
+  enemyPower: 9000
+  enemyReward: 0
   faceSprite: {fileID: 21300000, guid: 92e484363dfc9284bbf84856cb6f4e04, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: afa227fca92ee4d478f3afc1e10ce37e, type: 3}
   enemyModel: {fileID: 6998685332463961350, guid: 43958b859d2eb3f4cbea052dfbf770f8, type: 3}

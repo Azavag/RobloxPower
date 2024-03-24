@@ -10,9 +10,10 @@ public enum SkinType
     Shirt,
     Pants,
     Gloves,
-    Hair,
+    HairStyles,
     Accessories,
     Bags,
+    HairColors,
 }
 public class SkinShop : MonoBehaviour
 {
@@ -33,8 +34,9 @@ public class SkinShop : MonoBehaviour
     private AccessoriesSkinButtonsController àccessoriesSkinButtonController;
     private HairSkinsButtonController hairSkinButtonsController;
     private BagSkinButtonsController bagSkinButtonController;
+    private HairColorsSkinButtonsController hairColorsSkinButtonsController;
 
-   private SoundController soundController;
+    private SoundController soundController;
 
     [Header("Shop UI")]
     [SerializeField]
@@ -60,6 +62,8 @@ public class SkinShop : MonoBehaviour
         àccessoriesSkinButtonController = GetComponentInChildren<AccessoriesSkinButtonsController>();
         hairSkinButtonsController = GetComponentInChildren<HairSkinsButtonController>();
         bagSkinButtonController = GetComponentInChildren<BagSkinButtonsController>();
+        hairColorsSkinButtonsController = GetComponentInChildren<HairColorsSkinButtonsController>();
+        
     }
     private void OnEnable()
     {
@@ -138,7 +142,13 @@ public class SkinShop : MonoBehaviour
         soundController.MakeClickSound();
 
         switch (index)
-        { 
+        {
+            case -3:
+                ToggleBuyWindow(true);
+                return;
+            case -2:
+                ToggleBuyWindow(false);
+                return;
             case -1:
                 ToggleBuyWindow(false);
                 ResetPages();
@@ -201,6 +211,7 @@ public class SkinShop : MonoBehaviour
     void ResetHairSkin()
     {
         hairSkinButtonsController.ResetSkin();
+        hairColorsSkinButtonsController.ResetSkin();
     }
     void ResetBagSkin()
     {

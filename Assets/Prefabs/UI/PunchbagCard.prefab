@@ -53,7 +53,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   punchbagScriptable: {fileID: 11400000, guid: 32c42e54eb70bd14c84b992e6fea95e5, type: 2}
-  idNumber: 0
   modelImage: {fileID: 2086460337136346821}
   nameText: {fileID: 133026385155182189}
   statsText: {fileID: 5410816401481996692}
@@ -123,7 +122,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\n\u04453"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f92685bcceddeaf4cba5b2570c9232bf, type: 2}
   m_sharedMaterial: {fileID: -481143764223812074, guid: f92685bcceddeaf4cba5b2570c9232bf, type: 2}
@@ -559,7 +558,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041E\u0431\u044B\u0447\u043D\u0430\u044F \u0433\u0440\u0443\u0448\u0430"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f92685bcceddeaf4cba5b2570c9232bf, type: 2}
   m_sharedMaterial: {fileID: -481143764223812074, guid: f92685bcceddeaf4cba5b2570c9232bf, type: 2}
@@ -589,9 +588,9 @@ MonoBehaviour:
   m_fontSize: 55
   m_fontSizeBase: 55
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 55
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

@@ -15,7 +15,7 @@ MonoBehaviour:
   skinType: 1
   idNumber: 7
   skinName: Camel
-  price: 8
+  price: 18
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: b70111d62f92f7f4197f461be389be93, type: 3}
   skinStats:

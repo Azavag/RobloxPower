@@ -10,7 +10,6 @@ public class Wallet : MonoBehaviour
         CourseFinish.CourseFinished += OnCoinsValueChanged;
         UpgradesShop.PurchaseMade += OnCoinsValueChanged;
         BuySkinButton.SkinPurchaseMade += OnCoinsValueChanged;
-        BuyLevel.LevelUnlocked += OnCoinsValueChanged;
         PunchbagsShop.PunchbagPurchased += OnCoinsValueChanged;
         ArenaFight.EnemyLost += OnCoinsValueChanged;
     }
@@ -19,7 +18,6 @@ public class Wallet : MonoBehaviour
         CourseFinish.CourseFinished -= OnCoinsValueChanged;
         UpgradesShop.PurchaseMade -= OnCoinsValueChanged;
         BuySkinButton.SkinPurchaseMade -= OnCoinsValueChanged;
-        BuyLevel.LevelUnlocked -= OnCoinsValueChanged;
         PunchbagsShop.PunchbagPurchased -= OnCoinsValueChanged;
         ArenaFight.EnemyLost -= OnCoinsValueChanged;
     }

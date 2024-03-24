@@ -48,8 +48,6 @@ public class BagSkinButtonsController : MonoBehaviour
     {
         skinsBuyState = Bank.Instance.playerInfo.bagsSkinsBuyStates;
         selectedSkinId = Bank.Instance.playerInfo.selectedBagsId;
-        skinsBuyState = new bool[skinCards.Length];
-        skinsBuyState[0] = true;
     }
     void Start()
     {

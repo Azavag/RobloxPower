@@ -15,7 +15,7 @@ MonoBehaviour:
   skinType: 1
   idNumber: 32
   skinName: Pig
-  price: 60
+  price: 92
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: 66878ea387e18a845bb12714d817369e, type: 3}
   skinStats:

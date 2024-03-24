@@ -30,7 +30,7 @@ YandexSDK.dataIsLoaded = true;
         }
         if(isSdkReady && YandexSDK.dataIsLoaded)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(Bank.Instance.playerInfo.currentLevelNumber);
         }
     }
     //из jslib

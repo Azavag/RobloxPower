@@ -15,7 +15,7 @@ public class SkinRandomizatorEditor : Editor
         {
             skinRandomizator.RandomHat();
         }
-        if (GUILayout.Button("Randomize Hair"))
+        if (GUILayout.Button("Randomize HairStyles"))
         {
             skinRandomizator.RandomHair();
         }

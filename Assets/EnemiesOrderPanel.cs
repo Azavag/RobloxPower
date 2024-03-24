@@ -26,9 +26,13 @@ public class EnemiesOrderPanel : MonoBehaviour
     }
     public void InitializeEnemyData(ArenaEnemyScriptable[] data)
     {
+        string interName;
         for (int i = 0; i < enemiesIcons.Length; i++)
         {
-            enemiesIcons[i].InitializeIcon(data[i].enemyName, data[i].faceSprite, data[i].blackWhiteFaceSprite);
+            if (Language.Instance.languageName == LanguageName.Rus)
+                interName = data[i].enemyRusName;
+            else interName = data[i].enemyEngName;
+            enemiesIcons[i].InitializeIcon(interName, data[i].faceSprite, data[i].blackWhiteFaceSprite);
         }
     }
     public void InitializeCrossEnemyIcons()

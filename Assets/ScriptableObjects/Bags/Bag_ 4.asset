@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Bag_ 4
   m_EditorClassIdentifier: 
   skinType: 8
-  idNumber: 0
+  idNumber: 5
   skinName: 
-  price: 0
+  price: 20
   isAdsReward: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 34e4705348ad06b4386eac5bf70a79a7, type: 3}
   skinStats:
     passiveStats: 0
     activeStats: 0

@@ -55,8 +55,6 @@ public class HairSkinsButtonController : MonoBehaviour
     {
         skinsBuyState = Bank.Instance.playerInfo.hairSkinsBuyStates;
         selectedSkinId = Bank.Instance.playerInfo.selectedHairId;
-        skinsBuyState = new bool[skinCards.Length];
-        skinsBuyState[0] = true;
     }
     void Start()
     {

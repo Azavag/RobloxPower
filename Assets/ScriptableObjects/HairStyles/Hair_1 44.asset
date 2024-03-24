@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ee5377aa9a1d1489130d20fbc230e7, type: 3}
+  m_Name: Hair_1 44
+  m_EditorClassIdentifier: 
+  skinType: 6
+  idNumber: 44
+  skinName: 44_SM_Chr_Hair_Mohawk_02
+  price: 50
+  isAdsReward: 0
+  sprite: {fileID: 21300000, guid: 84ff8a07a1ac66149b055a45aea953a1, type: 3}
+  skinStats:
+    passiveStats: 0
+    activeStats: 0

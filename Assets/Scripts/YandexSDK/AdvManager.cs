@@ -61,6 +61,7 @@ public class AdvManager : MonoBehaviour
         CursorLocking.LockCursor(true);
     }
 
+
     public void ResetTimer()
     {
         isAdvOpen = false;

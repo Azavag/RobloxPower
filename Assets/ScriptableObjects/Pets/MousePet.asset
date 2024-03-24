@@ -15,7 +15,7 @@ MonoBehaviour:
   skinType: 1
   idNumber: 28
   skinName: Mouse
-  price: 42
+  price: 75
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: 142f45dfba139dc418d5c7b88f8eb544, type: 3}
   skinStats:

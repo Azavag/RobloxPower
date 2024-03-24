@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ShopIconsAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 7bb55848633c98145bf2a0924b146591, type: 3}
+    - {fileID: 2800000, guid: ec6758bd61997fb4b837ab33066b1ed1, type: 3}
+    - {fileID: 2800000, guid: a865ce549e258184db929882f22557ab, type: 3}
+    - {fileID: 2800000, guid: 081c9de970217f8499c9b0d7f155bc71, type: 3}
+    - {fileID: 2800000, guid: aef03000d1998c74993be9e692fa8a14, type: 3}
+    - {fileID: 2800000, guid: b603b68ac1a198c4085caf33d2954da9, type: 3}
+    - {fileID: 2800000, guid: 7e6593f0a23e88448ab09a06c57c78b7, type: 3}
+    - {fileID: 2800000, guid: 41f9b77a05826314896672dc253dd6ce, type: 3}
+    - {fileID: 2800000, guid: 7fc941c8da9da6d49aaf80d8f123b43d, type: 3}
+    - {fileID: 2800000, guid: c6966ba863897d64883fc7ee1c9d133f, type: 3}
+    - {fileID: 2800000, guid: b26eb057de8b8bd4fb0394b07bb8b651, type: 3}
+    - {fileID: 2800000, guid: f0787aae6b6239c4e97bdfd236bcb062, type: 3}
+    - {fileID: 2800000, guid: 4d0d1876c6592e94786fb08c6a06d0b8, type: 3}
+    - {fileID: 2800000, guid: 7ee9b100ec940e24ab08b080128572e7, type: 3}
+    - {fileID: 2800000, guid: 3b4e0743d5a771d4ea46d73b48309000, type: 3}
+    - {fileID: 2800000, guid: dd620db73b5508f4aae8f17e6b6ef189, type: 3}
+    - {fileID: 2800000, guid: 211a8a5ef7fbb9d4f937c3ba3ffa0754, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - aef03000d1998c74993be9e692fa8a14: 21300000
+    - 7ee9b100ec940e24ab08b080128572e7: 21300000
+    - 7e6593f0a23e88448ab09a06c57c78b7: 21300000
+    - 3b4e0743d5a771d4ea46d73b48309000: 21300000
+    - a865ce549e258184db929882f22557ab: 21300000
+    - 4d0d1876c6592e94786fb08c6a06d0b8: 21300000
+    - b26eb057de8b8bd4fb0394b07bb8b651: 21300000
+    - dd620db73b5508f4aae8f17e6b6ef189: 21300000
+    - 7bb55848633c98145bf2a0924b146591: 21300000
+    - c6966ba863897d64883fc7ee1c9d133f: 21300000
+    - 7fc941c8da9da6d49aaf80d8f123b43d: 21300000
+    - 081c9de970217f8499c9b0d7f155bc71: 21300000
+    - 41f9b77a05826314896672dc253dd6ce: 21300000
+    - b603b68ac1a198c4085caf33d2954da9: 21300000
+    - ec6758bd61997fb4b837ab33066b1ed1: 21300000
+    - 211a8a5ef7fbb9d4f937c3ba3ffa0754: 21300000
+    - f0787aae6b6239c4e97bdfd236bcb062: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: aef03000d1998c74993be9e692fa8a14, type: 3}
+  - {fileID: 21300000, guid: 7ee9b100ec940e24ab08b080128572e7, type: 3}
+  - {fileID: 21300000, guid: 7e6593f0a23e88448ab09a06c57c78b7, type: 3}
+  - {fileID: 21300000, guid: 3b4e0743d5a771d4ea46d73b48309000, type: 3}
+  - {fileID: 21300000, guid: a865ce549e258184db929882f22557ab, type: 3}
+  - {fileID: 21300000, guid: 4d0d1876c6592e94786fb08c6a06d0b8, type: 3}
+  - {fileID: 21300000, guid: b26eb057de8b8bd4fb0394b07bb8b651, type: 3}
+  - {fileID: 21300000, guid: dd620db73b5508f4aae8f17e6b6ef189, type: 3}
+  - {fileID: 21300000, guid: 7bb55848633c98145bf2a0924b146591, type: 3}
+  - {fileID: 21300000, guid: c6966ba863897d64883fc7ee1c9d133f, type: 3}
+  - {fileID: 21300000, guid: 7fc941c8da9da6d49aaf80d8f123b43d, type: 3}
+  - {fileID: 21300000, guid: 081c9de970217f8499c9b0d7f155bc71, type: 3}
+  - {fileID: 21300000, guid: 41f9b77a05826314896672dc253dd6ce, type: 3}
+  - {fileID: 21300000, guid: b603b68ac1a198c4085caf33d2954da9, type: 3}
+  - {fileID: 21300000, guid: ec6758bd61997fb4b837ab33066b1ed1, type: 3}
+  - {fileID: 21300000, guid: 211a8a5ef7fbb9d4f937c3ba3ffa0754, type: 3}
+  - {fileID: 21300000, guid: f0787aae6b6239c4e97bdfd236bcb062, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - free-icon-boxing-gloves-1686198
+  - free-icon-punching-bag-3363823
+  - free-icon-effects-2645877
+  - free-icon-shops-353343
+  - free-icon-accessory-3210417
+  - free-icon-punching-bag-2929701
+  - free-icon-jeans-2346860
+  - free-icon-tshirt-2042345
+  - continuous-improvement
+  - free-icon-head-9172473
+  - free-icon-hat-7705833
+  - free-icon-backpack-1010711
+  - free-icon-glasses-with-mustache-1404951
+  - free-icon-color-2547584
+  - free-icon-accessories-885596
+  - free-icon-wig-3907535
+  - free-icon-pet-5930063
+  m_RenderDataMap: {}
+  m_Tag: ShopIconsAtlas
+  m_IsVariant: 0

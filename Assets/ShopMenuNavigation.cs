@@ -6,16 +6,20 @@ public class ShopMenuNavigation : MonoBehaviour
 {
     [SerializeField]
     private Button[] navButtons;
-
     [SerializeField]
     private GameObject[] navPages;
-
     [SerializeField]
     private GameObject buttonContent;
 
+    [Header("HairContent")]
+    [SerializeField]
+    private Button[] hairOptionsButtons; 
+    [SerializeField]
+    private GameObject[] hairOptions;
+
+
     [SerializeField]
     private Button backButton;
-
     private GameObject prevPage;
     private GameObject currentPage;
 
@@ -30,8 +34,19 @@ public class ShopMenuNavigation : MonoBehaviour
             navButtons[copy].onClick.AddListener(() => { OpenPage(copy); });
             navPages[copy].SetActive(false);
         }
+        for (int i = 0;i < hairOptionsButtons.Length;i++)
+        {
+            int copy = i;
+            hairOptionsButtons[copy].onClick.AddListener( () => { OpenHairOption(copy); });
+            hairOptions[copy].SetActive(false);
+        }
         backButton.onClick.AddListener(() => { OpenPrevPage(); });
+
+        prevPage = buttonContent;
+        currentPage = buttonContent;
         buttonContent.SetActive(true);
+        TabSelected?.Invoke(-1);
+        ToggleBackButton(false);
     }
     private void OnDisable()
     {
@@ -41,8 +56,13 @@ public class ShopMenuNavigation : MonoBehaviour
             navButtons[copy].onClick.RemoveListener(() => { OpenPage(copy); });
             navPages[copy].SetActive(false);
         }
-        backButton.onClick.RemoveListener(() => { OpenPrevPage(); });
-
+        for (int i = 0; i < hairOptionsButtons.Length; i++)
+        {
+            int copy = i;
+            hairOptionsButtons[i].onClick.RemoveListener(() => { OpenHairOption(copy); });
+            hairOptions[copy].SetActive(false);
+        }
+        backButton.onClick.RemoveAllListeners();
         
     }
     private void Awake()
@@ -52,34 +72,52 @@ public class ShopMenuNavigation : MonoBehaviour
     }
     void Start()
     {
-        prevPage = buttonContent;
-        currentPage = buttonContent;
-
-        TabSelected?.Invoke(-1);
+        
     }
 
     void OpenPage(int index)
     {
+        ToggleBackButton(true);
+        prevPage.SetActive(false);
         navPages[index].SetActive(true);
         currentPage = navPages[index];
-        buttonContent.SetActive(false);
+
         soundController.MakeClickSound();
         TabSelected?.Invoke(index);
     }
 
     void OpenPrevPage()
     {
+        soundController.MakeClickSound();
         currentPage.SetActive(false);
         prevPage.SetActive(true);
-        currentPage = prevPage;
+        if (prevPage == buttonContent)
+        {
+            ToggleBackButton(false);
+            currentPage = prevPage;
+            TabSelected?.Invoke(-1);
+            return;
+        }
+        if (currentPage == hairOptions[0] || currentPage == hairOptions[1])
+        {
+            currentPage = navPages[1];
+            prevPage = buttonContent;
+            TabSelected?.Invoke(-2);
+        }
+     
+    }
+    void OpenHairOption(int index)
+    {
+        prevPage = navPages[1];
+        prevPage.SetActive(false);
+        hairOptions[index].SetActive(true);
+        currentPage = hairOptions[index];
         soundController.MakeClickSound();
-        TabSelected?.Invoke(-1);
+        TabSelected?.Invoke(-3);
     }
    
-
-    
-    void Update()
+    void ToggleBackButton(bool toggle)
     {
-        
+        backButton.gameObject.SetActive(toggle);
     }
 }

@@ -4,7 +4,8 @@ using UnityEngine;
 public class ArenaEnemyScriptable : ScriptableObject
 { 
     public int idNumber;
-    public string enemyName;
+    public string enemyRusName;
+    public string enemyEngName;
     public int enemyPower;
     public int enemyReward;
     public Sprite faceSprite;

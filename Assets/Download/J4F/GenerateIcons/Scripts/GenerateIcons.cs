@@ -117,8 +117,9 @@ namespace J4F{
 
 						float scale = 5f/baseSize;
 						currentGameObject.transform.localScale = new Vector3(scale,scale,scale);
+						//currentGameObject.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
 
-						currentGameObject.transform.position = Vector3.zero;
+                        currentGameObject.transform.position = Vector3.zero;
 						// finally recenter the object after scale
 						currentGameObject.transform.position = - GameObjectExtensions.GetGlobalBounds(currentGameObject).center;
 

@@ -15,9 +15,9 @@ MonoBehaviour:
   skinType: 1
   idNumber: 40
   skinName: WhiteFox
-  price: 100
+  price: 140
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: a2ba4ef6524c3f04fbdca90d76d76849, type: 3}
   skinStats:
-    passiveStats: 30
-    activeStats: 30
+    passiveStats: 21
+    activeStats: 21

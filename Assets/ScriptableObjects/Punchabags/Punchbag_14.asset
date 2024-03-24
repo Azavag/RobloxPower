@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a88c9f972ca1843ab5eb182b500af8, type: 3}
+  m_Name: Punchbag_14
+  m_EditorClassIdentifier: 
+  punchbagIdNumber: 13
+  punchbagPrice: 354
+  rusName: "\u0412\u0434\u043E\u0445\u043D\u043E\u0432\u043B\u044F\u044E\u0449\u0430\u044F
+    \u0433\u0440\u0443\u0448\u0430"
+  engName: Inspirational punchbag
+  punchbagSprite: {fileID: 21300000, guid: c8eebc23643e8a04995aed0cadb909e3, type: 3}
+  punchbagStats:
+    maxClicks: 95
+    maxStreak: 12
+  punchbagObject: {fileID: 6830773194708630701, guid: 8c7804c349c8ce04abb59f135b538783, type: 3}

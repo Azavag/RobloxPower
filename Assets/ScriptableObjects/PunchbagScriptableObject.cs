@@ -4,7 +4,8 @@ using UnityEngine;
 [Serializable]
 public class PunchbagStats
 {
-    public uint maxStreak;
+    public int maxClicks;
+    public int maxStreak;
 }
 
 

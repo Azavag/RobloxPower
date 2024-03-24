@@ -11,6 +11,7 @@ public class PunchbagsShopTrigger : MonoBehaviour
     [SerializeField]
     private Button closePunchbagsShopButton;
 
+    SoundController soundController;
     private void OnEnable()
     {
         closePunchbagsShopButton.onClick.AddListener(ClosePunchbagsShop);
@@ -19,17 +20,23 @@ public class PunchbagsShopTrigger : MonoBehaviour
     {
         closePunchbagsShopButton.onClick.RemoveListener(ClosePunchbagsShop);
     }
+
+    private void Awake()
+    {
+        soundController =FindObjectOfType<SoundController>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            OpenPunchbagsShop();
-            
+            OpenPunchbagsShop();          
         }
     }
 
     void OpenPunchbagsShop()
     {
+        soundController.MakeClickSound();
         PlayerController.IsBusy = true;
         navigation.ToggleUpgradesPunchbagsCanvas(true);
         playerController.BlockPlayersInput(true);
@@ -38,6 +45,7 @@ public class PunchbagsShopTrigger : MonoBehaviour
 
     void ClosePunchbagsShop()
     {
+        soundController.MakeClickSound();
         PlayerController.IsBusy = false;
         navigation.ToggleUpgradesPunchbagsCanvas(false);
         playerController.BlockPlayersInput(false);

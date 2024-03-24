@@ -23,6 +23,7 @@ public class BuySkinButton : MonoBehaviour
     private AccessoriesSkinButtonsController accessoriesCardsController;
     private HairSkinsButtonController hairSkinButtonsController;
     private BagSkinButtonsController bagSkinButtonController;
+    private HairColorsSkinButtonsController hairColorsSkinButtonsController;
 
     Tween shakeTween;
 
@@ -40,6 +41,8 @@ public class BuySkinButton : MonoBehaviour
         AccessoriesSkinCard.ÀccessoriesCardClicked += SetSelectedSkinCardType;
         HairSkinCard.HairCardClicked += SetSelectedSkinCardType;
         BagSkinCard.BagCardClicked += SetSelectedSkinCardType;
+        HairSkinCard.HairCardClicked += SetSelectedSkinCardType;
+        HairColorSkinCard.HairColorCardClicked += SetSelectedSkinCardType;
 
         adsButton.onClick.AddListener(OnClickAdsButton);
         buyButton.onClick.AddListener(OnClickBuyButton);
@@ -55,6 +58,8 @@ public class BuySkinButton : MonoBehaviour
         AccessoriesSkinCard.ÀccessoriesCardClicked -= SetSelectedSkinCardType;
         HairSkinCard.HairCardClicked -= SetSelectedSkinCardType;
         BagSkinCard.BagCardClicked -= SetSelectedSkinCardType;
+        HairSkinCard.HairCardClicked -= SetSelectedSkinCardType;
+        HairColorSkinCard.HairColorCardClicked -= SetSelectedSkinCardType;
 
         adsButton.onClick.RemoveListener(OnClickAdsButton);
         buyButton.onClick.RemoveListener(OnClickBuyButton);
@@ -78,6 +83,7 @@ public class BuySkinButton : MonoBehaviour
         accessoriesCardsController = GetComponentInChildren<AccessoriesSkinButtonsController>();
         hairSkinButtonsController = GetComponentInChildren<HairSkinsButtonController>();
         bagSkinButtonController = GetComponentInChildren<BagSkinButtonsController>();
+        hairColorsSkinButtonsController = GetComponentInChildren<HairColorsSkinButtonsController>();
 
     }
     private void Start()
@@ -148,9 +154,13 @@ public class BuySkinButton : MonoBehaviour
                 glovesCardsController.ShowCurrentModelView(selectedSkinCard);
                 glovesCardsController.SaveStates(selectedSkinCard.GetSkinIdNumber());
                 break;
-            case SkinType.Hair:
+            case SkinType.HairStyles:
                 hairSkinButtonsController.ShowCurrentModelView(selectedSkinCard);
                 hairSkinButtonsController.SaveStates(selectedSkinCard.GetSkinIdNumber());
+                break;
+            case SkinType.HairColors:
+                hairColorsSkinButtonsController.ShowCurrentModelView(selectedSkinCard);
+                hairColorsSkinButtonsController.SaveStates(selectedSkinCard.GetSkinIdNumber());
                 break;
             case SkinType.Accessories:
                 accessoriesCardsController.ShowCurrentModelView(selectedSkinCard);

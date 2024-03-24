@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Punchbag_3
   m_EditorClassIdentifier: 
   punchbagIdNumber: 2
-  punchbagPrice: 30
-  rusName: "\u041C\u043E\u0449\u043D\u0430\u044F \u0433\u0440\u0443\u0448\u0430"
-  engName: Strong punchbag
+  punchbagPrice: 47
+  rusName: "\u042D\u043F\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u0433\u0440\u0443\u0448\u0430"
+  engName: Epic punchbag
   punchbagSprite: {fileID: 21300000, guid: a9d76758035397044833b847ead54a0a, type: 3}
   punchbagStats:
+    maxClicks: 40
     maxStreak: 5
   punchbagObject: {fileID: 2243428792556497701, guid: 9c22c5df8f8cb744e926dbe5908e896d, type: 3}

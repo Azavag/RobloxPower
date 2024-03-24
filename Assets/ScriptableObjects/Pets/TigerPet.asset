@@ -15,9 +15,9 @@ MonoBehaviour:
   skinType: 1
   idNumber: 36
   skinName: Tiger
-  price: 80
+  price: 119
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: a619100df4315cb4b9ed06c7e21636b6, type: 3}
   skinStats:
-    passiveStats: 15
-    activeStats: 20
+    passiveStats: 18
+    activeStats: 18

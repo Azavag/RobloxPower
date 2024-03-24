@@ -15,7 +15,7 @@ MonoBehaviour:
   skinType: 1
   idNumber: 11
   skinName: Cow
-  price: 13
+  price: 28
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: 80c7a473330c29946949d01d422dd2ff, type: 3}
   skinStats:

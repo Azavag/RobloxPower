@@ -6,10 +6,9 @@ using UnityEngine.UI;
 
 public class PunchbagsShop : MonoBehaviour
 {
-    [SerializeField]
     private PunchbagCardControl[] punchbagsCards;
-    [SerializeField]
     private PunchbagScriptableObject[] punchbagsScriptables;
+    SoundController soundController;
 
     [SerializeField]
     private Button upgradePunchbagButton;
@@ -23,16 +22,15 @@ public class PunchbagsShop : MonoBehaviour
     [SerializeField]
     private float frameAnimationDuration;
     Tween buyButtonShakeTween;
+    [Header("Localization")]
+    private string maxInterText;
+    private string maxEngText = "Max";
+    private string maxRusText = "Макс";
+
 
     public static Action<int> PunchbagPurchased;
     public static Action<int> PunchbagSelected;
-    private void OnValidate()
-    {
-        for(int i=0; i< punchbagsCards.Length; i++)
-        {
-            punchbagsCards[i].punchbagScriptable = punchbagsScriptables[i];
-        }
-    }
+
     private void OnEnable()
     {       
          upgradePunchbagButton.onClick.AddListener(OnClickBuyButton);
@@ -42,13 +40,42 @@ public class PunchbagsShop : MonoBehaviour
     {
         upgradePunchbagButton.onClick.RemoveListener(OnClickBuyButton);
     }
-    private void Awake()
+
+    private void Start()
     {
+        if (Language.Instance.languageName == LanguageName.Rus)
+            maxInterText = maxRusText;
+        if(Language.Instance.languageName == LanguageName.Eng)
+            maxInterText = maxEngText;
+        soundController = FindObjectOfType<SoundController>();
+
+        buyButtonShakeTween = ButtonAnimation.ShakeAnimation(upgradePunchbagButton.transform);
+    }
+
+    public void GetCardsData(PunchbagCardControl[] punchCards, PunchbagScriptableObject[] punchData)
+    {
+        punchbagsCards = punchCards;
+        punchbagsScriptables = punchData;
         Initialization();
     }
-    void Start()
+    void Initialization()
     {
-        
+        foreach (var card in punchbagsCards)
+        {
+            card.gameObject.SetActive(false);
+        }
+        currentPunchbagNumber = Bank.Instance.playerInfo.currentPunchBagNumber;
+        punchbagsCards[currentPunchbagNumber].gameObject.SetActive(true);
+        SwapButtonPrice();
+    }
+    void OnClickBuyButton()
+    {
+        if (Bank.Instance.playerInfo.coins >= currentPrice)
+        {
+            ConfirmBuy();
+            return;
+        }
+        else DenyBuy();
     }
     void SwapCards()
     {
@@ -83,48 +110,26 @@ public class PunchbagsShop : MonoBehaviour
         }
         else
         {
-            priceText.text = "Макс";
+            priceText.text = maxInterText;
             upgradePunchbagButton.interactable = false;
         }
     }
+   
     Tween RotateTween(Transform cardTransform, Vector3 rotateVector)
     {
         return cardTransform.DORotate(rotateVector, swapDuration, RotateMode.Fast)
-            .SetAutoKill();            
+            .SetAutoKill();
     }
-
-    void Initialization()
-    {
-        currentPunchbagNumber = Bank.Instance.playerInfo.currentPunchBagNumber;
-        foreach(var card in punchbagsCards)
-        {
-            card.gameObject.SetActive(false);
-        }
-        punchbagsCards[currentPunchbagNumber].gameObject.SetActive(true);
-        SwapButtonPrice();
-    }
-
-   
-    void OnClickBuyButton()
-    {
-        if (Bank.Instance.playerInfo.coins >= currentPrice)
-        {
-            ConfirmBuy();          
-            return;
-        }
-        else DenyBuy();
-    }
-   
     void ConfirmBuy()
     {
-        //звук
+        soundController.Play("ConfirmBuy");
         SwapCards();
         PunchbagPurchased?.Invoke(-currentPrice);
         PunchbagSelected?.Invoke(currentPunchbagNumber+1);
     }
     void DenyBuy()
     {
-        //звук
+        soundController.Play("DeclineBuy");
         buyButtonShakeTween.Rewind();
         buyButtonShakeTween.Play();
     }

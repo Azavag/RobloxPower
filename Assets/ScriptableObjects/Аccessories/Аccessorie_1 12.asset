@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: "\u0410ccessorie_1 12"
   m_EditorClassIdentifier: 
   skinType: 7
-  idNumber: 0
+  idNumber: 13
   skinName: 
-  price: 0
+  price: 30
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: 96241cd425f9ad24fae9b8c4421c9b0f, type: 3}
   skinStats:

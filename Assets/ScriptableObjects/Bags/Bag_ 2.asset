@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Bag_ 2
   m_EditorClassIdentifier: 
   skinType: 8
-  idNumber: 0
-  skinName: 
-  price: 0
-  isAdsReward: 0
-  sprite: {fileID: 0}
+  idNumber: 3
+  skinName: 3_SM_Chr_Attach_Badge_Cupcake_01
+  price: 20
+  isAdsReward: 1
+  sprite: {fileID: 21300000, guid: 4cdedad9638a46c46b6f68e50c451efb, type: 3}
   skinStats:
     passiveStats: 0
     activeStats: 0

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a88c9f972ca1843ab5eb182b500af8, type: 3}
+  m_Name: Punchbag_8
+  m_EditorClassIdentifier: 
+  punchbagIdNumber: 7
+  punchbagPrice: 102
+  rusName: "\u0418\u0437\u044B\u0441\u043A\u0430\u043D\u043D\u0430\u044F \u0433\u0440\u0443\u0448\u0430"
+  engName: Exquisite punchbag
+  punchbagSprite: {fileID: 21300000, guid: 55fd55ca76834cd4d963d92d74a3c9b0, type: 3}
+  punchbagStats:
+    maxClicks: 65
+    maxStreak: 8
+  punchbagObject: {fileID: 3032275095317582868, guid: 41e32eebda2cfe4488a9d729dad5d9d3, type: 3}

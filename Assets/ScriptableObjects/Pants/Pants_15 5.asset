@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Pants_15 5
   m_EditorClassIdentifier: 
   skinType: 4
-  idNumber: 0
+  idNumber: 19
   skinName: 
-  price: 10
+  price: 20
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: e6450a15ab10f4016a29e51bb1036188, type: 3}
   skinStats:

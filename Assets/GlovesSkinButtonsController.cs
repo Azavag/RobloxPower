@@ -43,7 +43,7 @@ public class GlovesSkinButtonsController : MonoBehaviour
     }
     private void OnValidate()
     {
-        Initialization();
+        //Initialization();
     }
     private void Awake()
     {

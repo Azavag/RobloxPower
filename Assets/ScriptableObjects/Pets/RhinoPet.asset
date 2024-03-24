@@ -15,9 +15,9 @@ MonoBehaviour:
   skinType: 1
   idNumber: 34
   skinName: Rhino
-  price: 70
+  price: 102
   isAdsReward: 0
   sprite: {fileID: 21300000, guid: b08eba729d79cf343ab8279df59b420c, type: 3}
   skinStats:
-    passiveStats: 20
-    activeStats: 10
+    passiveStats: 16
+    activeStats: 16
