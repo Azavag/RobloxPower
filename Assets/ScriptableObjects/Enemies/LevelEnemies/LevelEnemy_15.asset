@@ -15,7 +15,7 @@ MonoBehaviour:
   idNumber: 14
   enemyRusName: "\u0410\u043D\u0433\u0435\u043B"
   enemyEngName: Angel
-  enemyPower: 100000
+  enemyPower: 400000
   enemyReward: 30
   faceSprite: {fileID: 21300000, guid: 49cd26af846c8c8439cd0a4b63eca62a, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: 6fc87466339ee39498da57f7d49f3e94, type: 3}

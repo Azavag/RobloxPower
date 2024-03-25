@@ -15,8 +15,8 @@ MonoBehaviour:
   idNumber: 18
   enemyRusName: "\u0418\u0441\u0430\u043A"
   enemyEngName: Isaack
-  enemyPower: 0
-  enemyReward: 0
+  enemyPower: 200000
+  enemyReward: 55
   faceSprite: {fileID: 21300000, guid: 7d8f9ca00fce50c40a28f14b4588b9b1, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: ce29d53365b08284bb27976dfb743d9f, type: 3}
   enemyModel: {fileID: 2934174709429341511, guid: 00a2e7677d9f5a44b886f47f66c1db0b, type: 3}

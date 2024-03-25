@@ -15,8 +15,8 @@ MonoBehaviour:
   idNumber: 20
   enemyRusName: "\u0421\u0438\u043B\u044C\u0432\u0435\u0441\u0442\u0440"
   enemyEngName: Silvestr
-  enemyPower: 0
-  enemyReward: 0
+  enemyPower: 280000
+  enemyReward: 50
   faceSprite: {fileID: 21300000, guid: 526055a2ba63b1a48ac76a63d12b992c, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: 36df2ce92131a1d4ab0eb147ae04d66e, type: 3}
   enemyModel: {fileID: 1649319773690718492, guid: 6fc93cbb84e5fc44d85d5504a45b1e53, type: 3}

@@ -45,7 +45,6 @@ public class ShopMenuNavigation : MonoBehaviour
         prevPage = buttonContent;
         currentPage = buttonContent;
         buttonContent.SetActive(true);
-        TabSelected?.Invoke(-1);
         ToggleBackButton(false);
     }
     private void OnDisable()
@@ -53,13 +52,13 @@ public class ShopMenuNavigation : MonoBehaviour
         for (int i = 0; i < navButtons.Length; i++)
         {
             int copy = i;
-            navButtons[copy].onClick.RemoveListener(() => { OpenPage(copy); });
+            navButtons[copy].onClick.RemoveAllListeners();
             navPages[copy].SetActive(false);
         }
         for (int i = 0; i < hairOptionsButtons.Length; i++)
         {
             int copy = i;
-            hairOptionsButtons[i].onClick.RemoveListener(() => { OpenHairOption(copy); });
+            hairOptionsButtons[copy].onClick.RemoveAllListeners();
             hairOptions[copy].SetActive(false);
         }
         backButton.onClick.RemoveAllListeners();
@@ -72,7 +71,7 @@ public class ShopMenuNavigation : MonoBehaviour
     }
     void Start()
     {
-        
+        TabSelected?.Invoke(-1);
     }
 
     void OpenPage(int index)

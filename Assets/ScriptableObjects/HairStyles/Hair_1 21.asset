@@ -16,7 +16,7 @@ MonoBehaviour:
   idNumber: 21
   skinName: 21_SM_Chr_Hair_Fade_01
   price: 30
-  isAdsReward: 0
+  isAdsReward: 1
   sprite: {fileID: 21300000, guid: baaf608a3e2ba2740b138c935581b00c, type: 3}
   skinStats:
     passiveStats: 0

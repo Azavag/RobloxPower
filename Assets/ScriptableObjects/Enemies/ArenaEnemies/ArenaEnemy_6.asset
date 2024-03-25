@@ -15,8 +15,8 @@ MonoBehaviour:
   idNumber: 5
   enemyRusName: "\u041B\u0435\u044F"
   enemyEngName: Lea
-  enemyPower: 7500
-  enemyReward: 0
+  enemyPower: 10000
+  enemyReward: 15
   faceSprite: {fileID: 21300000, guid: fc5833bede43d504c87fd9e2fa3c108b, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: eda785dab1030074e96e3bf5dadce90c, type: 3}
   enemyModel: {fileID: 5850238112017811504, guid: bdb51a28cf44cc74ea72410bc32c5389, type: 3}

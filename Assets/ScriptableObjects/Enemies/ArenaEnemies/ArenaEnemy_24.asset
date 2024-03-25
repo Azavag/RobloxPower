@@ -15,8 +15,8 @@ MonoBehaviour:
   idNumber: 23
   enemyRusName: "\u0414\u0436\u043E\u043A\u0435\u0440"
   enemyEngName: Joker
-  enemyPower: 0
-  enemyReward: 0
+  enemyPower: 435000
+  enemyReward: 60
   faceSprite: {fileID: 21300000, guid: 236c11c7a4cdf11489db59fc918bc903, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: bba8fbe11c1895e40822d55573a2fdf9, type: 3}
   enemyModel: {fileID: 391123680414703036, guid: 4d28b90710640494797a4561a1123836, type: 3}

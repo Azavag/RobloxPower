@@ -15,8 +15,8 @@ MonoBehaviour:
   idNumber: 9
   enemyRusName: "\u041A\u0430\u043B\u044C\u0432\u0438\u043D"
   enemyEngName: Calvin
-  enemyPower: 20000
-  enemyReward: 0
+  enemyPower: 32600
+  enemyReward: 33
   faceSprite: {fileID: 21300000, guid: 0481fbf2a4dfe76458a16166da574f76, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: 71edf6652d89815408952170c28148d4, type: 3}
   enemyModel: {fileID: 1746276075051242861, guid: 6c6c7992e5d8e63419b68dbfeb3f66dc, type: 3}

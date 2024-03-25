@@ -46,10 +46,7 @@ public class FadeScreen : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            StartInFadeScreenTween();
-        }
+        
     }
     public void StartInFadeScreenTween()
     {

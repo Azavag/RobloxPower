@@ -1,4 +1,5 @@
 using DG.Tweening;
+using ECM.Controllers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -67,14 +68,14 @@ public class SkinShop : MonoBehaviour
     }
     private void OnEnable()
     {
-        closeButton.onClick.AddListener(CloseSkinShop);
         ShopMenuNavigation.TabSelected += OnTabSelected;
-
+        closeButton.onClick.AddListener(CloseSkinShop);
+        
     }
     private void OnDisable()
     {
-        closeButton.onClick.RemoveListener(CloseSkinShop);
         ShopMenuNavigation.TabSelected -= OnTabSelected;
+        closeButton.onClick.RemoveListener(CloseSkinShop);
     }
 
     public void OpenSkinShop()
@@ -85,6 +86,7 @@ public class SkinShop : MonoBehaviour
         playerController.BlockPlayersInput(true);
         uiNavigation.ToggleSkinShopCanvas(true);
         uiNavigation.ToggleJoystickCanvas(false);
+        
     }
 
     public void CloseSkinShop()
@@ -100,7 +102,7 @@ public class SkinShop : MonoBehaviour
     }
 
     public void ResetPages()
-    {   
+    {
         switch (lastOpenedPage)
         { 
             case 0:
@@ -139,15 +141,15 @@ public class SkinShop : MonoBehaviour
     //На какую вкладку переключились
     void OnTabSelected(int index)
     {
-        soundController.MakeClickSound();
-
+        soundController.MakeClickSound();      
+        ToggleStatWindow(false);
+        
         switch (index)
         {
-            case -3:
-                ToggleBuyWindow(true);
-                return;
+            //На страницу выбора опций волос
             case -2:
                 ToggleBuyWindow(false);
+                lastOpenedPage = 1;
                 return;
             case -1:
                 ToggleBuyWindow(false);
@@ -157,19 +159,21 @@ public class SkinShop : MonoBehaviour
                 RotateAroundPlayer();
                 break;
             case 0:
-                ToggleStatWindow(false);
                 break;
             case 3:
-            case 8:
+                ResetPetSkinAndStats();
                 ToggleStatWindow(true);
                 break;
+            case 8:
+                ToggleStatWindow(true);
+                ResetTrailSkinAndStats();
+                break;
             default:
-                ToggleStatWindow(false);
+                
                 break;
         }
         ToggleBuyWindow(true);
         lastOpenedPage = index;
-        ResetPages();
     }
 
     void ResetPetSkinAndStats()
@@ -228,10 +232,13 @@ public class SkinShop : MonoBehaviour
 
     public void RotateAroundPlayer()
     {
-        Vector3 targetRotation = playerController.gameObject.transform.rotation.eulerAngles;
-        targetRotation = new Vector3(targetRotation.x, targetRotation.y -180, targetRotation.z);
-        playerController.gameObject.transform.DOLocalRotate(targetRotation, 0.05f)
-            .SetAutoKill()
-            .Play();
+        trigger.RotatePlayer();
+
+        //Vector3 targetRotation = playerController.gameObject.transform.rotation.eulerAngles;
+        //targetRotation = new Vector3(targetRotation.x, targetRotation.y - 180, targetRotation.z);
+
+        //playerController.gameObject.transform.DORotate(targetRotation, 0.25f)
+        //    .SetAutoKill()
+        //    .Play();
     }
 }

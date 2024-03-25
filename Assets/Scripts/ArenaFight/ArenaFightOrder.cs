@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,12 +17,13 @@ public class ArenaFightOrder : MonoBehaviour
     private SceneSwapper sceneSwapper;
     private ArenaFightTrigger trigger;
 
-    private static int maxEnemies;
+    private static int maxEnemies = 5;
 
     private static int currentEnemyNumber = 0;
 
     public bool areAllEnemiesDefeated;
 
+    
     private void Awake()
     {
         enemyBehavior = GetComponentInChildren<ArenaEnemyBehavior>();

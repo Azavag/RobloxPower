@@ -129,7 +129,7 @@ public class PowerControl : MonoBehaviour
     }
     public void ChangeUpgradesActivePowerIncrease(int upgradesDiff)
     {
-        upgradesActivePowerIncrease += (int)upgradesDiff;
+        upgradesActivePowerIncrease += upgradesDiff;
         Bank.Instance.playerInfo.upgradeActivePowerIncrease = upgradesActivePowerIncrease;
         YandexSDK.Save();
         ChangePowerIncreases();
@@ -145,6 +145,7 @@ public class PowerControl : MonoBehaviour
     {
         Bank.Instance.playerInfo.currentPower = currentPower;
         CurrentPowerChanged?.Invoke();
+        YandexSDK.SetNewLeaderboardValue(Bank.Instance.playerInfo.overallPower);
     }
 
     //void UpdateSpeedAnimation()
@@ -180,11 +181,11 @@ public class PowerControl : MonoBehaviour
     }
     public int GetPlayerHealth()
     {
-        return currentPower/10;
+        return currentPower;
     }
     public int GetPlayerDamage()
     {
-        return currentPower / 10;
+        return Mathf.Max(currentPower / 21, 1);
     }
     public int GetLevelKoeficient()
     {

@@ -15,8 +15,8 @@ MonoBehaviour:
   idNumber: 7
   enemyRusName: "\u0413\u0435\u043D\u0440\u0438"
   enemyEngName: Henry
-  enemyPower: 13000
-  enemyReward: 0
+  enemyPower: 21000
+  enemyReward: 24
   faceSprite: {fileID: 21300000, guid: b595a11ab9f27044ebe2050f341a7460, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: d5d1635422ae3954fadb82f4418e62a0, type: 3}
   enemyModel: {fileID: 5211838679815087358, guid: faf6df2c0b5074e4ebbced87bce3d242, type: 3}

@@ -16,7 +16,7 @@ MonoBehaviour:
   enemyRusName: "\u041A\u043E\u043D\u0430\u043B\u043B"
   enemyEngName: Conall
   enemyPower: 1500
-  enemyReward: 0
+  enemyReward: 5
   faceSprite: {fileID: 21300000, guid: 49cd26af846c8c8439cd0a4b63eca62a, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: 6fc87466339ee39498da57f7d49f3e94, type: 3}
   enemyModel: {fileID: 8560646351296802271, guid: b22afa9df940fe845895a4ccb7a32599, type: 3}

@@ -16,7 +16,7 @@ MonoBehaviour:
   idNumber: 61
   skinName: 61_SM_Chr_Hair_Sweptback_04
   price: 60
-  isAdsReward: 0
+  isAdsReward: 1
   sprite: {fileID: 21300000, guid: f3db4575a1bc38648a77a76bef88d75a, type: 3}
   skinStats:
     passiveStats: 0

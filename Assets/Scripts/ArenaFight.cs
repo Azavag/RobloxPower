@@ -3,6 +3,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArenaFight : MonoBehaviour
 {
@@ -11,7 +12,11 @@ public class ArenaFight : MonoBehaviour
 
     private bool isDead = false;
     private float deathInterval = 60f;
-    private float deathTimer = 0f;
+    private float deathTimer = 0f; 
+    
+    private float saveInterval = 2f;
+    private float saveTimer = 0f;
+
 
     [Header("Refs")]
     [SerializeField]
@@ -27,6 +32,8 @@ public class ArenaFight : MonoBehaviour
     ArenaFightTrigger trigger;
     HealthBars healthBars;
     ArenaFightOrder arenaFightOrder;
+    [SerializeField]
+    private Button hitButton;
 
     SoundController soundController;
 
@@ -54,11 +61,20 @@ public class ArenaFight : MonoBehaviour
 
     Tween shakeCameraTween;
 
-    public static event Action<int> EnemyLost;
-
     private float cameraTransitionDuration = 1f;
     private float cameraStartTransitionDuration;
 
+    public static event Action<int> EnemyLost;
+    public static event Action<ArenaFight, float> SavedTimer;
+
+    private void OnEnable()
+    {
+        hitButton.onClick.AddListener(OnClickHitButton);
+    }
+    private void OnDisable()
+    {
+        hitButton.onClick.RemoveListener(OnClickHitButton);
+    }
     private void OnDestroy()
     {
         shakeCameraTween.Kill();
@@ -81,22 +97,28 @@ public class ArenaFight : MonoBehaviour
         arenaCamera.enabled = false;
         fightDeskCamera.enabled = false;
         doorCamera.enabled = false;
+        isFightState = false;
 
-        isFightState = false;       
+        
     }
 
     void Update()
     {
-        if (isFightState)
-            CheckClick();
-
         if(isDead)
-            DeathTimer();
+            DeathTimer();       
+    }
+
+    public void SavesInitializationTimer(float savedTimer)
+    {
+        currentArenaEnemy.Death();
+        currentArenaEnemy.SetFightState(true);
+        StartDeathDelay(savedTimer);
     }
 
     public void StartFight()
     {        
         StartCoroutine(StartFightRoutine());
+        CursorLocking.LockCursor(false);
         PlayerController.IsBusy = true;
     }
 
@@ -111,6 +133,7 @@ public class ArenaFight : MonoBehaviour
         canPlayerAttack = true;
         arenaCamera.enabled = true;
         uINavigation.ToggleArenaFightCanvas(true);
+        uINavigation.ToggleJoystickCanvas(false);
         currentArenaEnemy.SetFightState(isFightState);
         currentArenaEnemy.CanAttack(true);
         ResetPlayerStats();
@@ -150,7 +173,8 @@ public class ArenaFight : MonoBehaviour
         trigger.ToggleTriggerFX(true);        
         MovePlayerToExit();
         playerController.SwapToFightMode(isFightState);
-        
+        CursorLocking.LockCursor(true);
+
     }
     IEnumerator PlayerWinFight()
     {
@@ -176,12 +200,13 @@ public class ArenaFight : MonoBehaviour
             arenaFightOrder.ChangeEnemies();
         }
         else
-            StartDeathDelay();
+            StartDeathDelay(deathInterval);
         EndFight();
         yield return new WaitForSeconds(cinemachineBrain.m_DefaultBlend.m_Time*1.1f);
         //Возвращение управления к игроку   
         cinemachineBrain.m_DefaultBlend.m_Time = cameraStartTransitionDuration;
         playerController.BlockPlayersInput(false);
+        uINavigation.ToggleJoystickCanvas(true);
         PlayerController.IsBusy = false;       
     }
 
@@ -221,12 +246,13 @@ public class ArenaFight : MonoBehaviour
         yield return new WaitForSeconds(fadeScreen.GetOutFadeDuration());
         currentArenaEnemy.SetFightState(isFightState);
         playerController.BlockPlayersInput(false);
+        uINavigation.ToggleJoystickCanvas(true);
         PlayerController.IsBusy = false;
     }
 
-    void CheckClick()
+    void OnClickHitButton()
     {   //Поменять на нажатие кнопки
-        if(Input.GetMouseButtonDown(0) && canPlayerAttack)
+        if(canPlayerAttack)
         {
             soundController.MakeRandomPunchSound();
             currentArenaEnemy.GetHit(playerDamage);
@@ -250,25 +276,33 @@ public class ArenaFight : MonoBehaviour
         shakeCameraTween = arenaCamera.transform.DOShakePosition(0.4f, randomnessMode:ShakeRandomnessMode.Harmonic);
     }
 
-    void StartDeathDelay()
+    void StartDeathDelay(float timeInterval)
     {
         isDead = true;
-        ResetDeathTimer();
-        currentArenaEnemy.StartDeathTimer(deathInterval);
+        deathTimer = timeInterval;
+        currentArenaEnemy.StartDeathTimer(timeInterval);
         trigger.gameObject.SetActive(false);
     }
     void DeathTimer()
     {
         deathTimer -= Time.deltaTime;
-        if(deathTimer <= 0)
+        saveTimer -= Time.deltaTime;
+        if(saveTimer <= 0)
+        {
+            saveTimer = saveInterval;
+            SavedTimer?.Invoke(this, deathTimer);
+        }
+        if (deathTimer <= 0)
         {
             isDead = false;
             trigger.gameObject.SetActive(true);
+            deathTimer = 0;
+            SavedTimer?.Invoke(this, deathTimer);
         }
-    }
+    } 
 
-    void ResetDeathTimer()
+    public float GetCurrentDeathTimer()
     {
-        deathTimer = deathInterval;
+        return deathTimer;
     }
 }

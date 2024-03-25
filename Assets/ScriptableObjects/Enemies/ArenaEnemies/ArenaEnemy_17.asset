@@ -15,8 +15,8 @@ MonoBehaviour:
   idNumber: 16
   enemyRusName: "\u041B\u0438\u0430\u043C"
   enemyEngName: Liam
-  enemyPower: 0
-  enemyReward: 0
+  enemyPower: 150000
+  enemyReward: 45
   faceSprite: {fileID: 21300000, guid: 31a89a10f58f1f847b2a94350c25d3f4, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: 35d1965c703ca554886608df34d898b0, type: 3}
   enemyModel: {fileID: 1845764065456599959, guid: 22e63f0feb924204e829c2e6adfac796, type: 3}

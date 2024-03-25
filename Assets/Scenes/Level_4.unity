@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 1
     smallestHole: 0.1
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: d53a8aaa6eb5d1b478b307255b890dcb
+  m_OcclusionCullingData: {fileID: 36300000, guid: 72268d05db330744e919f60df5fcc1ea, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -23472,6 +23472,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6277622715087735502, guid: d258b4981d083c543b13c07b2e47c0de, type: 3}
+      propertyPath: hitButton
+      value: 
+      objectReference: {fileID: 2602130573211204358}
+    - target: {fileID: 6277622715087735502, guid: d258b4981d083c543b13c07b2e47c0de, type: 3}
       propertyPath: doorCamera
       value: 
       objectReference: {fileID: 65561543}
@@ -25831,6 +25835,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1684031601111127897, guid: 8e41b777613abbf42a4091a4af5aef7d, type: 3}
+      propertyPath: hitButton
+      value: 
+      objectReference: {fileID: 2602130573211204358}
     - target: {fileID: 1684031601111127897, guid: 8e41b777613abbf42a4091a4af5aef7d, type: 3}
       propertyPath: doorCamera
       value: 
@@ -35718,6 +35726,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1684031601111127897, guid: 8e41b777613abbf42a4091a4af5aef7d, type: 3}
+      propertyPath: hitButton
+      value: 
+      objectReference: {fileID: 2602130573211204358}
+    - target: {fileID: 1684031601111127897, guid: 8e41b777613abbf42a4091a4af5aef7d, type: 3}
       propertyPath: doorCamera
       value: 
       objectReference: {fileID: 65561543}
@@ -42770,6 +42782,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abf41da3249c2c546b69eb36035ecc52, type: 3}
+--- !u!114 &2602130573211204358 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 528143058035662620, guid: abf41da3249c2c546b69eb36035ecc52, type: 3}
+  m_PrefabInstance: {fileID: 2602130573211204357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &2640682399732832231 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 1116643274075903373, guid: 72f27a8dfd89bda4d849caafa83219a6, type: 3}
@@ -52694,6 +52717,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1684031601111127897, guid: 8e41b777613abbf42a4091a4af5aef7d, type: 3}
+      propertyPath: hitButton
+      value: 
+      objectReference: {fileID: 2602130573211204358}
     - target: {fileID: 1684031601111127897, guid: 8e41b777613abbf42a4091a4af5aef7d, type: 3}
       propertyPath: doorCamera
       value: 

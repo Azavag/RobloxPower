@@ -15,7 +15,7 @@ MonoBehaviour:
   idNumber: 1
   enemyRusName: "\u0415\u0434\u0438\u043D\u043E\u0440\u043E\u0433"
   enemyEngName: Unicorn
-  enemyPower: 2800
+  enemyPower: 3200
   enemyReward: 3
   faceSprite: {fileID: 21300000, guid: 49cd26af846c8c8439cd0a4b63eca62a, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: 6fc87466339ee39498da57f7d49f3e94, type: 3}

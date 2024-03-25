@@ -12,7 +12,7 @@ public class ArenaEnemyBehavior : MonoBehaviour
     private int enemyReward;
 
     [Header("Timers")]
-    private float attackInterval = 3;
+    private float attackInterval = 2.5f;
     private float attackTimer;
 
     private bool isDead = false;
@@ -64,8 +64,8 @@ public class ArenaEnemyBehavior : MonoBehaviour
         enemyReward = currentEnemy.enemyReward;
         animator = enemyModel.GetComponentInChildren<Animator>();
         stunEffect = enemyModel.GetComponentInChildren<ParticleSystem>();
-        maxEnemyHealth = enemyPower / 10;
-        enemyDamage = enemyPower / 10;
+        maxEnemyHealth = enemyPower;
+        enemyDamage = enemyPower / 7;
         ResetHealth();
         botCanvas.ShowName(enemyName);
         botCanvas.ShowPower(enemyPower);
@@ -117,7 +117,7 @@ public class ArenaEnemyBehavior : MonoBehaviour
         animator.SetTrigger("attack");
     }
 
-    void Death()
+    public void Death()
     {
         isFightState = false;
         animator.ResetTrigger("attack");
@@ -154,7 +154,7 @@ public class ArenaEnemyBehavior : MonoBehaviour
         if (deathTimer <= 0)
         {
             isDead = false;
-            stunEffect.Stop();
+            //stunEffect.Stop();
             ToggleDeathTimerCanvas(isDead);
             SetFightState(false);
         }

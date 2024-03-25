@@ -16,7 +16,7 @@ MonoBehaviour:
   enemyRusName: "\u042E\u044D\u043D"
   enemyEngName: Ewan
   enemyPower: 3000
-  enemyReward: 0
+  enemyReward: 8
   faceSprite: {fileID: 21300000, guid: 11821e53c7b6e674e9be1e369fd00c5c, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: e1444d5c77c0ebe478c17473281fb3f1, type: 3}
   enemyModel: {fileID: 7777971899114114029, guid: ce909fb64347bb84486d494eb1068def, type: 3}

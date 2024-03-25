@@ -15,8 +15,8 @@ MonoBehaviour:
   idNumber: 6
   enemyRusName: "\u041C\u0430\u0442\u0435\u043E"
   enemyEngName: Mateo
-  enemyPower: 10000
-  enemyReward: 0
+  enemyPower: 15000
+  enemyReward: 20
   faceSprite: {fileID: 21300000, guid: 6f56d8b9abfe16e4da76e169c500080c, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: 6b818dfb3dbbe7a4da4b583d9a829a1e, type: 3}
   enemyModel: {fileID: 8595210165518653120, guid: 8dfedc05997300b47bf8aeccfd94991d, type: 3}

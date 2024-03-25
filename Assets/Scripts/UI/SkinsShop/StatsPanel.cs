@@ -12,18 +12,21 @@ public class StatsPanel : MonoBehaviour
     string secInterText, clickInterText;
     private void OnEnable()
     {
-        HatSkinCard.HatCardClicked += OnSkinCardClicked;
+        //HatSkinCard.HatCardClicked += OnSkinCardClicked;
         PetSkinCard.PetCardClicked += OnSkinCardClicked;
         TrailSkinCard.TrailCardClicked += OnSkinCardClicked;
-        SetInternationalText();
+        
     }
     private void OnDisable()
     {
-        HatSkinCard.HatCardClicked -= OnSkinCardClicked;
+        //HatSkinCard.HatCardClicked -= OnSkinCardClicked;
         PetSkinCard.PetCardClicked -= OnSkinCardClicked;
         TrailSkinCard.TrailCardClicked -= OnSkinCardClicked;
     }
-
+    private void Awake()
+    {
+        //SetInternationalText();
+    }
     private void Start()
     {
        
@@ -48,7 +51,8 @@ public class StatsPanel : MonoBehaviour
 
     public void UpdateStatsText(SkinStats skinStats)
     {
-       
+        if (string.IsNullOrEmpty(secInterText))
+            SetInternationalText();
         passiveStatsText.text = $"+{skinStats.passiveStats}/{secInterText}";
         activeStatsText.text = $"+{skinStats.activeStats}/{clickInterText}";
     }

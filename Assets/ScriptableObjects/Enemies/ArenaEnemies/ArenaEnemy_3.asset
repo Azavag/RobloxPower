@@ -16,7 +16,7 @@ MonoBehaviour:
   enemyRusName: "\u0410\u0440\u043E\u043D"
   enemyEngName: Aaron
   enemyPower: 5000
-  enemyReward: 0
+  enemyReward: 12
   faceSprite: {fileID: 21300000, guid: 164bbc6e024c0654ba87a5670d973d93, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: 524db9a7d145bf84eae10698e8dbd091, type: 3}
   enemyModel: {fileID: 6998685332463961350, guid: b0b5a56aa6a91674eaf98bbc6ef096ee, type: 3}

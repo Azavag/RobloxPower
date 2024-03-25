@@ -15,8 +15,8 @@ MonoBehaviour:
   idNumber: 12
   enemyRusName: "\u0427\u0435\u0434"
   enemyEngName: Ched
-  enemyPower: 0
-  enemyReward: 0
+  enemyPower: 66600
+  enemyReward: 37
   faceSprite: {fileID: 21300000, guid: 127d90d65d0334348b1bbaac713512a9, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: 0dc2ad81c0f28b24099cdc6ac359de29, type: 3}
   enemyModel: {fileID: 8535057986831538657, guid: f85d8ab718f860f439c4d32d77c92967, type: 3}

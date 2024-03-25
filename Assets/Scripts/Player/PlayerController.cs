@@ -11,16 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public static bool IsBusy = false;
     public static bool IsFight = false;
-    private void OnEnable()
-    {
-        //NotJumpZone.EnterNotJumpZone += delegate { BlockJump(true); };
-        //NotJumpZone.ExitNotJumpZone += delegate { BlockJump(false); };
-    }
-    private void OnDisable()
-    {
-        //NotJumpZone.EnterNotJumpZone -= delegate { BlockJump(true); };
-        //NotJumpZone.ExitNotJumpZone -= delegate { BlockJump(false); };
-    }
+
     private void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();

@@ -15,8 +15,8 @@ MonoBehaviour:
   idNumber: 17
   enemyRusName: "\u041C\u0430\u0440\u043A"
   enemyEngName: Marc
-  enemyPower: 0
-  enemyReward: 0
+  enemyPower: 175000
+  enemyReward: 52
   faceSprite: {fileID: 21300000, guid: 087d361daa93d694baef0ca7dfe25658, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: 5afd309ae807f0e48a02d07c8582d0cb, type: 3}
   enemyModel: {fileID: 6102594142827423118, guid: e70d5466b65bb6742af27f67cf196637, type: 3}

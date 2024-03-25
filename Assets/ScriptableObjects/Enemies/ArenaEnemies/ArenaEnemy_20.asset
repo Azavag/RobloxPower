@@ -15,8 +15,8 @@ MonoBehaviour:
   idNumber: 19
   enemyRusName: "\u0420\u044D\u043D"
   enemyEngName: Ran
-  enemyPower: 0
-  enemyReward: 0
+  enemyPower: 230000
+  enemyReward: 60
   faceSprite: {fileID: 21300000, guid: 1f591d9c121ad71488410cbd6bc3f006, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: 1f2ba7fb15f69884db0191391fd3b606, type: 3}
   enemyModel: {fileID: 2171370205204322168, guid: 2f5f1824ee59aa14190c4756f949e310, type: 3}

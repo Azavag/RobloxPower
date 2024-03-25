@@ -15,8 +15,8 @@ MonoBehaviour:
   idNumber: 22
   enemyRusName: "\u0411\u0438\u043B\u043B"
   enemyEngName: Bill
-  enemyPower: 0
-  enemyReward: 0
+  enemyPower: 390000
+  enemyReward: 58
   faceSprite: {fileID: 21300000, guid: 9d77b60800f879a4b9746d8fea2eb873, type: 3}
   blackWhiteFaceSprite: {fileID: 21300000, guid: 57cd7766403cbc54ab57c4ad7f4e1ed8, type: 3}
   enemyModel: {fileID: 1591165368203764924, guid: d3b71a54f048c3341bfbd210bbae53aa, type: 3}
