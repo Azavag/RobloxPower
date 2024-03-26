@@ -44,7 +44,7 @@ public class PlayerInfo
     public bool[] trailSkinsBuyStates = new bool[20];              //++
     public bool[] areLevelsUnlock = new bool[5];                  //++
 
-    public float[] levelEnemiesTimer = new float[3];
+    public float[] levelEnemiesTimers = new float[3];
 }
 
 public class Bank : MonoBehaviour

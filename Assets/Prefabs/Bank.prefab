@@ -79,7 +79,7 @@ MonoBehaviour:
     pantsSkinsBuyStates: 010000000000000000000000000000000000000000000000000000000000000000000000000000000000
     trailSkinsBuyStates: 0100000000000000000000000000000000000000
     areLevelsUnlock: 0100000000
-    levelEnemiesTimer:
+    levelEnemiesTimers:
     - 0
     - 0
     - 0

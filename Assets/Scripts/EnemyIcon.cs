@@ -34,7 +34,7 @@ public class EnemyIcon : MonoBehaviour
     }
     public void SetClosed(bool close)
     {
-        ToggleCrossImage(close);
+        ToggleCrossImage(close);        
     }
     public void AnimateCross()
     {
@@ -43,7 +43,7 @@ public class EnemyIcon : MonoBehaviour
         scaleCrossSequence.OnComplete(SwitchImages);
     }
 
-    void SwitchImages()
+    public void SwitchImages()
     {
         faceImage.gameObject.SetActive(false);
         blackWhiteImage.gameObject.SetActive(true);

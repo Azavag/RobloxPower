@@ -2,7 +2,6 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class SceneSwapper : MonoBehaviour
 {
@@ -53,12 +52,13 @@ public class SceneSwapper : MonoBehaviour
         }
     }
 
-
     public void SwapScene()
     {
         soundController.Play("SceneSwap");
         Bank.Instance.playerInfo.currentPunchBagNumber = 0;
-        Bank.Instance.playerInfo.currentPunchBagNumber = 0;
+        Bank.Instance.playerInfo.currentEnemyNumber = 0;
+        for (int i = 0; i < Bank.Instance.playerInfo.levelEnemiesTimers.Length; i++)
+            Bank.Instance.playerInfo.levelEnemiesTimers[i] = 0;
         YandexSDK.Save();
         fadeScreen.ExitLevelFadeIn(() => SceneManager.LoadScene(nextSceneNumber)); 
         

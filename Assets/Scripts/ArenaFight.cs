@@ -27,15 +27,17 @@ public class ArenaFight : MonoBehaviour
     [SerializeField]
     private PowerControl powerControl;
     [SerializeField]
-    FadeScreen fadeScreen;
+    private FadeScreen fadeScreen;
     private ArenaEnemyBehavior currentArenaEnemy;
-    ArenaFightTrigger trigger;
-    HealthBars healthBars;
-    ArenaFightOrder arenaFightOrder;
+    private ArenaFightTrigger trigger;
+    private HealthBars healthBars;
+    private ArenaFightOrder arenaFightOrder;
+    private ArenaTextAnimation arenaTextAnimation;
+
     [SerializeField]
     private Button hitButton;
 
-    SoundController soundController;
+    private SoundController soundController;
 
     [Header("Cameras")]
     [SerializeField]
@@ -59,7 +61,7 @@ public class ArenaFight : MonoBehaviour
     private Transform exitPoint;
     private float enemiesOrderPanelAnimDuration = 2f;
 
-    Tween shakeCameraTween;
+    private Tween shakeCameraTween;
 
     private float cameraTransitionDuration = 1f;
     private float cameraStartTransitionDuration;
@@ -89,6 +91,7 @@ public class ArenaFight : MonoBehaviour
         cinemachineBrain = FindObjectOfType<CinemachineBrain>();
         sensivityControl = FindObjectOfType<CameraSensivityControl>();
         soundController =FindObjectOfType<SoundController>();
+        arenaTextAnimation = FindObjectOfType<ArenaTextAnimation>();   
         cameraStartTransitionDuration = cinemachineBrain.m_DefaultBlend.m_Time;
     }
     void Start()
@@ -105,7 +108,8 @@ public class ArenaFight : MonoBehaviour
     void Update()
     {
         if(isDead)
-            DeathTimer();       
+            DeathTimer();
+  
     }
 
     public void SavesInitializationTimer(float savedTimer)
@@ -124,21 +128,23 @@ public class ArenaFight : MonoBehaviour
 
     IEnumerator StartFightRoutine()
     {
-        fadeScreen.StartInFadeScreenTween();
         isFightState = true;
         playerController.BlockPlayersInput(isFightState);
+        fadeScreen.StartInFadeScreenTween();
         yield return new WaitForSeconds(fadeScreen.GetInFadeDuration());
-        soundController.Play("ReadyFight");
-        sensivityControl.ResetCameraPosition();
-        canPlayerAttack = true;
         arenaCamera.enabled = true;
         uINavigation.ToggleArenaFightCanvas(true);
         uINavigation.ToggleJoystickCanvas(false);
+        sensivityControl.ResetCameraPosition();
+        playerController.SwapToFightMode(true);       
         currentArenaEnemy.SetFightState(isFightState);
-        currentArenaEnemy.CanAttack(true);
         ResetPlayerStats();
         healthBars.ResetFightHealthBar();
-        playerController.SwapToFightMode(true);       
+        yield return new WaitForSeconds(fadeScreen.GetOutFadeDuration());
+        arenaTextAnimation.EntranceAnimation();
+        yield return new WaitForSeconds(arenaTextAnimation.GetFullAnimationDuration());
+        canPlayerAttack = true;       
+        currentArenaEnemy.CanAttack(true);
     }
 
   
@@ -194,6 +200,7 @@ public class ArenaFight : MonoBehaviour
         }
            
         EnemyLost?.Invoke(currentArenaEnemy.GetEnemyReward());
+        EndFight();
         if (isArenaFight)
         {
             currentArenaEnemy.SetFightState(isFightState);
@@ -201,7 +208,7 @@ public class ArenaFight : MonoBehaviour
         }
         else
             StartDeathDelay(deathInterval);
-        EndFight();
+        
         yield return new WaitForSeconds(cinemachineBrain.m_DefaultBlend.m_Time*1.1f);
         //Возвращение управления к игроку   
         cinemachineBrain.m_DefaultBlend.m_Time = cameraStartTransitionDuration;
@@ -223,9 +230,9 @@ public class ArenaFight : MonoBehaviour
         if (arenaFightOrder.areAllEnemiesDefeated)
         {
             yield return StartCoroutine(DoorOpenCinematic());
-        }
-        
+        }       
     }
+   
     IEnumerator DoorOpenCinematic()
     {
         doorCamera.enabled = true;
@@ -251,7 +258,7 @@ public class ArenaFight : MonoBehaviour
     }
 
     void OnClickHitButton()
-    {   //Поменять на нажатие кнопки
+    {  
         if(canPlayerAttack)
         {
             soundController.MakeRandomPunchSound();

@@ -161,52 +161,52 @@ MonoBehaviour:
     loop: 0
     isPlayOnAwake: 0
     audioSource: {fileID: 0}
+  - name: Reberb
+    typeOfSound: 2
+    clip: {fileID: 8300000, guid: 143305d7124aacd4e85dca2d43410c92, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 0
+    isPlayOnAwake: 0
+    audioSource: {fileID: 0}
   punchSounds:
   - name: Punch_1
     typeOfSound: 0
-    clip: {fileID: 8300000, guid: d7b0065f2734a1e4c91c25b807f5dd7e, type: 3}
-    volume: 0.2
-    pitch: 1
+    clip: {fileID: 8300000, guid: bc81757b12bc02f47910422a1816caed, type: 3}
+    volume: 0.3
+    pitch: 1.5
     loop: 0
     isPlayOnAwake: 0
     audioSource: {fileID: 0}
   - name: Punch_2
     typeOfSound: 0
-    clip: {fileID: 8300000, guid: 9862f660f32ffc64191c6809e00f0956, type: 3}
-    volume: 0.2
+    clip: {fileID: 8300000, guid: bc81757b12bc02f47910422a1816caed, type: 3}
+    volume: 0.3
     pitch: 1
     loop: 0
     isPlayOnAwake: 0
     audioSource: {fileID: 0}
   - name: Punch_3
     typeOfSound: 0
-    clip: {fileID: 8300000, guid: 6ef29d5ae0b1e5848943a76522eb3aee, type: 3}
-    volume: 0.2
-    pitch: 1
+    clip: {fileID: 8300000, guid: bc81757b12bc02f47910422a1816caed, type: 3}
+    volume: 0.3
+    pitch: 0.5
     loop: 0
     isPlayOnAwake: 0
     audioSource: {fileID: 0}
   - name: Punch_4
     typeOfSound: 0
-    clip: {fileID: 8300000, guid: ed664b1abb03de14ea08d41ddd31a9bd, type: 3}
-    volume: 0.2
-    pitch: 1
+    clip: {fileID: 8300000, guid: bc81757b12bc02f47910422a1816caed, type: 3}
+    volume: 0.3
+    pitch: 1.75
     loop: 0
     isPlayOnAwake: 0
     audioSource: {fileID: 0}
   - name: Punch_5
     typeOfSound: 0
-    clip: {fileID: 8300000, guid: e7941625746384a40b8ada37f7841b71, type: 3}
+    clip: {fileID: 8300000, guid: bc81757b12bc02f47910422a1816caed, type: 3}
     volume: 0.2
-    pitch: 1
-    loop: 0
-    isPlayOnAwake: 0
-    audioSource: {fileID: 0}
-  - name: Punch_6
-    typeOfSound: 0
-    clip: {fileID: 8300000, guid: a1b53ad108eab9f49964dcb0f2af5fb4, type: 3}
-    volume: 0.1
-    pitch: 1
+    pitch: 0.85
     loop: 0
     isPlayOnAwake: 0
     audioSource: {fileID: 0}

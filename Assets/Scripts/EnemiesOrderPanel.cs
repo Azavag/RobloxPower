@@ -39,8 +39,11 @@ public class EnemiesOrderPanel : MonoBehaviour
     {
         for(int i = 0; i < enemiesIcons.Length; i++)
         {
-            if(i < Bank.Instance.playerInfo.currentEnemyNumber)
+            if (i < Bank.Instance.playerInfo.currentEnemyNumber)
+            {
                 enemiesIcons[i].SetClosed(true);
+                enemiesIcons[i].SwitchImages();
+            }
             else enemiesIcons[i].SetClosed(false);
         }
         UpdateKilledCountText();
