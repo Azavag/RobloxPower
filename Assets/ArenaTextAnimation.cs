@@ -56,13 +56,7 @@ public class ArenaTextAnimation : MonoBehaviour
         SetupSequence();
         ActivateText(false);
     }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            EntranceAnimation();
-        }
-    }
+
 
     public void EntranceAnimation()
     {      

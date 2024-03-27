@@ -66,11 +66,6 @@ public class SoundController : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.R))
-            MakeRandomPunchSound();
-    }
 
     private void OnEnable()
     {
