@@ -3,8 +3,7 @@ using UnityEngine;
 public class AdvManager : MonoBehaviour
 {
     private float advTimer;
-    [SerializeField]
-    float advBreak = 600f;
+    float advBreak = 60f;
     AdvAlert advAlert;
     bool isCounterToAdv;
 
