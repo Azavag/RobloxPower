@@ -1395,7 +1395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 319973597199793917, guid: 2efa5006d07fd8c42b39af1c97573eca, type: 3}
       propertyPath: m_text
-      value: "\u0420\u0435\u043C\u043E\u043D\u0442"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 319973597199793917, guid: 2efa5006d07fd8c42b39af1c97573eca, type: 3}
       propertyPath: m_fontSize
@@ -1633,10 +1633,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 586081226704972435, guid: 2efa5006d07fd8c42b39af1c97573eca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 709330962545715441}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1716373760109865503, guid: 2efa5006d07fd8c42b39af1c97573eca, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 9157545277668975117}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2efa5006d07fd8c42b39af1c97573eca, type: 3}
 --- !u!4 &6936629771346596613 stripped
 Transform:
@@ -1653,28 +1650,9 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 319973597199793917, guid: 2efa5006d07fd8c42b39af1c97573eca, type: 3}
   m_PrefabInstance: {fileID: 7521558673794349462}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9200916797281489801}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &9200916797281489801 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1716373760109865503, guid: 2efa5006d07fd8c42b39af1c97573eca, type: 3}
-  m_PrefabInstance: {fileID: 7521558673794349462}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &9157545277668975117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9200916797281489801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19cc5a4213839e441800ccf154086e6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ru: "\u0420\u0435\u043C\u043E\u043D\u0442"
-  _en: Under construction

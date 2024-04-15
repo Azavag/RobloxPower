@@ -48,7 +48,7 @@ public class ArenaTextAnimation : MonoBehaviour
     {        
         fightText.transform.position = startPoint.position;
         fightText.transform.localScale = startScale;
-        moveTween = fightText.transform.DOMove(endPoint.position, moveDuration)
+        moveTween = fightText.transform.DOLocalMove(endPoint.localPosition, moveDuration)
             .SetEase(moveEase);
         scaleTween = fightText.transform.DOScale(endScale, moveDuration)
             .SetEase(scaleEase);
@@ -60,8 +60,11 @@ public class ArenaTextAnimation : MonoBehaviour
 
     public void EntranceAnimation()
     {      
-        ActivateText(true);      
-        entranceSequence.Restart();
+        ActivateText(true);
+        fightText.transform.position = startPoint.position;
+        fightText.transform.localScale = startScale;
+        entranceSequence.Rewind();
+        entranceSequence.Play();
     }
 
     void SetupSequence()

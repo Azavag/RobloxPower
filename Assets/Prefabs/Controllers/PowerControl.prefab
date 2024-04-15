@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7912344356622532685}
-  - component: {fileID: 3195602373924885170}
   - component: {fileID: 2460177062308097370}
   - component: {fileID: 4765053319771403993}
   m_Layer: 0
@@ -34,27 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3195602373924885170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9089536009564091800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b330cf2b0f0e6734c8a533bca6406096, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isJumpIncrease: 0
-  minLevelJump: 2000
-  jumpKoeficient: 50
-  characterController: {fileID: 0}
-  playerAnimatorController: {fileID: 0}
-  skinsCharacteristics:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &2460177062308097370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +60,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiNavigation: {fileID: 0}
-  jumpControl: {fileID: 3195602373924885170}
+  jumpControl: {fileID: 0}
   progressSlider: {fileID: 0}
   progressText: {fileID: 0}

@@ -38,6 +38,8 @@ public class SceneSwapper : MonoBehaviour
     {
         isLevelUnlock = Bank.Instance.playerInfo.areLevelsUnlock[nextSceneNumber-1];
         nextSceneNumberText.text = $"{levelInterText} {nextSceneNumber}";
+        if (isLevelUnlock)
+            RotateDoors(75f);
 
     }
     private void OnTriggerEnter(Collider other)
@@ -59,6 +61,7 @@ public class SceneSwapper : MonoBehaviour
         Bank.Instance.playerInfo.currentEnemyNumber = 0;
         for (int i = 0; i < Bank.Instance.playerInfo.levelEnemiesTimers.Length; i++)
             Bank.Instance.playerInfo.levelEnemiesTimers[i] = 0;
+        Bank.Instance.playerInfo.currentLevelNumber = nextSceneNumber;
         YandexSDK.Save();
         fadeScreen.ExitLevelFadeIn(() => SceneManager.LoadScene(nextSceneNumber)); 
         
@@ -69,6 +72,7 @@ public class SceneSwapper : MonoBehaviour
         isLevelUnlock = true;
         RotateDoors(75f);
         Bank.Instance.playerInfo.areLevelsUnlock[nextSceneNumber-1] = isLevelUnlock;
+       
     }
 
     void RotateDoors(float angle)

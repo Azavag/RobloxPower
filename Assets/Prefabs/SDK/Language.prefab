@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0192a1cc8f6e8c343927a0576649c1fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLanguage: en
-  languageName: 1
+  currentLanguage: rus
+  languageName: 0

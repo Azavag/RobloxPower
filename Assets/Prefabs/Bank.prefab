@@ -48,12 +48,12 @@ MonoBehaviour:
     musicVolume: 0.5
     effectsVolume: 0.5
     sensivityValue: 1
-    currentPower: 100000
+    currentPower: 1
     upgradePassivePowerIncrease: 0
     upgradeActivePowerIncrease: 1
     skinsPassivePowerIncrease: 0
     skinsActivePowerIncrease: 0
-    coins: 756
+    coins: 0
     overallPower: 1
     selectedHatId: 0
     selectedPetId: 0

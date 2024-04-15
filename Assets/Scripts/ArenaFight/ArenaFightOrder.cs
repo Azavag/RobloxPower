@@ -38,6 +38,7 @@ public class ArenaFightOrder : MonoBehaviour
     void Start()
     {
         currentEnemyNumber = Bank.Instance.playerInfo.currentEnemyNumber;
+
         InitializeEnemies();
     }
 
@@ -48,10 +49,15 @@ public class ArenaFightOrder : MonoBehaviour
             enemyBehavior.SetArenaEnemy(arenaEnemiesScriptables[enemyNumber]);
             return;
         }
-        enemyBehavior.SetArenaEnemy(arenaEnemiesScriptables[currentEnemyNumber]);
+        
         enemiesOrderPanel.InitializeEnemyData(arenaEnemiesScriptables);
         enemiesOrderPanel.InitializeCrossEnemyIcons();
         maxEnemies = arenaEnemiesScriptables.Length;
+        if (currentEnemyNumber >= maxEnemies)
+        {
+            areAllEnemiesDefeated = true;
+        }
+        ChangeEnemies();
     }
 
     //После победы свапать врагов
@@ -62,12 +68,13 @@ public class ArenaFightOrder : MonoBehaviour
     }
     public void ChangeEnemies()
     {
-        enemyBehavior.SetArenaEnemy(arenaEnemiesScriptables[currentEnemyNumber]);
         if (areAllEnemiesDefeated)
         {
             enemyBehavior.gameObject.SetActive(false);
             trigger.gameObject.SetActive(false);
+            return;
         }
+        enemyBehavior.SetArenaEnemy(arenaEnemiesScriptables[currentEnemyNumber]);
     }
     //После победы
     public void IncreaseDefeatedEnemiesCount()
@@ -75,12 +82,15 @@ public class ArenaFightOrder : MonoBehaviour
         if (areAllEnemiesDefeated)
             return;
         currentEnemyNumber++;
+        Bank.Instance.playerInfo.currentEnemyNumber = currentEnemyNumber;
+        YandexSDK.Save();
         enemiesOrderPanel.UpdateKilledCountText();
         if (currentEnemyNumber >= maxEnemies)
         {
             areAllEnemiesDefeated = true;         
             currentEnemyNumber = maxEnemies - 1;
         }
+       
     }
 
     public void OpenDoorAnimation()
