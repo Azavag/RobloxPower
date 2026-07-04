@@ -129,6 +129,7 @@ public class UINavigation : MonoBehaviour
     
     void OpenSettings()
     {
+        YandexSDK.StopGameplayProcess();
         if (AdvZoneCheck.notAdvZone || AdvManager.isAdvOpen || ArenaFight.isFightState)
             return;
         isSettingsOpen = true;
@@ -150,12 +151,10 @@ public class UINavigation : MonoBehaviour
             return;
         CursorLocking.LockCursor(true);
         playerController.BlockPlayersInput(false);
+        YandexSDK.StartGameplayProcess();
     }
     void ToggleCanvas(Canvas canvas, bool state)
     {
         canvas.gameObject.SetActive(state);
     }
-
-
-
 }

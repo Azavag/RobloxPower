@@ -73,10 +73,11 @@ mergeInto(LibraryManager.library, {
   },
 
   CheckSdkReady: function()
-  {
+  {   
     if(sdkReady)
       {
         myGameInstance.SendMessage('SceneLoader', 'ToggleSdkReady'); 
+        ysdk.features.LoadingAPI?.ready()
       }
   },
 
@@ -186,4 +187,14 @@ mergeInto(LibraryManager.library, {
       stringToUTF8(lang, buffer, bufferSize);
       return buffer;
     },
+
+    StartGameplay : function()
+    {
+      ysdk.features.LoadingAPI?.ready();
+    },
+
+    StopGameplay : function()
+    {
+      ysdk.features.GameplayAPI?.stop();
+    }
   });

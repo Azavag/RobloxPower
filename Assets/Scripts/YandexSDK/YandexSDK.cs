@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
@@ -6,35 +6,38 @@ using SimpleJSON;
 
 public class YandexSDK : MonoBehaviour
 { 
-    //Сохранение данных
+    //РЎРѕС…СЂР°РЅРµРЅРёРµ РґР°РЅРЅС‹С…
     [DllImport("__Internal")]
     private static extern void SaveExtern(string date);
-    //Загрузка данных
+    //Р—Р°РіСЂСѓР·РєР° РґР°РЅРЅС‹С…
     [DllImport("__Internal")]
     private static extern void LoadExtern();
-    //----Таблица лидеров----
+    //----РўР°Р±Р»РёС†Р° Р»РёРґРµСЂРѕРІ----
     [DllImport("__Internal")]
-    //Вывести строку с записями
+    //Р’С‹РІРµСЃС‚Рё СЃС‚СЂРѕРєСѓ СЃ Р·Р°РїРёСЃСЏРјРё
     private static extern void ShowLeaderBoard();
-    //Добавить запись в таблицу
+    //Р”РѕР±Р°РІРёС‚СЊ Р·Р°РїРёСЃСЊ РІ С‚Р°Р±Р»РёС†Сѓ
     [DllImport("__Internal")]
     private static extern void SetToLeaderboard(int value);
-    //Межстраничная реклама
+    //РњРµР¶СЃС‚СЂР°РЅРёС‡РЅР°СЏ СЂРµРєР»Р°РјР°
     [DllImport("__Internal")]
     private static extern void ShowIntersitialAdvExtern();
-    //Реклама с наградой
+    //Р РµРєР»Р°РјР° СЃ РЅР°РіСЂР°РґРѕР№
     [DllImport("__Internal")]
     private static extern void ShowRewardedAdvExtern();
-    ////Получение языка
+    ////РџРѕР»СѓС‡РµРЅРёРµ СЏР·С‹РєР°
     [DllImport("__Internal")]
     private static extern string GetLang();
-    //Получение типа устройства
+    //РџРѕР»СѓС‡РµРЅРёРµ С‚РёРїР° СѓСЃС‚СЂРѕР№СЃС‚РІР°
     [DllImport("__Internal")]
     private static extern string GetDevice();
-    //Оценка игры
+    //РћС†РµРЅРєР° РёРіСЂС‹
     //[DllImport("__Internal")]
     //private static extern string RateGameExtern();
-
+    [DllImport("__Internal")]
+    private static extern string StartGameplay();
+    [DllImport("__Internal")]
+    private static extern string StopGameplay();
 
     public event Action<string> LeaderBoardReady;
     LeaderboardController leaderboard;
@@ -44,6 +47,7 @@ public class YandexSDK : MonoBehaviour
     [HideInInspector]
     public static bool dataIsLoaded;
     string domainType;
+
     private void OnEnable()
     {
         LeaderBoardReady += SetJSONEntries;
@@ -58,11 +62,7 @@ public class YandexSDK : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    void Start()
-    {
-              
-    }
-    //Вызывается месте сохранения Save -> SaveExtern в jslib
+    //Р’С‹Р·С‹РІР°РµС‚СЃСЏ РјРµСЃС‚Рµ СЃРѕС…СЂР°РЅРµРЅРёСЏ Save -> SaveExtern РІ jslib
     static public void Save()
     {
         string jsonString = JsonUtility.ToJson(Bank.Instance.playerInfo);
@@ -70,7 +70,7 @@ public class YandexSDK : MonoBehaviour
         SaveExtern(jsonString);
 #endif
     }
-    //Вызывается в месте загрузки Load -> LoadExtern -> SetPlayerInfo
+    //Р’С‹Р·С‹РІР°РµС‚СЃСЏ РІ РјРµСЃС‚Рµ Р·Р°РіСЂСѓР·РєРё Load -> LoadExtern -> SetPlayerInfo
     public void Load()
     {
 #if !UNITY_EDITOR
@@ -78,7 +78,7 @@ public class YandexSDK : MonoBehaviour
         LoadExtern();     
 #endif
     }
-    //Вызывается в jslib
+    //Р’С‹Р·С‹РІР°РµС‚СЃСЏ РІ jslib
     public void SetPlayerInfo(string value)
     {
         Bank.Instance.playerInfo = JsonUtility.FromJson<PlayerInfo>(value);
@@ -91,7 +91,7 @@ public class YandexSDK : MonoBehaviour
 #if !UNITY_EDITOR
         ShowRewardedAdvExtern();
 #else
-        //Debug.Log("Реклама с наградой");
+        //Debug.Log("Р РµРєР»Р°РјР° СЃ РЅР°РіСЂР°РґРѕР№");
 #endif
     }
     static public void ShowADV()
@@ -99,7 +99,7 @@ public class YandexSDK : MonoBehaviour
 #if !UNITY_EDITOR
         ShowIntersitialAdvExtern();
 #else
-       // Debug.Log("Реклама");
+       // Debug.Log("Р РµРєР»Р°РјР°");
 #endif
     }
 //    static public void OpenAuthorization()
@@ -107,7 +107,7 @@ public class YandexSDK : MonoBehaviour
 //#if !UNITY_EDITOR
 //        Auth();
 //#else
-//    Debug.Log("Авторизация");
+//    Debug.Log("РђРІС‚РѕСЂРёР·Р°С†РёСЏ");
 //#endif
 //    }
 
@@ -164,7 +164,7 @@ public class YandexSDK : MonoBehaviour
         GetDevice();
 #endif
     }
-    //Вызывается в jslib
+    //Р’С‹Р·С‹РІР°РµС‚СЃСЏ РІ jslib
     public void SetDeviceInfo(string deviceString)
     {
         deviceType = deviceString;
@@ -180,8 +180,24 @@ public class YandexSDK : MonoBehaviour
     //#if !UNITY_EDITOR
     //        RateGameExtern();
     //#else
-    //        Debug.Log("Оценка игры");
+    //        Debug.Log("РћС†РµРЅРєР° РёРіСЂС‹");
     //#endif
 
     //    }
+
+    public static void StartGameplayProcess()
+    {
+        Debug.Log("StartGameplay");
+#if !UNITY_EDITOR
+        StartGameplay();
+#endif
+    }
+
+    public static void StopGameplayProcess()
+    {
+        Debug.Log("StopGameplay");
+#if !UNITY_EDITOR
+        StopGameplay();
+#endif
+    }
 }

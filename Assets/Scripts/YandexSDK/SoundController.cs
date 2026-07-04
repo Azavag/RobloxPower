@@ -128,6 +128,10 @@ public class SoundController : MonoBehaviour
     private void OnApplicationFocus(bool focus)
     {       
         Silence(!focus);
+        if(focus)
+            YandexSDK.StartGameplayProcess();
+        else 
+            YandexSDK.StopGameplayProcess();
 #if !UNITY_EDITOR
         if(AdvManager.isAdvOpen)
             return;
@@ -139,6 +143,10 @@ public class SoundController : MonoBehaviour
     private void OnApplicationPause(bool pause)
     {
         Silence(pause);
+        if (pause)
+            YandexSDK.StopGameplayProcess();
+        else
+            YandexSDK.StartGameplayProcess();
 #if !UNITY_EDITOR
         if(AdvManager.isAdvOpen)
             return;

@@ -16,27 +16,27 @@ public class AgentLinkMover : MonoBehaviour
     public OffMeshLinkMoveMethod m_Method = OffMeshLinkMoveMethod.Parabola;
     public AnimationCurve m_Curve;
     public float jumpHeightMuliplier = 10;
-    IEnumerator Start()
-    {
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.autoTraverseOffMeshLink = false;
-        while (true)
-        {
-            GetComponent<Animator>().SetBool("isJump", agent.isOnOffMeshLink);
-            if (agent.isOnOffMeshLink)
-            {
+    //IEnumerator Start()
+    //{
+    //    NavMeshAgent agent = GetComponent<NavMeshAgent>();
+    //    agent.autoTraverseOffMeshLink = false;
+    //    //while (true)
+    //    //{
+    //    //    GetComponent<Animator>().SetBool("isJump", agent.isOnOffMeshLink);
+    //    //    if (agent.isOnOffMeshLink)
+    //    //    {
                 
-                if (m_Method == OffMeshLinkMoveMethod.NormalSpeed)
-                    yield return StartCoroutine(NormalSpeed(agent));
-                else if (m_Method == OffMeshLinkMoveMethod.Parabola)
-                    yield return StartCoroutine(Parabola(agent, 2.0f, 1f));
-                else if (m_Method == OffMeshLinkMoveMethod.Curve)
-                    yield return StartCoroutine(Curve(agent, 1f));
-                agent.CompleteOffMeshLink();
-            }
-            yield return null;
-        }
-    }
+    //    //        if (m_Method == OffMeshLinkMoveMethod.NormalSpeed)
+    //    //            yield return StartCoroutine(NormalSpeed(agent));
+    //    //        else if (m_Method == OffMeshLinkMoveMethod.Parabola)
+    //    //            yield return StartCoroutine(Parabola(agent, 2.0f, 1f));
+    //    //        else if (m_Method == OffMeshLinkMoveMethod.Curve)
+    //    //            yield return StartCoroutine(Curve(agent, 1f));
+    //    //        agent.CompleteOffMeshLink();
+    //    //    }
+    //    //    yield return null;
+    //    }
+    //}
 
     IEnumerator NormalSpeed(NavMeshAgent agent)
     {

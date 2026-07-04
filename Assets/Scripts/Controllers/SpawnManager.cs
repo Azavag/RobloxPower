@@ -29,6 +29,7 @@ public class SpawnManager : MonoBehaviour
 
     void TransferPlayer()
     {
+        YandexSDK.StartGameplayProcess();
         playerController.transform.position = spawnPoint.position;
     }
     void UnblockPlayer()
@@ -40,6 +41,7 @@ public class SpawnManager : MonoBehaviour
     {
         soundController.Play("Death");
         RespawnPlayer();
+        YandexSDK.StopGameplayProcess();
     }
     public void FinishCourse()
     {
@@ -51,6 +53,7 @@ public class SpawnManager : MonoBehaviour
     {
         playerController.BlockPlayersInput(true);
         fadeScreen.StartInFadeScreenTween();
+        YandexSDK.StartGameplayProcess();
         Invoke("TransferPlayer", fadeScreen.inFadeAnimDuration);
         Invoke("UnblockPlayer", fadeScreen.inFadeAnimDuration + fadeScreen.outFadeAnimDuration/3);        
     }   
