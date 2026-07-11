@@ -7,8 +7,10 @@ public class BotController : MonoBehaviour
     private float minSpeed;
     [SerializeField]
     private float maxSpeed;
+    [SerializeField]
     private NavMeshAgent agent;
     private BotsSystem botsSystem;
+    [SerializeField]
     private Animator animator;
 
     private Transform destinationPoint;
@@ -26,7 +28,6 @@ public class BotController : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
         botsSystem = FindObjectOfType<BotsSystem>();
     }
 
