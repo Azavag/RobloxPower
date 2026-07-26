@@ -190,7 +190,7 @@ mergeInto(LibraryManager.library, {
 
     StartGameplay : function()
     {
-      ysdk.features.LoadingAPI?.ready();
+      ysdk.features.GameplayAPI?.start();
     },
 
     StopGameplay : function()

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using SimpleJSON;
+using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
-using SimpleJSON;
 
 public class YandexSDK : MonoBehaviour
 { 
@@ -221,7 +222,7 @@ public class YandexSDK : MonoBehaviour
 
     public static void StartGameplayProcess()
     {
-        Debug.Log("StartGameplay");
+        Debug.LogFormat("<color=green>StartGameplay</color>");
 #if !UNITY_EDITOR
         StartGameplay();
 #endif
@@ -229,7 +230,7 @@ public class YandexSDK : MonoBehaviour
 
     public static void StopGameplayProcess()
     {
-        Debug.Log("StopGameplay");
+        Debug.Log("<color=red>StopGameplay</color>");
 #if !UNITY_EDITOR
         StopGameplay();
 #endif

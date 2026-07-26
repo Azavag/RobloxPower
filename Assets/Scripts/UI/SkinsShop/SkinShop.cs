@@ -32,7 +32,7 @@ public class SkinShop : MonoBehaviour
     private ShirtSkinButtonsController shirtSkinButtonsController;
     private PantsSkinButtonsController pantsSkinButtonsController;
     private GlovesSkinButtonsController glovesSkinButtonController;
-    private AccessoriesSkinButtonsController àccessoriesSkinButtonController;
+    private AccessoriesSkinButtonsController accessoriesSkinButtonsController;
     private HairSkinsButtonController hairSkinButtonsController;
     private BagSkinButtonsController bagSkinButtonController;
     private HairColorsSkinButtonsController hairColorsSkinButtonsController;
@@ -60,7 +60,7 @@ public class SkinShop : MonoBehaviour
         shirtSkinButtonsController = GetComponentInChildren<ShirtSkinButtonsController>();
         pantsSkinButtonsController = GetComponentInChildren<PantsSkinButtonsController>();
         glovesSkinButtonController = GetComponentInChildren<GlovesSkinButtonsController>();
-        àccessoriesSkinButtonController = GetComponentInChildren<AccessoriesSkinButtonsController>();
+        accessoriesSkinButtonsController = GetComponentInChildren<AccessoriesSkinButtonsController>();
         hairSkinButtonsController = GetComponentInChildren<HairSkinsButtonController>();
         bagSkinButtonController = GetComponentInChildren<BagSkinButtonsController>();
         hairColorsSkinButtonsController = GetComponentInChildren<HairColorsSkinButtonsController>();
@@ -84,6 +84,7 @@ public class SkinShop : MonoBehaviour
         PlayerController.IsBusy = true;
         CursorLocking.LockCursor(false);
         playerController.BlockPlayersInput(true);
+        YandexSDK.StopGameplayProcess();
         SyncAllUnlockedSkins();
         uiNavigation.ToggleSkinShopCanvas(true);
         uiNavigation.ToggleJoystickCanvas(false);
@@ -98,7 +99,7 @@ public class SkinShop : MonoBehaviour
         shirtSkinButtonsController.SyncUnlockedSkins();
         pantsSkinButtonsController.SyncUnlockedSkins();
         glovesSkinButtonController.SyncUnlockedSkins();
-        àccessoriesSkinButtonController.SyncUnlockedSkins();
+        accessoriesSkinButtonsController.SyncUnlockedSkins();
         hairSkinButtonsController.SyncUnlockedSkins();
         bagSkinButtonController.SyncUnlockedSkins();
         hairColorsSkinButtonsController.SyncUnlockedSkins();
@@ -114,6 +115,7 @@ public class SkinShop : MonoBehaviour
         ResetPages();
         uiNavigation.ToggleSkinShopCanvas(false);
         uiNavigation.ToggleJoystickCanvas(true);
+        YandexSDK.StartGameplayProcess();
     }
 
     public void ResetPages()
@@ -129,7 +131,7 @@ public class SkinShop : MonoBehaviour
                 ResetHatSkin();
                 break;
             case 2:
-                ResetÀccessoriesSkin();
+                ResetAccessoriesSkin();
                 break;
             case 3:
                 ResetPetSkinAndStats();
@@ -153,7 +155,7 @@ public class SkinShop : MonoBehaviour
         }
 
     }
-    //Íà êàêóþ âêëàäêó ïåðåêëþ÷èëèñü
+    //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     void OnTabSelected(int index)
     {
         soundController.MakeClickSound();      
@@ -161,7 +163,7 @@ public class SkinShop : MonoBehaviour
         
         switch (index)
         {
-            //Íà ñòðàíèöó âûáîðà îïöèé âîëîñ
+            //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
             case -2:
                 ToggleBuyWindow(false);
                 lastOpenedPage = 1;
@@ -222,9 +224,9 @@ public class SkinShop : MonoBehaviour
         glovesSkinButtonController.ResetSkin();
     }
 
-    void ResetÀccessoriesSkin()
+    void ResetAccessoriesSkin()
     {
-        àccessoriesSkinButtonController.ResetSkin();
+        accessoriesSkinButtonsController.ResetSkin();
     }
 
     void ResetHairSkin()

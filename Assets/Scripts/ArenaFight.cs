@@ -160,6 +160,7 @@ public class ArenaFight : MonoBehaviour
             currentArenaEnemy.CanAttack(false);
             canPlayerAttack = false;
             playerAnimatorController.DeathAnimation(true);
+            YandexSDK.StopGameplayProcess();
             StartCoroutine(PlayerLoseFight());
         }
         soundController.MakeRandomPunchSound();
@@ -169,6 +170,7 @@ public class ArenaFight : MonoBehaviour
     {
         canPlayerAttack = false;
         playerAnimatorController.WinAnimation();
+        YandexSDK.StopGameplayProcess();
         StartCoroutine(PlayerWinFight());
         soundController.Play("Knockout");
     }
@@ -184,7 +186,7 @@ public class ArenaFight : MonoBehaviour
     }
     IEnumerator PlayerWinFight()
     {
-        //Ожидание анимации победы
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         yield return new WaitForSeconds(endDelay);
         uINavigation.ToggleArenaFightCanvas(false);
         if (isArenaFight && !arenaFightOrder.areAllEnemiesDefeated)
@@ -210,20 +212,20 @@ public class ArenaFight : MonoBehaviour
             StartDeathDelay(deathInterval);
         
         yield return new WaitForSeconds(cinemachineBrain.m_DefaultBlend.m_Time*1.1f);
-        //Возвращение управления к игроку   
         cinemachineBrain.m_DefaultBlend.m_Time = cameraStartTransitionDuration;
         playerController.BlockPlayersInput(false);
         uINavigation.ToggleJoystickCanvas(true);
-        PlayerController.IsBusy = false;       
+        PlayerController.IsBusy = false;
+        YandexSDK.StartGameplayProcess();
     }
 
     IEnumerator  ProgressCinematic()
     {
-        //Переход к стенду     
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ     
         cinemachineBrain.m_DefaultBlend.m_Time = cameraTransitionDuration;
         fightDeskCamera.enabled = true;
         yield return new WaitForSeconds(cameraTransitionDuration);
-        //Анимация обновления 
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
         arenaFightOrder.DeskAnimation();
         yield return new WaitForSeconds(enemiesOrderPanelAnimDuration * 1.25f);
         fightDeskCamera.enabled = false;
@@ -255,6 +257,7 @@ public class ArenaFight : MonoBehaviour
         playerController.BlockPlayersInput(false);
         uINavigation.ToggleJoystickCanvas(true);
         PlayerController.IsBusy = false;
+        YandexSDK.StartGameplayProcess();
     }
 
     void OnClickHitButton()

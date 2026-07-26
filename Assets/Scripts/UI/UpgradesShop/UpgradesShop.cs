@@ -84,6 +84,7 @@ public class UpgradesShop : MonoBehaviour
         soundController.MakeClickSound();
         CursorLocking.LockCursor(false);
         playerController.BlockPlayersInput(true);
+        YandexSDK.StopGameplayProcess();
         uiNavigation.ToggleShopUpgradeCanvas(true);
         uiNavigation.ToggleJoystickCanvas(false);
     }
@@ -96,6 +97,7 @@ public class UpgradesShop : MonoBehaviour
         uiNavigation.ToggleShopUpgradeCanvas(false);
         uiNavigation.ToggleJoystickCanvas(true);
         playerController.BlockPlayersInput(false);
+        YandexSDK.StartGameplayProcess();
     }
     void OnClickBuyPassiveUpgrade(int upgradeNumber, Button clickedButton)
     {

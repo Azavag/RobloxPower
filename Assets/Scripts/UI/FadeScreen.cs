@@ -58,7 +58,11 @@ public class FadeScreen : MonoBehaviour
     public void StartOutFadeScreenTween()
     {
         outFadeScreenTween.Rewind();
-        outFadeScreenTween.OnComplete(() => { uiNavigation.ToggleFadeScreenCanvas(false); });
+        outFadeScreenTween.OnComplete(() =>
+        {
+            uiNavigation.ToggleFadeScreenCanvas(false);
+            YandexSDK.StartGameplayProcess();
+        });
         outFadeScreenTween.Play();
     }
 
@@ -79,6 +83,7 @@ public class FadeScreen : MonoBehaviour
         { 
             playerController.BlockPlayersInput(false);
             uiNavigation.ToggleFadeScreenCanvas(false);
+            YandexSDK.StartGameplayProcess();
         });
         colorTween.SetAutoKill(true);
         colorTween.Play();
