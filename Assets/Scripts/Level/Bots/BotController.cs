@@ -12,6 +12,9 @@ public class BotController : MonoBehaviour
     private BotsSystem botsSystem;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    [Tooltip("Бот стоит на месте и только проигрывает аниматор, без NavMesh.")]
+    private bool animateOnly;
 
     private Transform destinationPoint;
     [SerializeField]
@@ -34,14 +37,24 @@ public class BotController : MonoBehaviour
     void Start()
     {
         spawnVector = transform.position;
+        if (animateOnly)
+        {
+            if (agent != null)
+                agent.enabled = false;
+            return;
+        }
         SetRandomSpeed();
         ResetTimer();
     }
     void Update()
     {
+        if (animateOnly)
+        {
+            return;
+        }
+
         animator.SetFloat("speed", agent.velocity.magnitude);
         animator.SetFloat("verticalSpeed", agent.velocity.y);
-       
 
         if (!isMoving)
         {
@@ -87,6 +100,9 @@ public class BotController : MonoBehaviour
     }
     public void ReturnToSpawn()
     {
+        if (animateOnly)
+            return;
+
         agent.speed = 0;
         agent.enabled = false;
         transform.position = spawnVector;
