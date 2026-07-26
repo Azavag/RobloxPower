@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AccessoriesSkinButtonsController : MonoBehaviour
+public class AccessoriesSkinButtonsController : SkinButtonController
 {
     private SoundController soundController;
     [SerializeField]
@@ -48,14 +48,17 @@ public class AccessoriesSkinButtonsController : MonoBehaviour
         skinsBuyState = Bank.Instance.playerInfo.accessoriesSkinsBuyStates;
         selectedSkinId = Bank.Instance.playerInfo.selectedAccessoiresId;
     }
+
+    public void SyncUnlockedSkins()
+    {
+        skinsBuyState = Bank.Instance.playerInfo.accessoriesSkinsBuyStates;
+        ApplyBuyStates(skinCards, skinsBuyState);
+    }
+
     void Start()
     {
         Initialization();
-        for (int i = 0; i < skinCards.Length; i++)
-        {
-            if (skinsBuyState[i])
-                skinCards[i].Unclock();
-        }
+        SyncUnlockedSkins();
         ShowSkinObject(selectedSkinId);
 
         clickedSkinCard = skinCards[selectedSkinId];

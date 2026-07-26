@@ -84,9 +84,24 @@ public class SkinShop : MonoBehaviour
         PlayerController.IsBusy = true;
         CursorLocking.LockCursor(false);
         playerController.BlockPlayersInput(true);
+        SyncAllUnlockedSkins();
         uiNavigation.ToggleSkinShopCanvas(true);
         uiNavigation.ToggleJoystickCanvas(false);
         
+    }
+
+    void SyncAllUnlockedSkins()
+    {
+        hatSkinButtonsController.SyncUnlockedSkins();
+        petSkinButtonsController.SyncUnlockedSkins();
+        trailSkinButtonsControllers.SyncUnlockedSkins();
+        shirtSkinButtonsController.SyncUnlockedSkins();
+        pantsSkinButtonsController.SyncUnlockedSkins();
+        glovesSkinButtonController.SyncUnlockedSkins();
+        àccessoriesSkinButtonController.SyncUnlockedSkins();
+        hairSkinButtonsController.SyncUnlockedSkins();
+        bagSkinButtonController.SyncUnlockedSkins();
+        hairColorsSkinButtonsController.SyncUnlockedSkins();
     }
 
     public void CloseSkinShop()

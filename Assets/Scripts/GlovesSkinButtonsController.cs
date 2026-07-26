@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GlovesSkinButtonsController : MonoBehaviour
+public class GlovesSkinButtonsController : SkinButtonController
 {
     private SoundController soundController;
     [SerializeField]
@@ -63,16 +63,18 @@ public class GlovesSkinButtonsController : MonoBehaviour
         skinsBuyState = Bank.Instance.playerInfo.glovesSkinsBuyStates;
         selectedSkinId = Bank.Instance.playerInfo.selectedGlovesId;
         Initialization();
-        for (int i = 0; i < skinCards.Length; i++)
-        {
-            if (skinsBuyState[i])
-                skinCards[i].Unclock();
-        }
+        SyncUnlockedSkins();
         ShowSkinObject(selectedSkinId);
 
         clickedSkinCard = skinCards[selectedSkinId];
         clickedSkinCard.Select();
         clickedSkinCard.Highlight();
+    }
+
+    public void SyncUnlockedSkins()
+    {
+        skinsBuyState = Bank.Instance.playerInfo.glovesSkinsBuyStates;
+        ApplyBuyStates(skinCards, skinsBuyState);
     }
 
     public void OnSkinCardClicked(SkinCard skinCard)
@@ -101,7 +103,7 @@ public class GlovesSkinButtonsController : MonoBehaviour
         ShowCurrentModelView(clickedSkinCard);
         selectedSkinId = clickedSkinCard.GetSkinIdNumber();
         ShowSkinObject(selectedSkinId);
-        Bank.Instance.playerInfo.selectedGlovesId = selectedSkinId;       //Ñîõðàíåíèå
+        Bank.Instance.playerInfo.selectedGlovesId = selectedSkinId;       //˜˜˜˜˜˜˜˜˜˜
         YandexSDK.Save();
     }
     public void ShowCurrentModelView(SkinCard skinCard)

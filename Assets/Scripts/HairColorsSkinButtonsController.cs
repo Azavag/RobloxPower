@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HairColorsSkinButtonsController : MonoBehaviour
+public class HairColorsSkinButtonsController : SkinButtonController
 {
     [SerializeField]
     private SkinType skinType;
@@ -61,18 +61,19 @@ public class HairColorsSkinButtonsController : MonoBehaviour
     void Start()
     {
         Initialization();
-        skinsBuyState = Bank.Instance.playerInfo.hairColorsBuyStates;
+        SyncUnlockedSkins();
         selectedSkinId = Bank.Instance.playerInfo.selectedHairColorId;
-        for (int i = 0; i < skinCards.Length; i++)
-        {
-            if (skinsBuyState[i])
-                skinCards[i].Unclock();
-        }
         ShowSkinObject(selectedSkinId);
 
         clickedSkinCard = skinCards[selectedSkinId];
         clickedSkinCard.Select();
         clickedSkinCard.Highlight();
+    }
+
+    public void SyncUnlockedSkins()
+    {
+        skinsBuyState = Bank.Instance.playerInfo.hairColorsBuyStates;
+        ApplyBuyStates(skinCards, skinsBuyState);
     }
 
     public void OnSkinCardClicked(SkinCard skinCard)
@@ -101,7 +102,7 @@ public class HairColorsSkinButtonsController : MonoBehaviour
         ShowCurrentModelView(clickedSkinCard);
         selectedSkinId = clickedSkinCard.GetSkinIdNumber();
         ShowSkinObject(selectedSkinId);
-        Bank.Instance.playerInfo.selectedHairColorId = selectedSkinId;       //Ñîõðàíåíèå
+        Bank.Instance.playerInfo.selectedHairColorId = selectedSkinId;       //˜˜˜˜˜˜˜˜˜˜
         YandexSDK.Save();
     }
     public void ShowCurrentModelView(SkinCard skinCard)

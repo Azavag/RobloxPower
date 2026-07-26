@@ -62,27 +62,61 @@ public class YandexSDK : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    //Вызывается месте сохранения Save -> SaveExtern в jslib
-    static public void Save()
+    // Вызывается в местах сохранения Save -> SaveExtern в jslib
+    public static void Save()
     {
+        if (Bank.Instance == null || Bank.Instance.playerInfo == null)
+            return;
+
+        // На каждой записи в облако гарантируем целостность и бесплатный слот [0].
+        Bank.Instance.playerInfo.EnsureIntegrity();
+        Bank.Instance.playerInfo.EnsureStarterUnlocks();
+
         string jsonString = JsonUtility.ToJson(Bank.Instance.playerInfo);
 #if !UNITY_EDITOR
         SaveExtern(jsonString);
 #endif
     }
-    //Вызывается в месте загрузки Load -> LoadExtern -> SetPlayerInfo
+
+    // Вызывается при старте: Load -> LoadExtern -> SetPlayerInfo
     public void Load()
     {
-#if !UNITY_EDITOR
+#if UNITY_EDITOR
+        // Симулируем успешную загрузку из локальных дефолтов префаба Bank.
+        if (Bank.Instance != null)
+            Bank.Instance.FinalizeLoadedData(cloudWasEmpty: true);
+#else
         Debug.Log("Load");
-        LoadExtern();     
+        LoadExtern();
 #endif
     }
-    //Вызывается в jslib
+
+    // Вызывается из jslib после player.getData()
     public void SetPlayerInfo(string value)
     {
-        Bank.Instance.playerInfo = JsonUtility.FromJson<PlayerInfo>(value);
-        dataIsLoaded = true;
+        if (Bank.Instance == null)
+        {
+            Debug.LogError("YandexSDK.SetPlayerInfo: Bank is missing.");
+            return;
+        }
+
+        bool cloudWasEmpty = IsEmptyCloudPayload(value);
+        if (!cloudWasEmpty)
+        {
+            // Overwrite сохраняет поля, которых нет в JSON (миграция старых сейвов).
+            JsonUtility.FromJsonOverwrite(value, Bank.Instance.playerInfo);
+        }
+
+        Bank.Instance.FinalizeLoadedData(cloudWasEmpty);
+    }
+
+    static bool IsEmptyCloudPayload(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return true;
+
+        string trimmed = value.Trim();
+        return trimmed == "{}" || trimmed == "null";
     }
 
     static public void ShowRewardedADV()

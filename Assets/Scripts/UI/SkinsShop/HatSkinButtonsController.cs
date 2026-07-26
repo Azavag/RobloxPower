@@ -61,14 +61,17 @@ public class HatSkinButtonsController : SkinButtonController
         selectedSkinId = Bank.Instance.playerInfo.selectedHatId;
         hatSkinStats.SetStatsFromSkin(skinCards[selectedSkinId]);
     }
+
+    public void SyncUnlockedSkins()
+    {
+        skinsBuyState = Bank.Instance.playerInfo.hatSkinsBuyStates;
+        ApplyBuyStates(skinCards, skinsBuyState);
+    }
+
     void Start()
     {
         Initialization();
-        for (int i = 0; i < skinCards.Length; i++)
-        {
-            if (skinsBuyState[i])
-                skinCards[i].Unclock();
-        }
+        SyncUnlockedSkins();
         ShowSkinObject(selectedSkinId);
 
         clickedSkinCard = skinCards[selectedSkinId];

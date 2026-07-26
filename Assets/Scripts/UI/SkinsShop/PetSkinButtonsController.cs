@@ -51,22 +51,23 @@ public class PetSkinButtonsController : SkinButtonController
         skinsBuyState = Bank.Instance.playerInfo.petSkinsBuyStates;
         selectedSkinId = Bank.Instance.playerInfo.selectedPetId;
         petSkinStats.SetStatsFromSkin(skinCards[selectedSkinId]);
-
     }
+
+    public void SyncUnlockedSkins()
+    {
+        skinsBuyState = Bank.Instance.playerInfo.petSkinsBuyStates;
+        ApplyBuyStates(skinCards, skinsBuyState);
+    }
+
     void Start()
     {
         Initialization();
-        for (int i = 0; i < skinCards.Length; i++)
-        {
-            if (skinsBuyState[i])
-                skinCards[i].Unclock();
-        }
+        SyncUnlockedSkins();
         ShowSkinObject(selectedSkinId);
 
         clickedSkinCard = skinCards[selectedSkinId];
         clickedSkinCard.Select();
         clickedSkinCard.Highlight();
-        //ShowCurrentModelView(clickedSkinCard);
     }
 
     public void OnSkinButtonClicked(SkinCard skinEntity)

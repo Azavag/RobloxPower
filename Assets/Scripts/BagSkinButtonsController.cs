@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BagSkinButtonsController : MonoBehaviour
+public class BagSkinButtonsController : SkinButtonController
 {
     private SoundController soundController;
     [SerializeField]
@@ -49,14 +49,17 @@ public class BagSkinButtonsController : MonoBehaviour
         skinsBuyState = Bank.Instance.playerInfo.bagsSkinsBuyStates;
         selectedSkinId = Bank.Instance.playerInfo.selectedBagsId;
     }
+
+    public void SyncUnlockedSkins()
+    {
+        skinsBuyState = Bank.Instance.playerInfo.bagsSkinsBuyStates;
+        ApplyBuyStates(skinCards, skinsBuyState);
+    }
+
     void Start()
     {
         Initialization();
-        for (int i = 0; i < skinCards.Length; i++)
-        {
-            if (skinsBuyState[i])
-                skinCards[i].Unclock();
-        }
+        SyncUnlockedSkins();
         ShowSkinObject(selectedSkinId);
 
         clickedSkinCard = skinCards[selectedSkinId];
@@ -114,7 +117,7 @@ public class BagSkinButtonsController : MonoBehaviour
         ShowCurrentModelView(clickedSkinCard);
         selectedSkinId = clickedSkinCard.GetSkinIdNumber();
         ShowSkinObject(selectedSkinId);
-        Bank.Instance.playerInfo.selectedBagsId = selectedSkinId;       //Ñîõðàíåíèå
+        Bank.Instance.playerInfo.selectedBagsId = selectedSkinId;       //˜˜˜˜˜˜˜˜˜˜
         YandexSDK.Save();
     }
 

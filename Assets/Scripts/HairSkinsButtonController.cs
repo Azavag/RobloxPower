@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HairSkinsButtonController : MonoBehaviour
+public class HairSkinsButtonController : SkinButtonController
 {
     private SoundController soundController;
     [SerializeField]
@@ -56,14 +56,17 @@ public class HairSkinsButtonController : MonoBehaviour
         skinsBuyState = Bank.Instance.playerInfo.hairSkinsBuyStates;
         selectedSkinId = Bank.Instance.playerInfo.selectedHairId;
     }
+
+    public void SyncUnlockedSkins()
+    {
+        skinsBuyState = Bank.Instance.playerInfo.hairSkinsBuyStates;
+        ApplyBuyStates(skinCards, skinsBuyState);
+    }
+
     void Start()
     {
         Initialization();
-        for (int i = 0; i < skinCards.Length; i++)
-        {
-            if (skinsBuyState[i])
-                skinCards[i].Unclock();
-        }
+        SyncUnlockedSkins();
         ShowSkinObject(selectedSkinId);
 
         clickedSkinCard = skinCards[selectedSkinId];
@@ -122,7 +125,7 @@ public class HairSkinsButtonController : MonoBehaviour
         selectedSkinId = clickedSkinCard.GetSkinIdNumber();
         hatSkinButtonController.DropSkin();
         ShowSkinObject(selectedSkinId);
-        Bank.Instance.playerInfo.selectedHairId = selectedSkinId;       //Ñîõðàíåíèå
+        Bank.Instance.playerInfo.selectedHairId = selectedSkinId;       //˜˜˜˜˜˜˜˜˜˜
         YandexSDK.Save();
     }
 
