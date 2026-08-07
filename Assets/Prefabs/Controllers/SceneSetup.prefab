@@ -92,14 +92,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5109484299260780779}
-  m_LocalRotation: {x: 0.42133522, y: -0.36289996, z: 0.18891376, w: 0.80937743}
+  m_LocalRotation: {x: 0.54475194, y: -0.07297047, z: 0.04765964, w: 0.8340559}
   m_LocalPosition: {x: 6.7, y: 46.3, z: -25.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 440638711583652160}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 55, y: -48.3, z: 0}
+  m_LocalEulerAnglesHint: {x: 66.3, y: -10, z: 0}
 --- !u!108 &4761837674037254707
 Light:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.65
+  m_Intensity: 1.1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -157,7 +157,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 6.88e-43, y: 7.1e-44, z: 0, w: 2.339964e+31}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -408,11 +408,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5728410147711159068, guid: 9fc717c0d7a06ef409b8fdab91520f7f, type: 3}
       propertyPath: m_XAxis.m_MaxSpeed
-      value: 1000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5728410147711159068, guid: 9fc717c0d7a06ef409b8fdab91520f7f, type: 3}
       propertyPath: m_YAxis.m_MaxSpeed
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5728410147711159068, guid: 9fc717c0d7a06ef409b8fdab91520f7f, type: 3}
       propertyPath: m_Orbits.Array.data[0].m_Height

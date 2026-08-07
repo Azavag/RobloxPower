@@ -946,7 +946,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4015907337846942418}
   - component: {fileID: 5006853064933517472}
-  m_Layer: 13
+  m_Layer: 9
   m_Name: Borders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6627,6 +6627,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6740a36e3586ee04b8011bceeb2e13da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standDuration: 1.5
+  standingSpeedThreshold: 0.15
+  lookTarget: {fileID: 0}
 --- !u!1 &5691150094994408026
 GameObject:
   m_ObjectHideFlags: 0
@@ -6765,7 +6768,7 @@ GameObject:
   - component: {fileID: 8245041680576710001}
   - component: {fileID: 9193597206189278648}
   - component: {fileID: 1350598104137629178}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Plane_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7635,6 +7638,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6740a36e3586ee04b8011bceeb2e13da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standDuration: 1.5
+  standingSpeedThreshold: 0.15
+  lookTarget: {fileID: 0}
 --- !u!1 &8587216222837158400
 GameObject:
   m_ObjectHideFlags: 0
@@ -12742,6 +12748,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6740a36e3586ee04b8011bceeb2e13da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standDuration: 1.5
+  standingSpeedThreshold: 0.15
+  lookTarget: {fileID: 0}
 --- !u!1001 &177704718321763540
 PrefabInstance:
   m_ObjectHideFlags: 0
