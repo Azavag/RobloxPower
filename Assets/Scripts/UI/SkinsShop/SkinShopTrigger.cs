@@ -16,7 +16,7 @@ public class SkinShopTrigger : MonoBehaviour
     private GameObject triggerVisual;
     private Transform playerTransform;
 
-    private bool rotateToggle;
+    private bool isShowingBack;
 
     private void Awake()
     {
@@ -36,11 +36,12 @@ public class SkinShopTrigger : MonoBehaviour
     void MovePlayerToPoint(Transform playerTransform)
     {
         playerTransform.position = viewPoint.position;
-        RotatePlayer();
+        ResetRotationState();
+        ApplyFacingRotation(false);
         Vector3 cameraProjectionPos = shopCamera.transform.position;
         cameraProjectionPos.y = 0;
         playerTransform.LookAt(cameraProjectionPos);
-        playerTransform.rotation = Quaternion.Euler(0, viewPoint.localRotation.eulerAngles.y, 0);
+        ApplyFacingRotation(false);
     }
 
 
@@ -50,14 +51,26 @@ public class SkinShopTrigger : MonoBehaviour
         triggerVisual.SetActive(!state);
     }
 
-    public void RotatePlayer()
+    public void SetBagsView(bool showBack)
     {
-        rotateToggle = !rotateToggle;
-        if (rotateToggle)
-            playerTransform.GetComponent<Rigidbody>().
-                MoveRotation(Quaternion.Euler(viewPoint.localRotation.eulerAngles));
-        else playerTransform.GetComponent<Rigidbody>().
-                MoveRotation(Quaternion.Euler(viewPoint_opposite.localRotation.eulerAngles));
+        if (playerTransform == null || isShowingBack == showBack)
+            return;
 
+        isShowingBack = showBack;
+        ApplyFacingRotation(showBack);
+    }
+
+    public void ResetRotationState()
+    {
+        isShowingBack = false;
+    }
+
+    void ApplyFacingRotation(bool showBack)
+    {
+        Transform point = showBack ? viewPoint_opposite : viewPoint;
+        float y = point.localRotation.eulerAngles.y;
+        var rotation = Quaternion.Euler(0f, y, 0f);
+        playerTransform.GetComponent<Rigidbody>().MoveRotation(rotation);
+        playerTransform.rotation = rotation;
     }
 }

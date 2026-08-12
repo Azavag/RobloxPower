@@ -113,6 +113,8 @@ public class SkinShop : MonoBehaviour
         CursorLocking.LockCursor(true);
         playerController.BlockPlayersInput(false);
         ResetPages();
+        trigger.SetBagsView(false);
+        trigger.ResetRotationState();
         uiNavigation.ToggleSkinShopCanvas(false);
         uiNavigation.ToggleJoystickCanvas(true);
         YandexSDK.StartGameplayProcess();
@@ -143,7 +145,7 @@ public class SkinShop : MonoBehaviour
                 ResetGlovesSkin();
                 break;
             case 6:
-                RotateAroundPlayer();
+                trigger.SetBagsView(false);
                 ResetBagSkin();
                 break;
             case 7:
@@ -161,6 +163,11 @@ public class SkinShop : MonoBehaviour
         soundController.MakeClickSound();      
         ToggleStatWindow(false);
         
+        if (lastOpenedPage == 6 && index != 6 && index >= 0)
+            trigger.SetBagsView(false);
+        else if (index == 6)
+            trigger.SetBagsView(true);
+
         switch (index)
         {
             //�� �������� ������ ����� �����
@@ -172,9 +179,6 @@ public class SkinShop : MonoBehaviour
                 ToggleBuyWindow(false);
                 ResetPages();
                 return;
-            case 6:
-                RotateAroundPlayer();
-                break;
             case 0:
                 break;
             case 3:
@@ -247,15 +251,4 @@ public class SkinShop : MonoBehaviour
         statWindow.gameObject.SetActive(toggle);
     }
 
-    public void RotateAroundPlayer()
-    {
-        trigger.RotatePlayer();
-
-        //Vector3 targetRotation = playerController.gameObject.transform.rotation.eulerAngles;
-        //targetRotation = new Vector3(targetRotation.x, targetRotation.y - 180, targetRotation.z);
-
-        //playerController.gameObject.transform.DORotate(targetRotation, 0.25f)
-        //    .SetAutoKill()
-        //    .Play();
-    }
 }
