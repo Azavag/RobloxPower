@@ -50,6 +50,7 @@ public class AdvAlert : MonoBehaviour
         advAlertPanel.GetComponent<Animator>().SetTrigger("isShow");
         ResetCounterOnPanel();
         isTimerGoing = true;
+        YandexSDK.StopGameplayProcess();
     }
     void HideAdvAlertPanel()
     {

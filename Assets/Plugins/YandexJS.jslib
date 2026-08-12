@@ -1,7 +1,4 @@
 mergeInto(LibraryManager.library, {
-
-  
-
 	// GiveMePlayerData: function () {
     // 	myGameInstance.SendMessage('Yandex', 'SetName', player.getName());
     // 	myGameInstance.SendMessage('Yandex', 'SetPhoto', player.getPhoto("medium"));
@@ -76,8 +73,8 @@ mergeInto(LibraryManager.library, {
   {   
     if(sdkReady)
       {
+        ysdk.features.LoadingAPI.ready(); 
         myGameInstance.SendMessage('SceneLoader', 'ToggleSdkReady'); 
-        ysdk.features.LoadingAPI?.ready()
       }
   },
 
@@ -92,7 +89,7 @@ mergeInto(LibraryManager.library, {
         onClose: function(wasShown) {
           console.log("Adv closed");
           myGameInstance.SendMessage('AdvManager', 'ResetTimer');
-          myGameInstance.SendMessage('AdvManager', 'AdvContinueGame');   
+          myGameInstance.SendMessage('AdvManager', 'CloseIntersitialAdv');   
           myGameInstance.SendMessage("SoundController", "UnmuteGame");
         },
         onError: function(error) {
@@ -116,7 +113,7 @@ mergeInto(LibraryManager.library, {
         },
         onClose: () => {
           myGameInstance.SendMessage("SkinsShop","UnlockRewardSkin");  
-          myGameInstance.SendMessage('AdvManager', 'AdvContinueGame');  
+          myGameInstance.SendMessage('AdvManager', 'CloseRewardedAdv');  
           myGameInstance.SendMessage("SoundController", "UnmuteGame");
           console.log('VideoReward ad closed');
         }, 
@@ -190,11 +187,15 @@ mergeInto(LibraryManager.library, {
 
     StartGameplay : function()
     {
-      ysdk.features.GameplayAPI?.start();
+      if (ysdk.features && ysdk.features.GameplayAPI) {
+        ysdk.features.GameplayAPI.start();
+      }
     },
 
     StopGameplay : function()
     {
-      ysdk.features.GameplayAPI?.stop();
+      if (ysdk.features && ysdk.features.GameplayAPI) {
+        ysdk.features.GameplayAPI.stop();
+      }
     }
   });

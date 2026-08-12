@@ -11,10 +11,6 @@ public class SceneLoader : MonoBehaviour
     [SerializeField]
     private GameObject gameLoader;
 
-    private void Start()
-    {
-
-    }
     private void Update()
     {
 #if !UNITY_EDITOR

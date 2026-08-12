@@ -36,7 +36,6 @@ public class AdvManager : MonoBehaviour
     }
     public void ShowAdv()
     {        
-        YandexSDK.StopGameplayProcess();
         YandexSDK.ShowADV();
     }
 
@@ -52,8 +51,8 @@ public class AdvManager : MonoBehaviour
         playerController.BlockPlayersInput(pause);
         CursorLocking.LockCursor(!pause);
     }
-    //Â Jslib
-    public void AdvContinueGame()
+    //Âûחûגאועסÿ ג Jslib
+    public void CloseIntersitialAdv()
     {
         YandexSDK.StartGameplayProcess();
         isAdvOpen = false;
@@ -62,6 +61,16 @@ public class AdvManager : MonoBehaviour
         playerController.BlockPlayersInput(false);
         CursorLocking.LockCursor(true);
     }
+    //Âûחûגאועסÿ ג Jslib
+    public void CloseRewardedAdv()
+    {
+        isAdvOpen = false;
+        if (PlayerController.IsBusy || UINavigation.isSettingsOpen)
+            return;
+        playerController.BlockPlayersInput(false);
+        CursorLocking.LockCursor(true);
+    }
+
 
 
     public void ResetTimer()
