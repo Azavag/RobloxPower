@@ -59,6 +59,7 @@ public class AdvAlert : MonoBehaviour
         isTimerGoing = false;
 #if UNITY_EDITOR
         advManager.AdvPauseGame(false);
+        YandexSDK.StartGameplayProcess();
 #endif
     }
 
