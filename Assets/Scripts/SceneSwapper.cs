@@ -66,7 +66,7 @@ public class SceneSwapper : MonoBehaviour
         fadeScreen.ExitLevelFadeIn(() => SceneManager.LoadScene(nextSceneNumber)); 
         
     }
-
+    [ContextMenu("UnlockLevel")]
     public void UnlockLevel()
     {
         isLevelUnlock = true;

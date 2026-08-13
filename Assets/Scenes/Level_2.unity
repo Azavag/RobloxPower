@@ -41209,7 +41209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5139373349601643555, guid: 3f4be80d1cdbdf94b8e83fe931341c64, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.018141454
+      value: -0.018141458
       objectReference: {fileID: 0}
     - target: {fileID: 5139373349601643555, guid: 3f4be80d1cdbdf94b8e83fe931341c64, type: 3}
       propertyPath: m_LocalRotation.y
@@ -47167,79 +47167,79 @@ PrefabInstance:
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[1]
       value: 
-      objectReference: {fileID: 1925310076}
+      objectReference: {fileID: 1594040253}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[2]
       value: 
-      objectReference: {fileID: 1594040253}
+      objectReference: {fileID: 532384350}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[3]
       value: 
-      objectReference: {fileID: 532384350}
+      objectReference: {fileID: 696908202}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[4]
       value: 
-      objectReference: {fileID: 696908202}
+      objectReference: {fileID: 14298560}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[5]
       value: 
-      objectReference: {fileID: 14298560}
+      objectReference: {fileID: 1283336841}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[6]
       value: 
-      objectReference: {fileID: 1283336841}
+      objectReference: {fileID: 1013465872}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[7]
       value: 
-      objectReference: {fileID: 1013465872}
+      objectReference: {fileID: 420983352}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[8]
       value: 
-      objectReference: {fileID: 420983352}
+      objectReference: {fileID: 216031294}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[9]
       value: 
-      objectReference: {fileID: 216031294}
+      objectReference: {fileID: 1788100109}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[10]
       value: 
-      objectReference: {fileID: 1788100109}
+      objectReference: {fileID: 851492514}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[11]
       value: 
-      objectReference: {fileID: 851492514}
+      objectReference: {fileID: 512410927}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[12]
       value: 
-      objectReference: {fileID: 512410927}
+      objectReference: {fileID: 1324427120}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[13]
       value: 
-      objectReference: {fileID: 1324427120}
+      objectReference: {fileID: 1387131303}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[14]
       value: 
-      objectReference: {fileID: 1387131303}
+      objectReference: {fileID: 2142377045}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[15]
       value: 
-      objectReference: {fileID: 2142377045}
+      objectReference: {fileID: 431564887}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[16]
       value: 
-      objectReference: {fileID: 431564887}
+      objectReference: {fileID: 971173366}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[17]
       value: 
-      objectReference: {fileID: 971173366}
+      objectReference: {fileID: 411204475}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[18]
       value: 
-      objectReference: {fileID: 411204475}
+      objectReference: {fileID: 454121489}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: leftGloveFXObjects.Array.data[19]
       value: 
-      objectReference: {fileID: 454121489}
+      objectReference: {fileID: 1925310076}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[0]
       value: 
@@ -47247,79 +47247,79 @@ PrefabInstance:
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[1]
       value: 
-      objectReference: {fileID: 839428405}
+      objectReference: {fileID: 47887272}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[2]
       value: 
-      objectReference: {fileID: 47887272}
+      objectReference: {fileID: 858448559}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[3]
       value: 
-      objectReference: {fileID: 858448559}
+      objectReference: {fileID: 2019587881}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[4]
       value: 
-      objectReference: {fileID: 2019587881}
+      objectReference: {fileID: 1219579487}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[5]
       value: 
-      objectReference: {fileID: 1219579487}
+      objectReference: {fileID: 537815089}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[6]
       value: 
-      objectReference: {fileID: 537815089}
+      objectReference: {fileID: 7846655}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[7]
       value: 
-      objectReference: {fileID: 7846655}
+      objectReference: {fileID: 1397309548}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[8]
       value: 
-      objectReference: {fileID: 1397309548}
+      objectReference: {fileID: 1378955565}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[9]
       value: 
-      objectReference: {fileID: 1378955565}
+      objectReference: {fileID: 745172253}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[10]
       value: 
-      objectReference: {fileID: 745172253}
+      objectReference: {fileID: 568727300}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[11]
       value: 
-      objectReference: {fileID: 568727300}
+      objectReference: {fileID: 664435682}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[12]
       value: 
-      objectReference: {fileID: 664435682}
+      objectReference: {fileID: 1998328040}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[13]
       value: 
-      objectReference: {fileID: 1998328040}
+      objectReference: {fileID: 634996196}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[14]
       value: 
-      objectReference: {fileID: 634996196}
+      objectReference: {fileID: 260392198}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[15]
       value: 
-      objectReference: {fileID: 260392198}
+      objectReference: {fileID: 1255526078}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[16]
       value: 
-      objectReference: {fileID: 1255526078}
+      objectReference: {fileID: 83877909}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[17]
       value: 
-      objectReference: {fileID: 83877909}
+      objectReference: {fileID: 1929510628}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[18]
       value: 
-      objectReference: {fileID: 1929510628}
+      objectReference: {fileID: 2070176343}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[19]
       value: 
-      objectReference: {fileID: 2070176343}
+      objectReference: {fileID: 839428405}
     - target: {fileID: 2178677789177535714, guid: 03989afeae3c6c34596fc0b3dd7c3577, type: 3}
       propertyPath: rightGloveFXObjects.Array.data[20]
       value: 
