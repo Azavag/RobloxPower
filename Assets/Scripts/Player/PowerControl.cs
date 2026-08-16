@@ -31,11 +31,11 @@ public class PowerControl : MonoBehaviour
 
     float saveTimer;
     float saveInterval = 2;
+
     private void Awake()
     {
         characterController = FindObjectOfType<BaseCharacterController>();
-        playerAnimatorController = FindObjectOfType<PlayerAnimatorController>();
-        
+        playerAnimatorController = FindObjectOfType<PlayerAnimatorController>();        
     }
     private void OnEnable()
     {
@@ -78,6 +78,15 @@ public class PowerControl : MonoBehaviour
             PassiveIncreaseCurrentPower();
             ResetTimer();
         }
+    }
+    /// <summary>
+    /// Сброс очков
+    /// </summary>
+    public void ResetPower()
+    {
+        currentPower = 1;
+        Bank.Instance.playerInfo.overallPower = currentPower;
+        YandexSDK.Save();
     }
     //По ивенту
     void OnSkinsCharacteristicsChanged()
@@ -156,7 +165,6 @@ public class PowerControl : MonoBehaviour
     //}
     public void ResetPowerToMinLevel(int diff)
     {
-        //currentPower = minLevelJump;
         ChangePlayerCurrentPower();
     }
 

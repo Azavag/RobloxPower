@@ -17,10 +17,12 @@ public class LeaderboardController : MonoBehaviour
     {
         yandexSDK = FindObjectOfType<YandexSDK>();
     }
+
     void Start()
     {      
         RecieveLeaderBoard();
     }
+
     //для получения данных, только этот метод
     //По кнопке открытия лидерборда
     public void RecieveLeaderBoard()

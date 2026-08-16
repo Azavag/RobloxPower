@@ -71,8 +71,7 @@ public class SceneSwapper : MonoBehaviour
     {
         isLevelUnlock = true;
         RotateDoors(75f);
-        Bank.Instance.playerInfo.areLevelsUnlock[nextSceneNumber-1] = isLevelUnlock;
-       
+        Bank.Instance.playerInfo.areLevelsUnlock[nextSceneNumber-1] = isLevelUnlock;      
     }
 
     void RotateDoors(float angle)

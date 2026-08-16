@@ -216,10 +216,11 @@ public class ArenaFight : MonoBehaviour
         playerController.BlockPlayersInput(false);
         uINavigation.ToggleJoystickCanvas(true);
         PlayerController.IsBusy = false;
+        powerControl.ResetPower();
         YandexSDK.StartGameplayProcess();
     }
 
-    IEnumerator  ProgressCinematic()
+    IEnumerator ProgressCinematic()
     {
         //������� � ������     
         cinemachineBrain.m_DefaultBlend.m_Time = cameraTransitionDuration;

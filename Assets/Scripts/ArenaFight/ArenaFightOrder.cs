@@ -95,7 +95,8 @@ public class ArenaFightOrder : MonoBehaviour
 
     public void OpenDoorAnimation()
     {
-        sceneSwapper.UnlockLevel();
+        if(sceneSwapper != null)
+            sceneSwapper.UnlockLevel();
     }
 
     public static int GetMaxEnemiesCount()

@@ -53,8 +53,8 @@ MonoBehaviour:
     upgradeActivePowerIncrease: 1
     skinsPassivePowerIncrease: 0
     skinsActivePowerIncrease: 0
-    coins: 600
-    overallPower: 10000
+    coins: 0
+    overallPower: 0
     selectedHatId: 0
     selectedPetId: 0
     selectedTrailId: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
     selectedBagsId: 0
     selectedHairId: 0
     selectedHairColorId: 0
-    currentEnemyNumber: 4
+    currentEnemyNumber: 0
     currentPunchBagNumber: 0
     currentLevelNumber: 1
     hatSkinsBuyStates: 010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
