@@ -1,8 +1,6 @@
 using TMPro;
 using UnityEngine;
 using SimpleJSON;
-using System;
-using System.Collections.Generic;
 
 public class LeaderboardController : MonoBehaviour
 {
@@ -10,8 +8,8 @@ public class LeaderboardController : MonoBehaviour
     [SerializeField] GameObject[] otherPlayersEntryScore;
     private YandexSDK yandexSDK;
     GameObject alertAuth;
-    GameObject leaderboardObject; 
-    string unknownUserText;
+    GameObject leaderboardObject;
+    string unknownUserText = "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃРєСЂС‹С‚";
 
     private void Awake()
     {
@@ -19,12 +17,12 @@ public class LeaderboardController : MonoBehaviour
     }
 
     void Start()
-    {      
+    {
         RecieveLeaderBoard();
     }
 
-    //для получения данных, только этот метод
-    //По кнопке открытия лидерборда
+    //РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РґР°РЅРЅС‹С…, С‚РѕР»СЊРєРѕ СЌС‚РѕС‚ РјРµС‚РѕРґ
+    //РџРѕ РєРЅРѕРїРєРµ РѕС‚РєСЂС‹С‚РёСЏ Р»РёРґРµСЂР±РѕСЂРґР°
     public void RecieveLeaderBoard()
     {
         yandexSDK.SetLeaderboardObject(this);
@@ -34,34 +32,74 @@ public class LeaderboardController : MonoBehaviour
     public void FillLeaderboardData(string jsonData)
     {
         Debug.Log("FillLeaderboardData");
+        if (string.IsNullOrEmpty(jsonData) || otherPlayersEntryName == null)
+            return;
+
         var json = JSON.Parse(jsonData);
-        var userRank = json["userRank"].ToString();
-        //Если userScore = 0, То выводить -
-        if (userRank == "0")
-            userRank = "-";
-        var count = Math.Min((int)json["entries"].Count, otherPlayersEntryName.Length);
+        if (json == null || json["entries"] == null)
+            return;
 
-        for (int i = 0; i < count; i++)
+        ClearEntries();
+
+        var entries = json["entries"];
+        for (int i = 0; i < entries.Count; i++)
         {
-            var score = json["entries"][i]["score"].ToString();
-            var name = json["entries"][i]["player"]["publicName"];
-            string strName = name.ToString();
-            if (string.IsNullOrEmpty(strName))
+            var entry = entries[i];
+            int rank = entry["rank"].AsInt;
+            if (rank < 1 || rank > otherPlayersEntryName.Length)
+                continue;
+
+            int slot = rank - 1;
+            int score = entry["score"].AsInt;
+            string strName = entry["player"]["publicName"].Value;
+            if (string.IsNullOrWhiteSpace(strName) || strName == "null")
                 strName = unknownUserText;
-            strName = strName.Trim(new char[] { '\"', '\'' });
 
-            for (int index = 0; index < strName.Length; index++)
-            {
-                if (strName[index] == ' ')
-                {
-                    strName = strName.Substring(0, index + 2) + ".";
-                    break;
-                }
-            }
+            strName = FormatPlayerName(strName);
 
-            otherPlayersEntryName[i].GetComponent<TextMeshProUGUI>().text = strName;        
-            otherPlayersEntryScore[i].GetComponent<TextMeshProUGUI>().text = score;
+            SetEntryText(otherPlayersEntryName, slot, strName);
+            SetEntryText(otherPlayersEntryScore, slot, score.ToString());
         }
+    }
+
+    void ClearEntries()
+    {
+        if (otherPlayersEntryName != null)
+        {
+            for (int i = 0; i < otherPlayersEntryName.Length; i++)
+                SetEntryText(otherPlayersEntryName, i, string.Empty);
+        }
+
+        if (otherPlayersEntryScore != null)
+        {
+            for (int i = 0; i < otherPlayersEntryScore.Length; i++)
+                SetEntryText(otherPlayersEntryScore, i, string.Empty);
+        }
+    }
+
+    static void SetEntryText(GameObject[] entries, int index, string value)
+    {
+        if (entries == null || index < 0 || index >= entries.Length || entries[index] == null)
+            return;
+
+        var label = entries[index].GetComponent<TextMeshProUGUI>();
+        if (label != null)
+            label.text = value;
+    }
+
+    string FormatPlayerName(string strName)
+    {
+        strName = strName.Trim(new char[] { '\"', '\'' });
+        for (int index = 0; index < strName.Length; index++)
+        {
+            if (strName[index] == ' ')
+            {
+                strName = strName.Substring(0, index + 2) + ".";
+                break;
+            }
+        }
+
+        return strName;
     }
 
     public void Launch()
@@ -71,30 +109,28 @@ public class LeaderboardController : MonoBehaviour
         //alertAuth.SetActive(true);
     }
 
-
-    //
     public void OpenAuthAlert()
     {
         //allEntries.SetActive(false);
         alertAuth.SetActive(true);
     }
-    //
+
     public void OpenEntries()
     {
-       // alertAuth.SetActive(false);
+        // alertAuth.SetActive(false);
         //allEntries.SetActive(true);
         FillLeaderboardData(yandexSDK.GetJSONEntries());
     }
-    //По кнопке авторизации
+
+    //РџРѕ РєРЅРѕРїРєРµ Р°РІС‚РѕСЂРёР·Р°С†РёРё
     //public void MakeAuth()
     //{
     //    YandexSDK.OpenAuthorization();
     //}
 
-    //В jslib после нажатия на кнопку авторизации
+    //Р’ jslib РїРѕСЃР»Рµ РЅР°Р¶Р°С‚РёСЏ РЅР° РєРЅРѕРїРєСѓ Р°РІС‚РѕСЂРёР·Р°С†РёРё
     public void CloseAuthWindow()
     {
         leaderboardObject.SetActive(false);
     }
 }
-

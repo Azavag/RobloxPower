@@ -125,28 +125,104 @@ mergeInto(LibraryManager.library, {
   },
 
  	SetToLeaderboard : function(value){
-    	ysdk.getLeaderboards()
-      	.then(lb => {
-          lb.setLeaderboardScore('Leaderboard', value);
-      });
+      if (typeof ysdk === 'undefined' || !ysdk || !ysdk.leaderboards) {
+        console.warn('Leaderboards SDK is not ready');
+        return;
+      }
+
+      window._lbScoreQueue = window._lbScoreQueue || { lastAt: 0, timer: null, pending: null };
+      var state = window._lbScoreQueue;
+      var leaderboardName = 'Leaderboard';
+      var minIntervalMs = 20000;
+
+      var sendScore = function(score) {
+        var doSet = function() {
+          ysdk.leaderboards.setScore(leaderboardName, score).catch(function(err) {
+            console.log('setScore failed', err);
+          });
+        };
+
+        if (!ysdk.isAvailableMethod) {
+          doSet();
+          return;
+        }
+
+        ysdk.isAvailableMethod('leaderboards.setScore').then(function(available) {
+          if (available)
+            doSet();
+          else
+            console.log('leaderboards.setScore is not available');
+        }).catch(function(err) {
+          console.log('isAvailableMethod failed', err);
+        });
+      };
+
+      var now = Date.now();
+      var elapsed = now - state.lastAt;
+      if (elapsed < minIntervalMs) {
+        state.pending = value;
+        if (!state.timer) {
+          state.timer = setTimeout(function() {
+            state.timer = null;
+            if (state.pending === null)
+              return;
+            var pending = state.pending;
+            state.pending = null;
+            state.lastAt = Date.now();
+            sendScore(pending);
+          }, minIntervalMs - elapsed);
+        }
+        return;
+      }
+
+      state.lastAt = now;
+      sendScore(value);
   	},
 
   
     ShowLeaderBoard : function()
     {  
-      ysdk.getLeaderboards()
-          .then(lb => {             
-              lb.getLeaderboardEntries('Leaderboard', { includeUser: true})
-                  .then(res => {
-                  console.log(res);
-                  const JSONEntry = JSON.stringify(res);
-                  myGameInstance.SendMessage('YandexSDK', 'BoardEntriesReady', JSONEntry);        
-                  })
-          })
-          .catch(err => {
-            console.log("Ошибка");
-          });
+      if (typeof ysdk === 'undefined' || !ysdk || !ysdk.leaderboards) {
+        console.warn('Leaderboards SDK is not ready');
+        return;
+      }
 
+      ysdk.leaderboards.getEntries('Leaderboard', {
+        quantityTop: 3,
+        includeUser: true,
+        quantityAround: 1
+      }).then(function(res) {
+        var src = (res && res.entries) ? res.entries : [];
+        var entries = [];
+        for (var i = 0; i < src.length; i++) {
+          var entry = src[i] || {};
+          var player = entry.player || {};
+          var avatarSrc = '';
+          try {
+            if (typeof player.getAvatarSrc === 'function')
+              avatarSrc = player.getAvatarSrc('medium') || '';
+          } catch (e) {}
+          entries.push({
+            rank: entry.rank || 0,
+            score: entry.score || 0,
+            extraData: entry.extraData || '',
+            player: {
+              publicName: player.publicName || '',
+              uniqueID: player.uniqueID || '',
+              avatarSrc: avatarSrc
+            }
+          });
+        }
+
+        var payload = JSON.stringify({
+          userRank: (res && res.userRank) ? res.userRank : 0,
+          entries: entries
+        });
+        console.log(payload);
+        myGameInstance.SendMessage('YandexSDK', 'BoardEntriesReady', payload);
+      }).catch(function(err) {
+        console.log('getEntries failed', err);
+      });
     },
 
     // CheckAuth: function()
